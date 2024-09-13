@@ -1,0 +1,23 @@
+html {
+    background-color: gray;
+}
+header {
+    background-color: yellow;
+}
+h1 {
+    color: blue;
+}
+
+main {
+    display: flex;
+}
+.card { 
+    width: 100px;
+    background-color: blue;
+}
+.catArea {
+    display: flex;
+}
+img {
+    width: 100px;
+}
