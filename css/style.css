@@ -1,23 +1,86 @@
 html {
+    box-sizing: border-box;
     background-color: gray;
 }
+
 header {
     background-color: yellow;
 }
+
 h1 {
     color: blue;
 }
 
 main {
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: pink;
 }
+
+.btnCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.cardCols{
+    display: flex;
+    justify-content: center;
+    background-color: orange;
+    width: 40%;
+}
+
 .card { 
-    width: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
     background-color: blue;
+}
+.cardHeading {
+    background-color: pink;
+    width: 100%;
+    border: solid black 2px;
 }
 .catArea {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: brown;
+    width: 100%;
+    
 }
+.catHeadings {
+    background-color: aqua;
+    width: 70%;
+    margin: 5px 0 5px 5px;
+    padding: 5px;
+}
+.category {
+    background-color: aliceblue;
+}
+.catInfo{
+    background-color: blueviolet;
+    width: 30%;
+    margin: 5px;
+    padding: 5px;
+}
+.info{
+    background-color: aliceblue;
+}
+
 img {
     width: 100px;
+}
+.message-box{ 
+    width: 125px;
+    height: 100px;
+    background-color: brown;
+}
+button{
+    width: 80%;
+    border: solid black 2px;
+    margin: 5px;
 }
