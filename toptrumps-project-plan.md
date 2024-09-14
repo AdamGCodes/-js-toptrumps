@@ -51,22 +51,22 @@ Depending on how long it takes to get a reliable MVP in place a number of altern
 
 ## Pseudocode
 ### Constants
-* const deckName = [{}]
+* const currentDeck = [{}]
 * const p1Deck = []
 * const cpuDeck = []
+* const p1Card = []
+* const cpuCard = []
+* const drawContainer = []
 
 ### Variables (state)
-* let p1Card = {} 
-!!!!!Note!!!! Need to work out or find out if the p1 and cp cards should be const or let. The content of that card will change each hand but the card itself wont. Plus is it ok to be a let if it's an object rather than a list?
-* let cpuCard = {}
 * let turn
 * let winner
 * let cardsLeftP1
-* let cardsLeftPU
-* let drawContainer
+* let cardsLeftCpu
 
 ### Cached Element References
 const p1DispCard (html element where data from letP1card will be displayed on page)
+const the above might need to be multiple for the different card elements but possibly not
 const cpuDispCard (same as above)
 const gameMessages
 const startGameBtn
