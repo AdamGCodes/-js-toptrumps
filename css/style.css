@@ -39,7 +39,7 @@ main {
     align-items: center;
     background-color: blue;
 }
-.cardHeading {
+.cardTitle {
     background-color: pink;
     width: 100%;
     border: solid black 2px;
@@ -83,4 +83,14 @@ button{
     width: 80%;
     border: solid black 2px;
     margin: 5px;
+}
+
+#how-to-play-btn {
+    cursor: pointer;
+}
+.how-to-play-box {
+    display: none;
+}
+.show-how-to-play-box{
+    display:block;
 }
