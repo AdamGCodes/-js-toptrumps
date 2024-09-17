@@ -243,19 +243,22 @@ const currentDeck = [
     }
 ]
 
+
+const drawContainer = [];
+
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+let turn
+let winner
 let p1Deck;
 let cpuDeck;
 let p1Card;
 let cpuCard;
-const drawContainer = [];
-const keys = Object.keys(currentDeck[0]);
-
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-let turn
-let winnner
-let cardsLeftP1
-let cardsLeftCpu
-
+let playerSelected
+let cpuSelected
+let keys
+let p1DeckSize
+let cpuDeckSize
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -CACHED ELEMENT REFERENCES- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -301,34 +304,71 @@ const howToPlayBox = document.querySelector(".how-to-play-box")
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -FUNCTIONS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+
+
 //Show/hide How To Play Info Box
 const handleHowToPlay = (event) => {
     //console.log("How2 btn clicked")
     howToPlayBox.classList.toggle("show-how-to-play-box");
 }
 
+//+++++++++++++++++++++++++++++++++++++Functions for Init+++++++++++++++++++++++++++++++++++++
+//Get Category Names for This Deck
+const getCategories = () => {
+    keys = Object.keys(currentDeck[0]);
+    // console.log(keys)
+}
+
+// For init() Set the categories for the deck of cards that has been chosen.
+// Better to just do that once on init than having to re-render along with the info each time
+const renderCategories = () => {
+    p1Cat1.innerHTML = `${keys[1]}`
+    p1Cat2.innerHTML = `${keys[2]}`
+    p1Cat3.innerHTML = `${keys[3]}`
+    p1Cat4.innerHTML = `${keys[4]}`
+    p1Cat5.innerHTML = `${keys[5]}`
+    p1Cat6.innerHTML = `${keys[6]}`
+
+    cpuCat1.innerHTML = `${keys[1]}`
+    cpuCat2.innerHTML = `${keys[2]}`
+    cpuCat3.innerHTML = `${keys[3]}`
+    cpuCat4.innerHTML = `${keys[4]}`
+    cpuCat5.innerHTML = `${keys[5]}`
+    cpuCat6.innerHTML = `${keys[6]}`
+}
+
+const init = () => {
+    getCategories()
+    renderCategories()
+    
+}
+init()
+
+
+//+++++++++++++++++++++++++++++++++++++Functions for Play Game+++++++++++++++++++++++++++++++++++++
 //Ramdomly shuffle the deck
 const shuffle = (currentDeck) => {
-    for (let i = currentDeck.length -1; i > 0; i--) {
+    for (let i = currentDeck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]]
-    } 
-    return currentDeck;   
+    }
+    return currentDeck;
 }
+
 const shuffledDeck = shuffle(currentDeck);
 //Deal the shuffled cards into two decks
 const deal = () => {
-    
+
     p1Deck = shuffledDeck.filter((element, index) => index % 2 === 0);
     cpuDeck = shuffledDeck.filter((element, index) => index % 2 != 0);
 }
-deal()
+
 //console.log(shuffledDeck)
 // console.log(p1Deck)
 // console.log(cpuDeck)
 
 
-const renderCardInfo = (p1Card, cpuCard) =>{
+const renderCardInfo = () => {
     p1Card = p1Deck[0]
     // console.log(p1Card)
     cpuCard = cpuDeck[0]
@@ -350,77 +390,103 @@ const renderCardInfo = (p1Card, cpuCard) =>{
     cpuInfo5.innerHTML = `${cpuCard.CargoCapacity}`
     cpuInfo6.innerHTML = `${cpuCard.SpecialAbility}`
 }
-renderCardInfo()
 
-// For init() Set the categories for the deck of cards that has been chosen.
-// Better to just do that once on init than having to re-render along with the info each time
-let speed = keys[1]
-let firepower = keys[2]
-let defense = keys[3]
-let crew = keys[4]
-let cargoCapacity = keys[5]
-let specialAbility = keys[6]
-const renderCategories = () => {
-    p1Cat1.innerHTML = `${speed}`
-    p1Cat2.innerHTML = `${firepower}`
-    p1Cat3.innerHTML = `${defense}`
-    p1Cat4.innerHTML = `${crew}`
-    p1Cat5.innerHTML = `${cargoCapacity}`
-    p1Cat6.innerHTML = `${specialAbility}`
-
-    cpuCat1.innerHTML = `${speed}`
-    cpuCat2.innerHTML = `${firepower}`
-    cpuCat3.innerHTML = `${defense}`
-    cpuCat4.innerHTML = `${crew}`
-    cpuCat5.innerHTML = `${cargoCapacity}`
-    cpuCat6.innerHTML = `${specialAbility}`
+const p1Win = () => {
+    turn = p1
+    let moveP1Card = playerDeck[0]
+    let moveCpuCard = cpuDeck[0]
+    let pl = p1DeckSize
+    playerDeck.splice(pl, 0, moveP1Card, moveCpuCard)
+    cpuDeck.splice(0,  1)
+    console.log("Player 1 Wins")
+    console.log(p1DeckSize)
 }
-renderCategories()
-let playerSelected = null
-const handleSelection = (event, p1Card, playerSelected) => {
-    let playerSelection = event.target.id;
-    p1Card = p1Deck[0]
-    if(playerSelection === "p1Cat1"){
-        playerSelected = p1Card[`${keys[1]}`]
-    } else if(playerSelection === "p1Cat2") {
-        playerSelected = p1Card[`${keys[2]}`]
-    } else if(playerSelection === "p1Cat3") {
-        playerSelected = p1Card[`${keys[3]}`]
-    } else if(playerSelection === "p1Cat4") {
-        playerSelected = p1Card[`${keys[4]}`]
-    } else if(playerSelection === "p1Cat5") {
-        playerSelected = p1Card[`${keys[5]}`]
-    } else if(playerSelection === "p1Cat6") {
-        playerSelected = p1Card[`${keys[6]}`]
-    }
-    return playerSelected
-}
-///Got this far so far so good but need to check if I am going to be able to use the plyaerSelected
-//Return value to compare cards.
-
+const cpuWin = () => {
+    turn = cpu
+    let moveP1Card = playerDeck[0]
+    let moveCpuCard = cpuDeck[0]
+    let cl = cpuDeckSize
+    cpuDeck.splice(cl, 0, moveCpuCard, moveP1Card)
+    p1Deck.splice(0, 1)
+    console.log("CPU Wins")
+    console.log(cpuDeckSize)
+}/////////////////////////////////////////////////////////////////////////
+/////////////////////////WOrking on this area of comparing hands
 const compareHand = () => {
-    if (p1Card[`${keys[1]}`] > cpuCard[`${keys[1]}`]) {
-        console.log("Player 1 Wins")
+    if (playerSelected > cpuSelected) {
+        p1Win()
+    } else if (playerSelected > cpuSelected){
+        cpuWin()
+    } else {
+        return //draw ()
     }
 }
-
-const init = () => {
+//Handling the selection of the category for this hand
+//!!!!! I think this is working but need to check that the returned playerSelected is global scope to use eslewhere
+const handleSelection = (event) => {
+    let selection = event.target.id;
+    let cpuSelection = event.target.id
+    // // p1Card = p1Deck[0]    
+    if (selection === "p1Cat1") {
+        selection = p1Card[`${keys[1]}`]
+        cpuSelection = cpuCard[`${keys[1]}`]
+    } else if (selection === "p1Cat2") {
+        selection = p1Card[`${keys[2]}`]
+        cpuSelection = cpuCard[`${keys[2]}`]
+    } else if (selection === "p1Cat3") {
+        selection = p1Card[`${keys[3]}`]
+        cpuSelection = cpuCard[`${keys[3]}`]
+    } else if (selection === "p1Cat4") {
+        selection = p1Card[`${keys[4]}`]
+        cpuSelection = cpuCard[`${keys[4]}`]
+    } else if (selection === "p1Cat5") {
+        selection = p1Card[`${keys[5]}`]
+        cpuSelection = cpuCard[`${keys[5]}`]
+    } else if (selection === "p1Cat6") {
+        selection = p1Card[`${keys[6]}`]
+        cpuSelection = cpuCard[`${keys[6]}`]
+    }
+    playerSelected = selection
+    cpuSelected = cpuSelection
+    compareHand()
+    // console.log(playerSelected)
+    // console.log(cpuSelected)
     
 }
+
+
+
 const playGame = () => {
-    handleSelection()
-    compareHand()    
+    shuffle(currentDeck)
+    deal()
+    p1DeckSize = p1Deck.length
+    console.log(p1DeckSize)
+    cpuDeckSize = cpuDeck.length
+    console.log(cpuDeckSize)
+    renderCardInfo()
+    //handleSelection(event, p1Card, playerSelected)
+    //compareHand()
+    
 }
+playGame()
 
 // const test = () =>{
     
 // }
-
+// if (playerSelected > cpuCard[`${keys[1]}`]) {
+//     console.log("Player 1 Wins")
+// }
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -EVENT LISTENERS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 //startBtn.addEventListener('click', test)
 //endGameBtn.addEventListener('click', )
 howToPlayBtn.addEventListener('click', handleHowToPlay)
+
+// THINK THIS IS BETTER AND GOING TO WORK BUT WAIT UNTIL I CAN TEST BEFORE REPLACING
+// categorySelection.forEach((categoryBtn) => {
+//     categoryBtn.addEventListener('click', handleSelection)
+// })
+
 p1Category1.addEventListener('click', handleSelection)
 p1Category2.addEventListener('click', handleSelection)
 p1Category3.addEventListener('click', handleSelection)

@@ -84,6 +84,12 @@ button{
     border: solid black 2px;
     margin: 5px;
 }
+.categoryBtn {
+    width: 80%;
+    border: solid black 2px;
+    margin: 5px;
+    background-color: yellow;
+}
 
 #how-to-play-btn {
     cursor: pointer;
