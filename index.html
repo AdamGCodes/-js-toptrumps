@@ -7,116 +7,126 @@
     <link rel="stylesheet" href="css/style.css">
     <script defer src="./js/decks.js"></script>
     <script defer src="./js/app.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Bebas+Neue&family=Lexend:wght@100..900&family=Sigmar+One&display=swap');
+    </style>
 </head>
 <body>
     <header>
         <h1>Top Trumps</h1>
     </header>
     <main>
-        <div class="cardCols" id="col1">
-            <div class="card" id="p1Card">
-                <div class="cardTitle" id="p1Title">
-                </div>
-                <div class="crdImg" id="p1Img">
-                    <img src="" alt="">
-                </div>
-                <div class="catArea" id="catAreaP1">
-                    <div class="catHeadings" id="catHeadingsP1">
-                        <div class="category">
-                            <button class="categoryBtn" id="p1Cat1">Test</button>
-                        </div>
-                        <div class="category">
-                            <button class="categoryBtn" id="p1Cat2">Test</button>
-                        </div>
-                        <div class="category">
-                            <button class="categoryBtn" id="p1Cat3">Test</button>
-                        </div>
-                        <div class="category">
-                            <button class="categoryBtn" id="p1Cat4">Test</button>
-                        </div>
-                        <div class="category">
-                            <button class="categoryBtn" id="p1Cat5">Test</button>
-                        </div>
-                        <div class="category">
-                            <button class="categoryBtn" id="p1Cat6">Test</button>
-                        </div>
-                    </div>
-                    <div class="catInfo" id="catInfoP1">
-                        <div class="info" id="p1Info1">
-                        </div>
-                        <div class="info" id="p1Info2">
-                        </div>
-                        <div class="info" id="p1Info3">
-                        </div>
-                        <div class="info" id="p1Info4">
-                        </div>
-                        <div class="info" id="p1Info5">
-                        </div>
-                        <div class="info" id="p1Info6">
-                        </div>
-                    </div>    
-                </div>
-            </div>
-        </div>
         <div class="btnCol" id="col2">
             <div class="message-box">
                 <p id="message"></p>
             </div>
-            <button name=how-to-play-btn class="btn" id="how-to-play-btn">
-                How To Play
-            </button>
-            <button class="btn" id="start-game">
-                Start Game
-            </button>
-            <button class="btn" id="end-game">
-                End Game
-            </button>
-            <div class ="how-to-play-box">
-                <h2>How To Play</h2>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis minima eveniet possimus, distinctio aliquam deserunt blanditiis voluptatibus accusantium autem, quibusdam consequatur! Sint, quis iste praesentium eius vel dolore placeat voluptatum aliquam sit maiores, sed quidem porro numquam, adipisci aliquid quisquam ipsa tempora temporibus corporis ipsam repudiandae magnam laboriosam. Asperiores, quisquam?</p>
+            <div class="buttons-group">
+                <button name=how-to-play-btn class="btn" id="how-to-play-btn">
+                    How To Play
+                </button>
+                <button class="btn" id="start-game">
+                    Start Game
+                </button>
+                <button class="btn" id="end-game">
+                    End Game
+                </button>
             </div>
-        
+            <div class="how-to-play-box">
+                <h2>How To Play</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis minima eveniet possimus, distinctio
+                    aliquam deserunt blanditiis voluptatibus accusantium autem, quibusdam consequatur! Sint, quis iste
+                    praesentium eius vel dolore placeat voluptatum aliquam sit maiores, sed quidem porro numquam, adipisci
+                    aliquid quisquam ipsa tempora temporibus corporis ipsam repudiandae magnam laboriosam. Asperiores, quisquam?
+                </p>
+            </div>
         </div>
-        <div class="cardCols" id="col3">
-            <div class="card" id="cpuCard">
-                <div class="cardTitle" id="cpuTitle">
-                </div>
-                <div class="crdImg" id="cpuImg">
-                    <img src="" alt="">
-                </div>
-                <div class="catArea" id="catAreaCpu">
-                    <div class="catHeadings" id="catHeadingsCpu">
-                        <div class="category">
-                            <p class="cpuCategory"  id="cpuCat1"></p>
-                        </div>
-                        <div class="category">
-                            <p class="cpuCategory" id="cpuCat2"></p>
-                        </div>
-                        <div class="category">
-                            <p class="cpuCategory" id="cpuCat3"></p>
-                        </div>
-                        <div class="category">
-                            <p class="cpuCategory" id="cpuCat4"></p>
-                        </div>
-                        <div class="category">
-                            <p class="cpuCategory" id="cpuCat5"></p>
-                        </div>
-                        <div class="category">
-                            <p class="cpuCategory" id="cpuCat6"></p>
-                        </div>
+        <div class="card-container">
+            <div class="cardCols" id="col1">
+                <div class="card" id="p1Card">
+                    <div class="cardTitle" id="p1Title">
                     </div>
-                    <div class="catInfo" id="catInfoCpu">
-                        <div class="info" id="cpuInfo1">
+                    <div class="crdImg" id="p1Img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="catArea" id="catAreaP1">
+                        <div class="catHeadings" id="catHeadingsP1">
+                            <div class="category">
+                                <button class="categoryBtn" id="p1Cat1">Test</button>
+                            </div>
+                            <div class="category">
+                                <button class="categoryBtn" id="p1Cat2">Test</button>
+                            </div>
+                            <div class="category">
+                                <button class="categoryBtn" id="p1Cat3">Test</button>
+                            </div>
+                            <div class="category">
+                                <button class="categoryBtn" id="p1Cat4">Test</button>
+                            </div>
+                            <div class="category">
+                                <button class="categoryBtn" id="p1Cat5">Test</button>
+                            </div>
+                            <div class="category">
+                                <button class="categoryBtn" id="p1Cat6">Test</button>
+                            </div>
                         </div>
-                        <div class="info" id="cpuInfo2">
+                        <div class="catInfo" id="catInfoP1">
+                            <div class="info" id="p1Info1">
+                            </div>
+                            <div class="info" id="p1Info2">
+                            </div>
+                            <div class="info" id="p1Info3">
+                            </div>
+                            <div class="info" id="p1Info4">
+                            </div>
+                            <div class="info" id="p1Info5">
+                            </div>
+                            <div class="info" id="p1Info6">
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="cardCols" id="col3">
+                <div class="card" id="cpuCard">
+                    <div class="cardTitle" id="cpuTitle">
+                    </div>
+                    <div class="crdImg" id="cpuImg">
+                        <img src="" alt="">
+                    </div>
+                    <div class="catArea" id="catAreaCpu">
+                        <div class="catHeadings" id="catHeadingsCpu">
+                            <div class="category">
+                                <p class="cpu-category"  id="cpuCat1"></p>
+                            </div>
+                            <div class="category">
+                                <p class="cpu-category" id="cpuCat2"></p>
+                            </div>
+                            <div class="category">
+                                <p class="cpu-category" id="cpuCat3"></p>
+                            </div>
+                            <div class="category">
+                                <p class="cpu-category" id="cpuCat4"></p>
+                            </div>
+                            <div class="category">
+                                <p class="cpu-category" id="cpuCat5"></p>
+                            </div>
+                            <div class="category">
+                                <p class="cpu-category" id="cpuCat6"></p>
+                            </div>
                         </div>
-                        <div class="info" id="cpuInfo3">
-                        </div>
-                        <div class="info" id="cpuInfo4">
-                        </div>
-                        <div class="info" id="cpuInfo5">
-                        </div>
-                        <div class="info" id="cpuInfo6">
+                        <div class="catInfo" id="catInfoCpu">
+                            <div class="info" id="cpuInfo1">
+                            </div>
+                            <div class="info" id="cpuInfo2">
+                            </div>
+                            <div class="info" id="cpuInfo3">
+                            </div>
+                            <div class="info" id="cpuInfo4">
+                            </div>
+                            <div class="info" id="cpuInfo5">
+                            </div>
+                            <div class="info" id="cpuInfo6">
+                            </div>
                         </div>
                     </div>
                 </div>

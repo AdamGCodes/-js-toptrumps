@@ -27,7 +27,7 @@ const currentDeck = [
         Crew: 9,
         CargoCapacity: 200,
         SpecialAbility: "Outmaneuver",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/sereniti.webp"
+        Image: "Assets/Images/sci-fi-ships-toptrumps/serenity.jpg"
     },
     {
         Name: "Battlestar Galactica",
@@ -37,7 +37,7 @@ const currentDeck = [
         Crew: 2600,
         CargoCapacity: 4000,
         SpecialAbility: "Heavy Armor",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/battlestar_galactica.jpg"
+        Image: "Assets/Images/sci-fi-ships-toptrumps/battlestar_galactica.webp"
     },
     {
         Name: "Heart of Gold",
@@ -67,7 +67,7 @@ const currentDeck = [
         Crew: 1,
         CargoCapacity: 50,
         SpecialAbility: "Tracking",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Slave1.webp"
+        Image: "Assets/Images/sci-fi-ships-toptrumps/Slave1.jpg"
     },
     {
         Name: "Nostromo",
@@ -127,7 +127,7 @@ const currentDeck = [
         Crew: 5,
         CargoCapacity: 250,
         SpecialAbility: "AI Control",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Discovery_One.jpg"
+        Image: "Assets/Images/sci-fi-ships-toptrumps/Discovery_one.jpeg"
     },
     {
         Name: "Razor Crest",

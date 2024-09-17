@@ -1,87 +1,152 @@
+/*
+font-family: 'Alegreya Sans SC', sans-serif;
+font-family: 'Bebas Neue', cursive;
+font-family: 'Lexend', sans-serif;
+
+.sigmar-one-regular {
+    font-family: "Sigmar One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.lexend-<uniquifier> {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+.bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+*/
+.dummyClass {
+    color: #57A0FF;
+    color: #FFB657;
+    color: #A0FF57;
+    color: #B657FF;
+}
+
 html {
     box-sizing: border-box;
-    background-color: gray;
+    background-color: #57A0FF
 }
 
 header {
-    background-color: yellow;
+    display: flex;
+    background-color: #57A0FF;
 }
 
 h1 {
-    color: blue;
+    font-family: 'Sigmar One', cursive;
+    font-size: 8vw;
+    line-height: 12vw;
+    color: #57A0FF;
+    text-shadow: 3px 3px 0px black;
+    letter-spacing: 5px;
+    -webkit-text-stroke: black 2px;
+    width: 90%;
+    text-align: center;
+    z-index: 1;
 }
 
 main {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 100%;
-    background-color: pink;
+    background-color: #57A0FF;
 }
 
 .btnCol {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 20%;
+    width: 100%;
+}
+
+.buttons-group{
+    display: flex;
+    flex-direction: column;
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 .cardCols{
     display: flex;
     justify-content: center;
-    background-color: orange;
-    width: 40%;
+    background-color: #57A0FF;
+    min-width: 50%;
 }
 
 .card { 
     display: flex;
     flex-direction: column;
-    width: 100%;
+    margin: 0px;
+    border: 5px solid black;
+    border-radius: 20px;
+    width: 80%;
     align-items: center;
-    background-color: blue;
+    justify-content: flex-start;
+    background-color: white;
+    box-shadow: 5px 5px black;
 }
 .cardTitle {
+    display: flex;
+    flex: 1;
     border: solid black 2px;
-    border-radius: 20pt;
+    border-radius: 15px;
     margin: 10px;
-    background-color: rgb(22, 176, 187);
-    width: 80%;
-
+    background-color: #A0FF57;
+    width: 100%;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     font-size: 2em;
-    
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .catArea {
     display: flex;
     flex-direction: row;
+    border-radius: 0px 0px 40px 40px;
     justify-content: center;
-    background-color: brown;
+    
     width: 100%;
     
 }
 .catHeadings {
     display: flex;
     flex-direction: column;
-    background-color: aqua;
+    
     width: 60%;
     margin: 5px 0 5px 5px;
     padding: 5px;
 }
 .category {
-    background-color: aliceblue;
+    border: solid black 2px;
+}
+.category-headings{
+    border: solid rgb(196, 22, 22) 2px;
 }
 .catInfo{
-    background-color: blueviolet;
+    border-radius: 0 0 40px 0; 
+    border: solid black 2px;
     width: 40%;
     margin: 5px;
     padding: 5px;
 }
 .info{
+    margin: 10px;
     border: solid black 2px;
-    margin: 5px;
+    padding: 2px;
     border-radius: 50px;
     background-color: rgb(7, 197, 255);
     width: 80%;
+    text-align: center;
 }
 
 .crdImg {
@@ -94,30 +159,42 @@ main {
     
 }
 .crdImg img{
+    display: block;
     justify-items: center;
     max-width:80%;
-    max-height: auto;
-    display: block;
+    max-height: 200px;
+    
 }
 .message-box{ 
-    width: 125px;
+    width: 70%;
     height: 100px;
-    background-color: brown;
+    background-color: rgb(255, 255, 255);
 }
 button{
-    width: 80%;
-    border: solid black 2px;
     margin: 5px;
+    border: solid black 2px;
 }
 .categoryBtn {
-    border: solid black 2px;
     margin: 5px;
+    border: solid black 2px;
+    padding: 2px;
     border-radius: 50px;
     background-color: rgb(7, 197, 255);
     width: 80%;
-
+    cursor:pointer;
 }
-
+.categoryBtn:hover {
+    border: solid black 4px;
+}
+.cpu-category{
+    margin: 5px;
+    border: solid black 2px;
+    padding: 2px;
+    border-radius: 50px;
+    text-align: center;
+    background-color: rgb(7, 197, 255);
+    width: 80%;
+}
 #how-to-play-btn {
     cursor: pointer;
 }
@@ -126,4 +203,15 @@ button{
 }
 .show-how-to-play-box{
     display:block;
+}
+
+@media screen and (min-width: 550px){
+    .card-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+    .card {
+        width: 95%;
+    }
 }
