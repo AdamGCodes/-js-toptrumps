@@ -1,276 +1,31 @@
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -CONSTANTS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-const currentDeck = [
-    {
-        Name: "Millennium Falcon",
-        Speed: 654,  
-        Firepower: 85,
-        Defense: 75,
-        Crew: 4,
-        CargoCapacity: 100,  
-        SpecialAbility: "Smuggling",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/millennium-falcon.jpg"
-    },
-    {
-        Name: "USS Enterprise (NCC-1701-D)",
-        Speed: 577,  
-        Firepower: 90,
-        Defense: 85,
-        Crew: 1012,
-        CargoCapacity: 700 ,  
-        SpecialAbility: "Warp Speed",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/USS-Enterprise-next-generation.avif"
-    },
-    {
-        Name: "Serenity",
-        Speed: 500,  
-        Firepower: 65,
-        Defense: 50,
-        Crew: 9,
-        CargoCapacity: 200,  
-        SpecialAbility: "Outmaneuver",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/sereniti.webp"
-    },
-    {
-        Name: "Battlestar Galactica",
-        Speed: 462,  
-        Firepower: 95,
-        Defense: 90,
-        Crew: 2600,
-        CargoCapacity: 4000,  
-        SpecialAbility: "Heavy Armor",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/battlestar_galactica.jpg"
-    },
-    {
-        Name: "Heart of Gold",
-        Speed: 1000,  
-        Firepower: 60,
-        Defense: 50,
-        Crew: 2,
-        CargoCapacity: 300,  
-        SpecialAbility: "Infinite Improbability",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Heartofgold.webp"
-    },
-    {
-        Name: "TARDIS",
-        Speed: "Faster than Light",  
-        Firepower: 70,
-        Defense: 100,
-        Crew: 1,
-        CargoCapacity: "Unlimited",  
-        SpecialAbility: "Time Travel",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Tardis.webp"
-    },
-    {
-        Name: "Slave I",
-        Speed: 538,  
-        Firepower: 85,
-        Defense: 80,
-        Crew: 1,
-        CargoCapacity: 50,  
-        SpecialAbility: "Tracking",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Slave1.webp"
-    },
-    {
-        Name: "Nostromo",
-        Speed: 308,  
-        Firepower: 50,
-        Defense: 70,
-        Crew: 7,
-        CargoCapacity: 2000,  
-        SpecialAbility: "Heavy Freighter",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg"
-    },
-    {
-        Name: "Red Dwarf",
-        Speed: 231,  
-        Firepower: 40,
-        Defense: 60,
-        Crew: 3,
-        CargoCapacity: 1000,  
-        SpecialAbility: "Hologram Creation",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/red_dwarf.jpg"
-    },
-    {
-        Name: "Eagle 5",
-        Speed: 192,  
-        Firepower: 55,
-        Defense: 45,
-        Crew: 2,
-        CargoCapacity: 100,  
-        SpecialAbility: "Space Travel",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Eagle-five.jpg"
-    },
-    {
-        Name: "Normandy SR-2",
-        Speed: 615,  
-        Firepower: 80,
-        Defense: 85,
-        Crew: 25,
-        CargoCapacity: 500,  
-        SpecialAbility: "Stealth Systems",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Normandy-SR2.avif"
-    },
-    {
-        Name: "Event Horizon",
-        Speed: "Faster than Light",  
-        Firepower: 95,
-        Defense: 70,
-        Crew: 8,
-        CargoCapacity: 200,  
-        SpecialAbility: "Interdimensional Travel",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/event-horizon.jpg"
-    },
-    {
-        Name: "Discovery One",
-        Speed: 385,  
-        Firepower: 60,
-        Defense: 70,
-        Crew: 5,
-        CargoCapacity: 250,  
-        SpecialAbility: "AI Control",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Discovery_One.jpg"
-    },
-    {
-        Name: "Razor Crest",
-        Speed: 538,  
-        Firepower: 80,
-        Defense: 75,
-        Crew: 2,
-        CargoCapacity: 150,  
-        SpecialAbility: "Gunship",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg"
-    },
-    {
-        Name: "Andromeda Ascendant",
-        Speed: 1000,  
-        Firepower: 95,
-        Defense: 90,
-        Crew: 4000,
-        CargoCapacity: 3000,  
-        SpecialAbility: "AI Command",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Andromeda.webp"
-    },
-    {
-        Name: "Planet Express Ship",
-        Speed: 500,  
-        Firepower: 75,
-        Defense: 65,
-        Crew: 3,
-        CargoCapacity: 120,  
-        SpecialAbility: "Deliveries",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Planetx.webp"
-    },
-    {
-        Name: "Moya",
-        Speed: 385,  
-        Firepower: 65,
-        Defense: 80,
-        Crew: 5,
-        CargoCapacity: 1500,  
-        SpecialAbility: "Living Ship",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Moya.webp"
-    },
-    {
-        Name: "Lexx",//////////////////////
-        Speed: 769,  
-        Firepower: 100,
-        Defense: 85,
-        Crew: 4,
-        CargoCapacity: 500,  
-        SpecialAbility: "Planet Destruction",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg"
-    },
-    {
-        Name: "Gunstar",
-        Speed: 577,  
-        Firepower: 90,
-        Defense: 70,
-        Crew: 2,
-        CargoCapacity: 100,  
-        SpecialAbility: "Starfighter",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/Gunstar_Starfighter.webp"
-    },
-    {
-        Name: "The Bebop",
-        Speed: 308,  
-        Firepower: 65,
-        Defense: 55,
-        Crew: 4,
-        CargoCapacity: 80,  
-        SpecialAbility: "Bounty Hunting",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/The-Bebop.jpeg"
-    },
-    {
-        Name: "Elysium",///////////////////////////
-        Speed: 269,  
-        Firepower: 75,
-        Defense: 70,
-        Crew: 12,
-        CargoCapacity: 300,  
-        SpecialAbility: "Medical Ship",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg"
-    },
-    {
-        Name: "X-Wing",
-        Speed: 654,  
-        Firepower: 85,
-        Defense: 60,
-        Crew: 1,
-        CargoCapacity: 50,  
-        SpecialAbility: "Dogfighting",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/x-wing.jpg"
-    },
-    {
-        Name: "Tie Fighter",
-        Speed: 654,  
-        Firepower: 75,
-        Defense: 55,
-        Crew: 1,
-        CargoCapacity: 30,  
-        SpecialAbility: "High Speed",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/tie-fighter.jpg"
-    },
-    {
-        Name: "Executor",
-        Speed: 500,  
-        Firepower: 100,
-        Defense: 90,
-        Crew: 28000,
-        CargoCapacity: 5000,  
-        SpecialAbility: "Super Star Destroyer",
-        Image: "Assets/Images/sci-fi-ships-toptrumps/executor.jpg"
-    }
-]
 
 
-const drawContainer = [];
+
+
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-let turn
-let winner
+let p1Turn;
+let winner;
 let p1Deck;
 let cpuDeck;
 let p1Card;
 let cpuCard;
-let playerSelected
-let cpuSelected
-let keys
-let p1DeckSize
-let cpuDeckSize
-
+let playerSelected;
+let cpuSelected;
+let keys;
+let p1DeckSize;
+let cpuDeckSize;
+let drawContainer;
+let playOn
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -CACHED ELEMENT REFERENCES- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Cached Elements for P1 Card
 const p1CardTitle = document.querySelector("#p1Title")
 const p1CardImg = document.querySelector("#p1Img")
-const p1Category1 = document.querySelector("#p1Cat1")
-const p1Category2 = document.querySelector("#p1Cat2")
-const p1Category3 = document.querySelector("#p1Cat3")
-const p1Category4 = document.querySelector("#p1Cat4")
-const p1Category5 = document.querySelector("#p1Cat5")
-const p1Category6 = document.querySelector("#p1Cat6")
+const categorySelection = document.querySelectorAll(".categoryBtn")
 
 const p1Info1 = document.querySelector("#p1Info1")
 const p1Info2 = document.querySelector("#p1Info2")
@@ -282,12 +37,7 @@ const p1Info6 = document.querySelector("#p1Info6")
 //Cached Elements for CPU Card
 const cpuCardTitle = document.querySelector("#cpuTitle")
 const cpuCardImg = document.querySelector("#cpuImg")
-const cpuCategory1 = document.querySelector("#cpuCat1")
-const cpuCategory2 = document.querySelector("#cpuCat2")
-const cpuCategory3 = document.querySelector("#cpuCat3")
-const cpuCategory4 = document.querySelector("#cpuCat4")
-const cpuCategory5 = document.querySelector("#cpuCat5")
-const cpuCategory6 = document.querySelector("#cpuCat6")
+const cpuCategories = document.querySelectorAll('#cpuCategory')
 
 const cpuInfo1 = document.querySelector("#cpuInfo1")
 const cpuInfo2 = document.querySelector("#cpuInfo2")
@@ -300,11 +50,11 @@ const cpuInfo6 = document.querySelector("#cpuInfo6")
 const messageBox = document.querySelector("#message")
 const howToPlayBtn = document.querySelector("#how-to-play-btn")
 const howToPlayBox = document.querySelector(".how-to-play-box")
+const startBtn = document.querySelector("#start-game")
+const endGameBtn = document.querySelector('#end-game')
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -FUNCTIONS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
 
 //Show/hide How To Play Info Box
 const handleHowToPlay = (event) => {
@@ -338,15 +88,17 @@ const renderCategories = () => {
 }
 
 const init = () => {
+    p1Card = null
+    cpuCard = null
+    keys = null
     getCategories()
-    renderCategories()
     
 }
 init()
 
 
 //+++++++++++++++++++++++++++++++++++++Functions for Play Game+++++++++++++++++++++++++++++++++++++
-//Ramdomly shuffle the deck
+//Shuffle the deck
 const shuffle = (currentDeck) => {
     for (let i = currentDeck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -356,6 +108,7 @@ const shuffle = (currentDeck) => {
 }
 
 const shuffledDeck = shuffle(currentDeck);
+
 //Deal the shuffled cards into two decks
 const deal = () => {
 
@@ -366,7 +119,6 @@ const deal = () => {
 //console.log(shuffledDeck)
 // console.log(p1Deck)
 // console.log(cpuDeck)
-
 
 const renderCardInfo = () => {
     p1Card = p1Deck[0]
@@ -391,42 +143,107 @@ const renderCardInfo = () => {
     cpuInfo6.innerHTML = `${cpuCard.SpecialAbility}`
 }
 
-const p1Win = () => {
-    turn = p1
-    let moveP1Card = playerDeck[0]
-    let moveCpuCard = cpuDeck[0]
-    let pl = p1DeckSize
-    playerDeck.splice(pl, 0, moveP1Card, moveCpuCard)
-    cpuDeck.splice(0,  1)
-    console.log("Player 1 Wins")
+
+const playGame = () => {
+    playOn = true
+    renderCategories()
+    shuffle(currentDeck)
+    deal()
+    p1DeckSize = p1Deck.length
     console.log(p1DeckSize)
+    cpuDeckSize = cpuDeck.length
+    console.log(cpuDeckSize)
+    renderCardInfo()
+    // while(playOn === true){
+
+    // }
+    //handleSelection(event, p1Card, playerSelected)
+    //compareHand()
+
+}
+//playGame()
+
+
+//+++++++++++++++++++++++++++++++++++++Functions for Handle Selection +++++++++++++++++++++++++++++++++++++
+
+
+// const cpuWin = () => {
+//     turn = cpu
+//     let moveP1Card = playerDeck[0]
+//     let moveCpuCard = cpuDeck[0]
+//     let cl = cpuDeckSize
+//     cpuDeck.splice(cl, 0, moveCpuCard, moveP1Card)
+//     p1Deck.splice(0, 1)
+//     console.log("CPU Wins")
+//     console.log(cpuDeckSize)
+// }
+
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////WOrking on this area of comparing hands
+
+
+// const manageStrings = () => {
+//     const isString = (var1) => {
+//         return typeof var1 === "string"
+//     }
+//     if(isString(playerSelected) === true){
+//         console.log("yeah it's true")
+//     } else {
+//         console.log("nope it isn't")
+//     }
+
+// }
+
+const checkForWinner = () =>{
+    if(p1Deck.length < 1){
+        winner = cpu
+        messageBox.textContent = "You battled valiantly but on this occasion the computer has bested you. Would you like to play again?"
+        playOn = false
+    }else if(cpuDeck.length < 1){
+        winner = player1
+        messageBox.textContent = "You beat the computer. They shall write songs of this victory!!! Would you like to play again?"
+        playOn = flase
+    }else{
+        return
+    }
+}
+const p1Win = () => {
+    p1Deck.push(p1Deck.shift())
+    p1Deck.push(cpuDeck.shift())
+    messageBox.textContent = "Player 1 Wins This Hand";
+    console.log(p1Deck);
+    console.log(cpuDeck);
+    checkForWinner()
+    p1Turn = true
 }
 const cpuWin = () => {
-    turn = cpu
-    let moveP1Card = playerDeck[0]
-    let moveCpuCard = cpuDeck[0]
-    let cl = cpuDeckSize
-    cpuDeck.splice(cl, 0, moveCpuCard, moveP1Card)
-    p1Deck.splice(0, 1)
-    console.log("CPU Wins")
-    console.log(cpuDeckSize)
-}/////////////////////////////////////////////////////////////////////////
-/////////////////////////WOrking on this area of comparing hands
+    cpuDeck.push(cpuDeck.shift())
+    cpuDeck.push(p1Deck.shift())
+    messageBox.textContent = "Computer Wins This Hand";
+    console.log(p1Deck);
+    console.log(cpuDeck);
+    checkForWinner()
+    p1Turn = true
+}
+
 const compareHand = () => {
     if (playerSelected > cpuSelected) {
         p1Win()
-    } else if (playerSelected > cpuSelected){
-        cpuWin()
+        // console.log("P1 Win")
+    } else if (playerSelected < cpuSelected){
+        //cpuWin()
+        console.log("cpu Win")
     } else {
-        return //draw ()
+        //return //draw ()
+        console.log("It's a draw")
     }
 }
 //Handling the selection of the category for this hand
 //!!!!! I think this is working but need to check that the returned playerSelected is global scope to use eslewhere
-const handleSelection = (event) => {
+
+const getSelection = () => {
     let selection = event.target.id;
     let cpuSelection = event.target.id
-    // // p1Card = p1Deck[0]    
     if (selection === "p1Cat1") {
         selection = p1Card[`${keys[1]}`]
         cpuSelection = cpuCard[`${keys[1]}`]
@@ -448,27 +265,35 @@ const handleSelection = (event) => {
     }
     playerSelected = selection
     cpuSelected = cpuSelection
+    
+    console.log(playerSelected)
+    console.log(cpuSelected)
+
+}
+
+const handleSelection = (event) => {
+    
+    getSelection()
+    
+    // console.log(isString(playerSelected));
+    //manageStrings(playerSelected)
     compareHand()
-    // console.log(playerSelected)
-    // console.log(cpuSelected)
+    // winner( declare winner, card to back plus oppenants card to the back IF either deck === empty playOn = false next turn goes to the winner)
+    // draw()
+    // Game over (watch for empty deck, display deck sizes and declare winner)
+    // Must need to have some loop to keep the game going until it ends
+
+
+
+
+    //p1Card = p1Deck[0]    
+    
     
 }
 
 
 
-const playGame = () => {
-    shuffle(currentDeck)
-    deal()
-    p1DeckSize = p1Deck.length
-    console.log(p1DeckSize)
-    cpuDeckSize = cpuDeck.length
-    console.log(cpuDeckSize)
-    renderCardInfo()
-    //handleSelection(event, p1Card, playerSelected)
-    //compareHand()
-    
-}
-playGame()
+
 
 // const test = () =>{
     
@@ -476,21 +301,60 @@ playGame()
 // if (playerSelected > cpuCard[`${keys[1]}`]) {
 //     console.log("Player 1 Wins")
 // }
+
+// const gameEndMessage = (//can I parse in the winner?) =>{ //Get this as a function as it could be displayed in a number of different places
+//     messageBox.textContent = `You have ended the game there are ${p1DeckSize} cards in your deck and ${cpuDeckSize} cards in the computers deck.`
+// }
+// const endGame = () => {
+//     playOn = false
+   
+//     if (p1DeckSize > cpuDeckSize){
+
+//     }
+// }
+
+
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -EVENT LISTENERS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-//startBtn.addEventListener('click', test)
-//endGameBtn.addEventListener('click', )
+//Start Game
+startBtn.addEventListener('click', playGame)
+//End Game
+//endGameBtn.addEventListener('click', endGame )
+//View How To Play Info
 howToPlayBtn.addEventListener('click', handleHowToPlay)
+//Getting User Selections
+categorySelection.forEach((categoryBtn) => {
+    categoryBtn.addEventListener('click', handleSelection)
+})
 
-// THINK THIS IS BETTER AND GOING TO WORK BUT WAIT UNTIL I CAN TEST BEFORE REPLACING
-// categorySelection.forEach((categoryBtn) => {
-//     categoryBtn.addEventListener('click', handleSelection)
-// })
 
-p1Category1.addEventListener('click', handleSelection)
-p1Category2.addEventListener('click', handleSelection)
-p1Category3.addEventListener('click', handleSelection)
-p1Category4.addEventListener('click', handleSelection)
-p1Category5.addEventListener('click', handleSelection)
-p1Category5.addEventListener('click', handleSelection)
-p1Category6.addEventListener('click', handleSelection)
+
+
+//XXXXXXXX  CODE GRAVEYARD   XXXXXXXX  CODE GRAVEYARD   XXXXXXXX  CODE GRAVEYARD   XXXXXXXX
+
+
+
+// OLD INDIVIDUAL CACHED ITEMS
+// const p1Category1 = document.querySelector("#p1Cat1")
+// const p1Category2 = document.querySelector("#p1Cat2")
+// const p1Category3 = document.querySelector("#p1Cat3")
+// const p1Category4 = document.querySelector("#p1Cat4")
+// const p1Category5 = document.querySelector("#p1Cat5")
+// const p1Category6 = document.querySelector("#p1Cat6")
+
+// const cpuCategory1 = document.querySelector("#cpuCat1")
+// const cpuCategory2 = document.querySelector("#cpuCat2")
+// const cpuCategory3 = document.querySelector("#cpuCat3")
+// const cpuCategory4 = document.querySelector("#cpuCat4")
+// const cpuCategory5 = document.querySelector("#cpuCat5")
+// const cpuCategory6 = document.querySelector("#cpuCat6")
+
+
+// OLD INDIVIDUAL EVENT LISTENERS
+// p1Category1.addEventListener('click', handleSelection)
+// p1Category2.addEventListener('click', handleSelection)
+// p1Category3.addEventListener('click', handleSelection)
+// p1Category4.addEventListener('click', handleSelection)
+// p1Category5.addEventListener('click', handleSelection)
+// p1Category5.addEventListener('click', handleSelection)
+// p1Category6.addEventListener('click', handleSelection)
