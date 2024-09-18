@@ -7,70 +7,108 @@
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-let p1Turn;
-let winner;
+let keys;
+let shuffledDeck;
 let p1Deck;
 let cpuDeck;
 let p1Card;
 let cpuCard;
 let playerSelected;
 let cpuSelected;
-let keys;
+let p1Turn;
+let winner;
 let p1DeckSize;
 let cpuDeckSize;
 let drawContainer;
-let playOn
+let playOn;
+let nextHand;
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -CACHED ELEMENT REFERENCES- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Cached Elements for P1 Card
-const p1CardTitle = document.querySelector("#p1Title")
-const p1CardImg = document.querySelector("#p1Img")
-const categorySelection = document.querySelectorAll(".categoryBtn")
+const p1CardTitle = document.querySelector("#p1Title");
+const p1CardImg = document.querySelector("#p1Img");
+const categorySelection = document.querySelectorAll(".categoryBtn");
 
-const p1Info1 = document.querySelector("#p1Info1")
-const p1Info2 = document.querySelector("#p1Info2")
-const p1Info3 = document.querySelector("#p1Info3")
-const p1Info4 = document.querySelector("#p1Info4")
-const p1Info5 = document.querySelector("#p1Info5")
-const p1Info6 = document.querySelector("#p1Info6")
+const p1Info1 = document.querySelector("#p1Info1");
+const p1Info2 = document.querySelector("#p1Info2");
+const p1Info3 = document.querySelector("#p1Info3");
+const p1Info4 = document.querySelector("#p1Info4");
+const p1Info5 = document.querySelector("#p1Info5");
+const p1Info6 = document.querySelector("#p1Info6");
 
 //Cached Elements for CPU Card
-const cpuCardTitle = document.querySelector("#cpuTitle")
-const cpuCardImg = document.querySelector("#cpuImg")
-const cpuCategories = document.querySelectorAll('#cpuCategory')
+const cpuCardTitle = document.querySelector("#cpuTitle");
+const cpuCardImg = document.querySelector("#cpuImg");
+const cpuCategories = document.querySelectorAll('#cpuCategory');
 
-const cpuInfo1 = document.querySelector("#cpuInfo1")
-const cpuInfo2 = document.querySelector("#cpuInfo2")
-const cpuInfo3 = document.querySelector("#cpuInfo3")
-const cpuInfo4 = document.querySelector("#cpuInfo4")
-const cpuInfo5 = document.querySelector("#cpuInfo5")
-const cpuInfo6 = document.querySelector("#cpuInfo6")
+const cpuInfo1 = document.querySelector("#cpuInfo1");
+const cpuInfo2 = document.querySelector("#cpuInfo2");
+const cpuInfo3 = document.querySelector("#cpuInfo3");
+const cpuInfo4 = document.querySelector("#cpuInfo4");
+const cpuInfo5 = document.querySelector("#cpuInfo5");
+const cpuInfo6 = document.querySelector("#cpuInfo6");
 
 //Other cached Elements
-const messageBox = document.querySelector("#message")
-const howToPlayBtn = document.querySelector("#how-to-play-btn")
-const howToPlayBox = document.querySelector(".how-to-play-box")
-const startBtn = document.querySelector("#start-game")
-const endGameBtn = document.querySelector('#end-game')
+const messageBox = document.querySelector("#message");
+const howToPlayBtn = document.querySelector("#how-to-play-btn");
+const howToPlayBox = document.querySelector(".how-to-play-box");
+const startBtn = document.querySelector("#start-game");
+const endGameBtn = document.querySelector('#end-game');
+const nextHandBtn = document.querySelector('#next-hand');
 
 
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -FUNCTIONS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+
+
+const gameEndMessage = () =>{
+    messageBox.textContent = `You have ended the game: /n Player 1 cards = ${p1DeckSize} 
+    /n CPU cards = ${cpuDeckSize} The winner is...... ${winner}./n Play again?`
+}
+const handleEndGame = () => {
+    console.log("Game Ended!")
+    if (p1DeckSize > cpuDeckSize){
+        winner = "Player 1";
+        gameEndMessage(winner);
+    } else if(p1DeckSize < cpuDeckSize) { 
+        winner = "CPU";
+        gameEndMessage(winner);
+    } else {
+        draw = true
+        messageBox.textContent = "Stalemate! It's a draw this time. Play again?"
+    }
+    playOn = false
+}
+
+
+
+const handleNextHand = () => {
+    nextHand = true
+    renderCardInfo()
+    nextHand = false
+}
+
+
+
+
+
+
+
+///SLEEP FUNCTION
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+console.log('Hello');
+sleep(4000).then(() => { console.log('World!'); });
+//+++++++++++++++++++++++++++++++++++++ OTHER FUNCTIONS +++++++++++++++++++++++++++++++++++++
 //Show/hide How To Play Info Box
 const handleHowToPlay = (event) => {
     //console.log("How2 btn clicked")
     howToPlayBox.classList.toggle("show-how-to-play-box");
 }
 
-//+++++++++++++++++++++++++++++++++++++Functions for Init+++++++++++++++++++++++++++++++++++++
-//Get Category Names for This Deck
-const getCategories = () => {
-    keys = Object.keys(currentDeck[0]);
-    // console.log(keys)
-}
-
-// For init() Set the categories for the deck of cards that has been chosen.
-// Better to just do that once on init than having to re-render along with the info each time
+//+++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
+// Set the categories for the deck of cards that has been chosen.
+// This will change in a multiple decks mode to will be dependent on deck choice.
 const renderCategories = () => {
     p1Cat1.innerHTML = `${keys[1]}`
     p1Cat2.innerHTML = `${keys[2]}`
@@ -87,17 +125,21 @@ const renderCategories = () => {
     cpuCat6.innerHTML = `${keys[6]}`
 }
 
+//Get Category Names for This Deck
+const getCategories = () => {
+    keys = Object.keys(currentDeck[0]);
+    // console.log(keys)
+}
+
+
 const init = () => {
-    p1Card = null
-    cpuCard = null
-    keys = null
     getCategories()
-    
+    renderCategories()
 }
 init()
 
 
-//+++++++++++++++++++++++++++++++++++++Functions for Play Game+++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++ Start Game +++++++++++++++++++++++++++++++++++++
 //Shuffle the deck
 const shuffle = (currentDeck) => {
     for (let i = currentDeck.length - 1; i > 0; i--) {
@@ -107,18 +149,12 @@ const shuffle = (currentDeck) => {
     return currentDeck;
 }
 
-const shuffledDeck = shuffle(currentDeck);
-
 //Deal the shuffled cards into two decks
 const deal = () => {
 
     p1Deck = shuffledDeck.filter((element, index) => index % 2 === 0);
     cpuDeck = shuffledDeck.filter((element, index) => index % 2 != 0);
 }
-
-//console.log(shuffledDeck)
-// console.log(p1Deck)
-// console.log(cpuDeck)
 
 const renderCardInfo = () => {
     p1Card = p1Deck[0]
@@ -143,105 +179,43 @@ const renderCardInfo = () => {
     cpuInfo6.innerHTML = `${cpuCard.SpecialAbility}`
 }
 
-
-const playGame = () => {
-    playOn = true
-    renderCategories()
-    shuffle(currentDeck)
-    deal()
-    p1DeckSize = p1Deck.length
-    console.log(p1DeckSize)
-    cpuDeckSize = cpuDeck.length
-    console.log(cpuDeckSize)
-    renderCardInfo()
-    // while(playOn === true){
-
-    // }
-    //handleSelection(event, p1Card, playerSelected)
-    //compareHand()
-
-}
-//playGame()
-
-
-//+++++++++++++++++++++++++++++++++++++Functions for Handle Selection +++++++++++++++++++++++++++++++++++++
-
-
-// const cpuWin = () => {
-//     turn = cpu
-//     let moveP1Card = playerDeck[0]
-//     let moveCpuCard = cpuDeck[0]
-//     let cl = cpuDeckSize
-//     cpuDeck.splice(cl, 0, moveCpuCard, moveP1Card)
-//     p1Deck.splice(0, 1)
-//     console.log("CPU Wins")
-//     console.log(cpuDeckSize)
-// }
-
-/////////////////////////////////////////////////////////////////////////
-/////////////////////////WOrking on this area of comparing hands
-
-
-// const manageStrings = () => {
-//     const isString = (var1) => {
-//         return typeof var1 === "string"
-//     }
-//     if(isString(playerSelected) === true){
-//         console.log("yeah it's true")
-//     } else {
-//         console.log("nope it isn't")
-//     }
-
-// }
-
-const checkForWinner = () =>{
-    if(p1Deck.length < 1){
-        winner = cpu
-        messageBox.textContent = "You battled valiantly but on this occasion the computer has bested you. Would you like to play again?"
-        playOn = false
-    }else if(cpuDeck.length < 1){
-        winner = player1
-        messageBox.textContent = "You beat the computer. They shall write songs of this victory!!! Would you like to play again?"
-        playOn = flase
-    }else{
-        return
-    }
-}
-const p1Win = () => {
+const p1HandWin = () => {
     p1Deck.push(p1Deck.shift())
     p1Deck.push(cpuDeck.shift())
     messageBox.textContent = "Player 1 Wins This Hand";
     console.log(p1Deck);
     console.log(cpuDeck);
-    checkForWinner()
+    checkDecks()
     p1Turn = true
+    //!!!!!!! Think I could make this dryer by having one win function for either p1 or cpu
 }
-const cpuWin = () => {
+
+const cpuHandWin = () => {
     cpuDeck.push(cpuDeck.shift())
     cpuDeck.push(p1Deck.shift())
     messageBox.textContent = "Computer Wins This Hand";
     console.log(p1Deck);
     console.log(cpuDeck);
-    checkForWinner()
-    p1Turn = true
+    checkDecks()
+    p1Turn = false
+    //!!!!!!! Think I could make this dryer by having one win function for either p1 or cpu
 }
+
 
 const compareHand = () => {
     if (playerSelected > cpuSelected) {
-        p1Win()
-        // console.log("P1 Win")
-    } else if (playerSelected < cpuSelected){
-        //cpuWin()
+        p1HandWin()
+        console.log("P1 Win")
+    } else if (playerSelected < cpuSelected) {
+        cpuHandWin()
         console.log("cpu Win")
     } else {
-        //return //draw ()
         console.log("It's a draw")
+        return //draw ()
     }
 }
-//Handling the selection of the category for this hand
-//!!!!! I think this is working but need to check that the returned playerSelected is global scope to use eslewhere
 
-const getSelection = () => {
+const getSelection = (event) => {
     let selection = event.target.id;
     let cpuSelection = event.target.id
     if (selection === "p1Cat1") {
@@ -265,64 +239,84 @@ const getSelection = () => {
     }
     playerSelected = selection
     cpuSelected = cpuSelection
-    
+
     console.log(playerSelected)
     console.log(cpuSelected)
 
 }
-
 const handleSelection = (event) => {
-    
-    getSelection()
-    
-    // console.log(isString(playerSelected));
-    //manageStrings(playerSelected)
+    getSelection(event)
     compareHand()
-    // winner( declare winner, card to back plus oppenants card to the back IF either deck === empty playOn = false next turn goes to the winner)
+    //manageStrings(playerSelected)
     // draw()
-    // Game over (watch for empty deck, display deck sizes and declare winner)
-    // Must need to have some loop to keep the game going until it ends
-
-
-
-
     //p1Card = p1Deck[0]    
-    
-    
 }
 
+const cpuTurn = () => {
+    const random = (min, max) => {
+        const minCeiled = Math.ceil(1);
+        const maxFloored = Math.floor(6);
+        return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
+    }
+    cpuCard = currentDeck[0];
+    keysArray = Object.keys(cpuCard);
+    valuesArray = Object.values(cpuCard);
+    r = random()
+    cpuSelected = `${valuesArray[r]}`;
+    let cpuSelectedKey = `${keysArray[r]}`
+    console.log(cpuSelected)
+    console.log(cpuSelectedKey)
+    compareHand()
+}
 
+const playHand = () => {
+    if (p1Turn === true) {
+        messageBox.textContent = "Your turn player 1. Select a category."
+        //Get User Selection
+        
+    } else {
+        messageBox.textContent = "CPU's Turn"
+        cpuTurn()
+    }
+}
 
+const checkDecks = () => {
+    if (p1Deck.length < 1 || cpuDeck.length < 1) {
+        handleEndGame()
+        playOn = false
+    } else {
+        return
+    }
+}
 
-
-// const test = () =>{
+const handleStartGame = () => {
+    p1Turn = true
+    console.log("Here we go.")
+    shuffledDeck = shuffle(currentDeck);
+    deal()
+    p1DeckSize = p1Deck.length
+    cpuDeckSize = cpuDeck.length
+    console.log(p1DeckSize)
+    console.log(cpuDeckSize)
     
-// }
-// if (playerSelected > cpuCard[`${keys[1]}`]) {
-//     console.log("Player 1 Wins")
-// }
+}
+playHand()
+checkDecks()
 
-// const gameEndMessage = (//can I parse in the winner?) =>{ //Get this as a function as it could be displayed in a number of different places
-//     messageBox.textContent = `You have ended the game there are ${p1DeckSize} cards in your deck and ${cpuDeckSize} cards in the computers deck.`
-// }
-// const endGame = () => {
-//     playOn = false
-   
-//     if (p1DeckSize > cpuDeckSize){
+//+++++++++++++++++++++++++++++++++++++ Manual End Game +++++++++++++++++++++++++++++++++++++
 
-//     }
-// }
+
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -EVENT LISTENERS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 //Start Game
-startBtn.addEventListener('click', playGame)
+startBtn.addEventListener('click', handleStartGame)
 //End Game
-//endGameBtn.addEventListener('click', endGame )
+endGameBtn.addEventListener('click', handleEndGame )
 //View How To Play Info
 howToPlayBtn.addEventListener('click', handleHowToPlay)
-//Getting User Selections
+
 categorySelection.forEach((categoryBtn) => {
     categoryBtn.addEventListener('click', handleSelection)
 })
@@ -358,3 +352,16 @@ categorySelection.forEach((categoryBtn) => {
 // p1Category5.addEventListener('click', handleSelection)
 // p1Category5.addEventListener('click', handleSelection)
 // p1Category6.addEventListener('click', handleSelection)
+
+
+// const manageStrings = () => {
+//     const isString = (var1) => {
+//         return typeof var1 === "string"
+//     }
+//     if(isString(playerSelected) === true){
+//         console.log("yeah it's true")
+//     } else {
+//         console.log("nope it isn't")
+//     }
+
+// }
