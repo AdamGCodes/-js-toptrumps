@@ -203,7 +203,7 @@ main {
     
 }
 
-#next-hand-btn {
+#nextHandBtn {
     display: flex;
     position: absolute;
     left: 700px;
@@ -281,6 +281,9 @@ button{
     opacity: 0.95;
     border: solid black 3px;
     z-index: 3;
+}
+.hidden {
+    display: none;
 }
 
 @media screen and (min-width: 550px){
