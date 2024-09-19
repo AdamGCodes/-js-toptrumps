@@ -16,12 +16,9 @@ let cpuCard;
 let playerSelected;
 let cpuSelected;
 let p1Turn;
-let winner;
-let p1DeckSize;
-let cpuDeckSize;
 let drawContainer;
 let playOn;
-let nextHand;
+let cpuSelectedKey;
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -CACHED ELEMENT REFERENCES- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Cached Elements for P1 Card
@@ -54,38 +51,7 @@ const howToPlayBtn = document.querySelector("#how-to-play-btn");
 const howToPlayBox = document.querySelector(".how-to-play-box");
 const startBtn = document.querySelector("#start-game");
 const endGameBtn = document.querySelector('#end-game');
-const nextHandBtn = document.querySelector('#next-hand');
-
-
-
-
-
-const gameEndMessage = () =>{
-    messageBox.textContent = `You have ended the game: /n Player 1 cards = ${p1DeckSize} 
-    /n CPU cards = ${cpuDeckSize} The winner is...... ${winner}./n Play again?`
-}
-const handleEndGame = () => {
-    console.log("Game Ended!")
-    if (p1DeckSize > cpuDeckSize){
-        winner = "Player 1";
-        gameEndMessage(winner);
-    } else if(p1DeckSize < cpuDeckSize) { 
-        winner = "CPU";
-        gameEndMessage(winner);
-    } else {
-        draw = true
-        messageBox.textContent = "Stalemate! It's a draw this time. Play again?"
-    }
-    playOn = false
-}
-
-
-
-const handleNextHand = () => {
-    nextHand = true
-    renderCardInfo()
-    nextHand = false
-}
+const nextHandBtn = document.querySelector('#next-hand-btn');
 
 
 
@@ -93,12 +59,23 @@ const handleNextHand = () => {
 
 
 
-///SLEEP FUNCTION
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-console.log('Hello');
-sleep(4000).then(() => { console.log('World!'); });
+// const test = () => {
+//     console.log("Play next hand")
+// }
+
+// const handleNextHand = () => {
+//     nextHand = true
+//     renderCardInfo()
+//     nextHand = false
+// }
+
+
+
+
+
+
+
+
 //+++++++++++++++++++++++++++++++++++++ OTHER FUNCTIONS +++++++++++++++++++++++++++++++++++++
 //Show/hide How To Play Info Box
 const handleHowToPlay = (event) => {
@@ -179,43 +156,10 @@ const renderCardInfo = () => {
     cpuInfo6.innerHTML = `${cpuCard.SpecialAbility}`
 }
 
-const p1HandWin = () => {
-    p1Deck.push(p1Deck.shift())
-    p1Deck.push(cpuDeck.shift())
-    messageBox.textContent = "Player 1 Wins This Hand";
-    console.log(p1Deck);
-    console.log(cpuDeck);
-    checkDecks()
-    p1Turn = true
-    //!!!!!!! Think I could make this dryer by having one win function for either p1 or cpu
-}
-
-const cpuHandWin = () => {
-    cpuDeck.push(cpuDeck.shift())
-    cpuDeck.push(p1Deck.shift())
-    messageBox.textContent = "Computer Wins This Hand";
-    console.log(p1Deck);
-    console.log(cpuDeck);
-    checkDecks()
-    p1Turn = false
-    //!!!!!!! Think I could make this dryer by having one win function for either p1 or cpu
-}
 
 
-const compareHand = () => {
-    if (playerSelected > cpuSelected) {
-        p1HandWin()
-        console.log("P1 Win")
-    } else if (playerSelected < cpuSelected) {
-        cpuHandWin()
-        console.log("cpu Win")
-    } else {
-        console.log("It's a draw")
-        return //draw ()
-    }
-}
 
-const getSelection = (event) => {
+const handleSelection = (event) => {
     let selection = event.target.id;
     let cpuSelection = event.target.id
     if (selection === "p1Cat1") {
@@ -239,20 +183,26 @@ const getSelection = (event) => {
     }
     playerSelected = selection
     cpuSelected = cpuSelection
-
+    
     console.log(playerSelected)
     console.log(cpuSelected)
-
+    result(playerSelected, cpuSelected)
 }
-const handleSelection = (event) => {
-    getSelection(event)
-    compareHand()
-    //manageStrings(playerSelected)
-    // draw()
-    //p1Card = p1Deck[0]    
-}
+// const handleSelection = (event) => {
+    // getSelection(event)
+//     compareHand()
+//     //manageStrings(playerSelected)
+//     // draw()
+//     compareHand()
+//     p1Card = p1Deck[0]
+//     cpuCard = cpuDeck[0]
+//     renderCardInfo() 
+// }
 
-const cpuTurn = () => {
+const handleCpuNextHand = () => {
+    p1Card = p1Deck[0]
+    cpuCard = cpuDeck[0]///What's going on here? There seems to be an issue am I getting the currend cpu first card in the deck?
+    renderCardInfo()
     const random = (min, max) => {
         const minCeiled = Math.ceil(1);
         const maxFloored = Math.floor(6);
@@ -263,21 +213,11 @@ const cpuTurn = () => {
     valuesArray = Object.values(cpuCard);
     r = random()
     cpuSelected = `${valuesArray[r]}`;
-    let cpuSelectedKey = `${keysArray[r]}`
-    console.log(cpuSelected)
-    console.log(cpuSelectedKey)
-    compareHand()
-}
-
-const playHand = () => {
-    if (p1Turn === true) {
-        messageBox.textContent = "Your turn player 1. Select a category."
-        //Get User Selection
-        
-    } else {
-        messageBox.textContent = "CPU's Turn"
-        cpuTurn()
-    }
+    cpuSelectedKey = `${keysArray[r]}`
+    playerSelected = `${}`
+    result(playerSelected, cpuSelected)
+    
+    
 }
 
 const checkDecks = () => {
@@ -289,23 +229,103 @@ const checkDecks = () => {
     }
 }
 
-const handleStartGame = () => {
-    p1Turn = true
-    console.log("Here we go.")
-    shuffledDeck = shuffle(currentDeck);
-    deal()
-    p1DeckSize = p1Deck.length
-    cpuDeckSize = cpuDeck.length
-    console.log(p1DeckSize)
-    console.log(cpuDeckSize)
-    
+const hideNextHand = () => {
+    document.getElementById("next-hand-btn").style.display = "none"
 }
-playHand()
-checkDecks()
+const showNextHandBtn = () => {
+    document.getElementById("next-hand-btn").style.display = "none"
+}
+const disableUserBtns = () => {
+    categorySelection.forEach((categoryBtn) => {
+        categoryBtn.disabled = true;
+    }) }
+const enableUserBtns = () => {
+    categorySelection.forEach((categoryBtn) => {
+        categoryBtn.disabled = false;
+    })
+}
+
+const result = (playerSelected, cpuSelected) => {
+    if (playerSelected > cpuSelected) {
+        p1Deck.push(p1Deck.shift())
+        p1Deck.push(cpuDeck.shift())
+        messageBox.innerHTML = `Player one's ${cpuSelectedKey} : ${p1Card.cpuSelectedKey} Computer ${cpuSelectedKey} : ${cpuSelected}
+        You won this hand!`
+        p1Turn = true
+    }
+    else if (playerSelected < cpuSelected) {
+        cpuDeck.push(cpuDeck.shift())
+        cpuDeck.push(p1Deck.shift())
+        messageBox.innerHTML = `Player one's ${cpuSelectedKey} : ${p1Card.cpuSelectedKey} Computer ${cpuSelectedKey} : ${cpuSelected}
+        You lost this hand!`
+        p1Turn = false
+    } else {
+        messageBox.innerHTML = `Player one's ${cpuSelectedKey} : ${p1Card.cpuSelectedKey} Computer ${cpuSelectedKey} : ${cpuSelected}
+        It's a draw`
+    }
+    checkDecks()
+
+}
+
+const handleStartGame = () => {
+    playOn = true
+    p1Turn = true
+    // console.log(`playOn ${playOn}`)
+    // console.log("Here we go.")
+    shuffledDeck = shuffle(currentDeck);
+    // console.log("Deck shuffled")
+    deal()
+    // console.log("Cards Dealt")
+    // console.log(`p1Turn ${p1Turn}`)
+    // p1Deck.length
+    // cpuDeck.length
+    // console.log(p1Deck.length)
+    // console.log(cpuDeck.length)       
+    if(p1Turn === true){
+        p1Card = p1Deck[0]
+        cpuCard = cpuDeck[0]
+        hideNextHand()
+        enableUserBtns()
+        renderCardInfo()
+        messageBox.textContent = `Player 1's turn. Make your selection`
+        categorySelection.forEach((categoryBtn) => {
+            categoryBtn.addEventListener('click', handleSelection)
+        })
+        
+    } else {
+        p1Card = p1Deck[0]
+        cpuCard = cpuDeck[0]
+        showNextHandBtn()
+        disableUserBtns()
+        renderCardInfo()
+        nextHandBtn.addEventListener('click', handleCpuNextHand)
+    }
+        console.log("Press for next hand>>>>")
+        
+    }
+    //checkDecks()
+
+
 
 //+++++++++++++++++++++++++++++++++++++ Manual End Game +++++++++++++++++++++++++++++++++++++
 
+const gameEndMessage = () => {
 
+    messageBox.textContent = `You have ended the game: /n Player 1 cards = ${p1DeckSize} 
+    /n CPU cards = ${cpuDeckSize} The winner is...... ${winner}./n Play again?`
+}
+const handleEndGame = () => {
+    console.log(p1Deck.length)
+    console.log(cpuDeck.length)
+    if (p1Deck > cpuDeck) {
+        messageBox.textContent = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Congratulations you won!!!!.`
+    } else if (p1Deck < cpuDeck) {
+        messageBox.textContent = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time.`
+    } else {
+        messageBox.textContent = "Stalemate! It's a draw this time. Play again?"
+    }
+    playOn = false
+}
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -EVENT LISTENERS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -317,9 +337,8 @@ endGameBtn.addEventListener('click', handleEndGame )
 //View How To Play Info
 howToPlayBtn.addEventListener('click', handleHowToPlay)
 
-categorySelection.forEach((categoryBtn) => {
-    categoryBtn.addEventListener('click', handleSelection)
-})
+
+
 
 
 
@@ -364,4 +383,53 @@ categorySelection.forEach((categoryBtn) => {
 //         console.log("nope it isn't")
 //     }
 
+// }
+
+// ///SLEEP FUNCTION
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+// console.log('Hello');
+// sleep(4000).then(() => { console.log('World!'); });
+
+
+// const p1HandWin = () => {
+//     p1Deck.push(p1Deck.shift())
+//     p1Deck.push(cpuDeck.shift())
+//     messageBox.textContent = "Player 1 Wins This Hand";
+//     console.log(p1Deck);
+//     console.log(cpuDeck);
+//     checkDecks()
+//     p1Turn = true
+
+//     //!!!!!!! Think I could make this dryer by having one win function for either p1 or cpu
+// }
+
+
+// const cpuHandWin = () => {
+//     cpuDeck.push(cpuDeck.shift())
+//     cpuDeck.push(p1Deck.shift())
+//     messageBox.textContent = "Computer Wins This Hand";
+//     console.log(p1Deck);
+//     console.log(cpuDeck);
+//     checkDecks()
+//     //!!!!!!! Think I could make this dryer by having one win function for either p1 or cpu
+// }
+
+
+// const compareHand = () => {
+//     if (playerSelected > cpuSelected) {
+//         p1HandWin()
+//         console.log("P1 Win")
+//         p1Turn = true
+//     } else if (playerSelected < cpuSelected) {
+//         cpuHandWin()
+//         console.log("cpu Win")
+//         messageBox.textContent = `The computer selected ${cpuSelectedKey}/n 
+//         Computer ${cpuSelectedKey} : ${cpuSelected} Player one's ${cpuSelectedKey} : ${p1Card.cpuSelectedKey}`
+//         p1Turn = false
+//     } else {
+//         console.log("It's a draw!")
+//         return //draw ()
+//     }
 // }
