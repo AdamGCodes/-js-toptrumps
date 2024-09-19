@@ -11,18 +11,20 @@ font-family: 'Lexend', sans-serif;
 // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900
 
-.lexend-<uniquifier> {
-    font-family: "Lexend", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: <weight>;
-    font-style: normal;
-}
+
 .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
 */
+
+.lexend{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+}
 .dummyClass {
     color: #57A0FF;
     color: #FFB657;
@@ -32,7 +34,9 @@ font-family: 'Lexend', sans-serif;
 
 html {
     box-sizing: border-box;
-    background-color: #57A0FF
+    background-color: #57A0FF;
+    font-family: "Lexend", sans-serif;
+    font-weight:bold;
 }
 
 header {
@@ -40,24 +44,57 @@ header {
     background-color: #57A0FF;
 }
 
+.star-splash{
+    display: flex;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+
+}
+.star-splash img{
+    height: 40vw;
+}
+.cards-logo{
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    z-index: 1;
+}
+.cards-logo img {
+    height: 22vw;
+}
+.blob {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.blob img {
+    height: 15vw;
+}
+
 h1 {
+    position: absolute;
+    top: 12px;
     font-family: 'Sigmar One', cursive;
-    font-size: 8vw;
+    font-size: 5vw;
     line-height: 12vw;
     color: #FFB657;
     text-shadow: 3px 3px 0px black;
     letter-spacing: 5px;
     -webkit-text-stroke: black 2px;
+    rotate: 5deg;
     width: 90%;
-    text-align: center;
     z-index: 1;
 }
 
 main {
     display: flex;
+    position: absolute;
+    top: 23vw;
     flex-direction: column;
     width: 100%;
-    background-color: #57A0FF;
 }
 
 .btnCol {
@@ -69,7 +106,9 @@ main {
 
 .buttons-group{
     display: flex;
-    flex-direction: column;
+    margin-bottom: 10px ;
+    flex-flow: column wrap;
+    
 }
 .card-container{
     display: flex;
@@ -80,72 +119,69 @@ main {
     display: flex;
     justify-content: center;
     background-color: #57A0FF;
-    min-width: 50%;
+    width: 90%;
+    margin-bottom: 20px;
 }
 
 .card { 
     display: flex;
     flex-direction: column;
-    margin: 0px;
+    margin: 25px;
     border: 5px solid black;
-    border-radius: 20px;
-    width: 80%;
+    border-radius: 30px;
     align-items: center;
     justify-content: flex-start;
     background-color: white;
     box-shadow: 5px 5px black;
+    width: 90%;
 }
 .cardTitle {
     display: flex;
     flex: 1;
     border: solid black 2px;
-    border-radius: 15px;
-    margin: 10px;
+    border-radius: 25px 25px 0px 0px;
     background-color: #A0FF57;
     width: 100%;
+    height:50px;
     text-align: center;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 3em;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: normal;
 }
 .catArea {
     display: flex;
-    flex-direction: row;
+    padding-right: 20px;
     border-radius: 0px 0px 40px 40px;
-    justify-content: center;
-    
     width: 100%;
-    
 }
 .catHeadings {
     display: flex;
     flex-direction: column;
-    
     width: 60%;
     margin: 5px 0 5px 5px;
     padding: 5px;
+    font-weight: bold;
 }
-.category {
-    border: solid black 2px;
-}
-.category-headings{
-    border: solid rgb(196, 22, 22) 2px;
-}
+
 .catInfo{
-    border-radius: 0 0 40px 0; 
-    border: solid black 2px;
-    width: 40%;
-    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 5px 0 5px 5px;
     padding: 5px;
+    font-weight: bold;
 }
 .info{
-    margin: 10px;
+    margin: 5px;
     border: solid black 2px;
-    padding: 2px;
     border-radius: 50px;
-    background-color: rgb(7, 197, 255);
-    width: 80%;
+    width: 100%;
+    min-height: 3vw;
+    background-color: #FFB657;
+    color: black;
+    font-weight: bold;
     text-align: center;
 }
 
@@ -166,38 +202,60 @@ main {
     
 }
 .message-box{ 
-    width: 70%;
-    height: 100px;
-    background-color: rgb(255, 255, 255);
+    margin-bottom: 5px;
+    border: solid black 5px;
+    border-radius: 50px;
+    width: 70vw;
+    height: 100%;
+    background-color: #FFB657;
+    text-align: center;
+    align-items: center;
+
 }
+
 button{
     margin: 5px;
-    border: solid black 2px;
+    border: solid black 3px;
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: #B657FF;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
 }
 .categoryBtn {
     margin: 5px;
     border: solid black 2px;
-    padding: 2px;
     border-radius: 50px;
-    background-color: rgb(7, 197, 255);
-    width: 80%;
-    cursor:pointer;
+    width: 100%;
+    min-height: 3vw;
+    background-color: #FFB657;
+    color: black;
+    font-weight: bold;
+    text-align: center;
 }
 .categoryBtn:hover {
     border: solid black 4px;
 }
+#p1Cat6 {
+    cursor: default;
+}
+#p1Cat6:hover {
+    border: solid black 2px;
+}
 .cpu-category{
     margin: 5px;
     border: solid black 2px;
-    padding: 2px;
     border-radius: 50px;
+    width: 100%;
+    min-height: 3vw;
+    background-color: #FFB657;
+    color: black;
+    font-weight: bold;
     text-align: center;
-    background-color: rgb(7, 197, 255);
-    width: 80%;
 }
-#how-to-play-btn {
-    cursor: pointer;
-}
+
 .how-to-play-box {
     display: none;
 }
