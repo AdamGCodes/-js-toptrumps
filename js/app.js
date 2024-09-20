@@ -55,17 +55,6 @@ const startBtn = document.querySelector("#start-game");
 const endGameBtn = document.querySelector("#end-game");
 const nextHandBtn = document.querySelector("#nextHandBtn");
 
-
-
-
-
-
-
-// const test = () => {
-//     console.log("Play next hand")
-// }
-
-
 //+++++++++++++++++++++++++++++++++++++ OTHER FUNCTIONS +++++++++++++++++++++++++++++++++++++
 //Show/hide How To Play Info Box
 const handleHowToPlay = (event) => {
@@ -79,11 +68,13 @@ function sleep(ms) {
 
 sleep(4000).then(() => { console.log('World!'); });
 
+
+// Show/Hide and Enable/Disable Game Control Buttons
 const hideNextHandBtn = () => {
     document.getElementById("nextHandBtn").style.display = "none"
 }
 const showNextHandBtn = () => {
-    document.getElementById("nextHandBtn").style.display = "flex"
+    document.getElementById("nextHandBtn").style.display = "block"
 }
 const disableUserBtns = () => {
     categorySelection.forEach((categoryBtn) => {
@@ -99,18 +90,18 @@ const enableUserBtns = () => {
 // Set the categories for the deck of cards that has been chosen.
 // This will change in a multiple decks mode to will be dependent on deck choice.
 const renderCategories = () => {
-    p1Cat1.innerHTML = `${keys[1]}`
+    p1Cat1.innerHTML = `${keys[1]} (lph)`
     p1Cat2.innerHTML = `${keys[2]}`
     p1Cat3.innerHTML = `${keys[3]}`
     p1Cat4.innerHTML = `${keys[4]}`
-    p1Cat5.innerHTML = `${keys[5]}`
+    p1Cat5.innerHTML = `${keys[5]} (tones)`
     p1Cat6.innerHTML = `${keys[6]}`
 
-    cpuCat1.innerHTML = `${keys[1]}`
+    cpuCat1.innerHTML = `${keys[1]} (lph)`
     cpuCat2.innerHTML = `${keys[2]}`
     cpuCat3.innerHTML = `${keys[3]}`
     cpuCat4.innerHTML = `${keys[4]}`
-    cpuCat5.innerHTML = `${keys[5]}`
+    cpuCat5.innerHTML = `${keys[5]} (tones)`
     cpuCat6.innerHTML = `${keys[6]}`
 }
 
@@ -119,7 +110,6 @@ const getCategories = () => {
     keys = Object.keys(currentDeck[0]);
     // console.log(keys)
 }
-
 
 const init = () => {
     getCategories()

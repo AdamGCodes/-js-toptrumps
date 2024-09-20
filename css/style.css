@@ -31,28 +31,30 @@ font-family: 'Lexend', sans-serif;
     color: #A0FF57;
     color: #B657FF;
 }
-
-html {
+* {
     box-sizing: border-box;
+}
+body {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
     background-color: #57A0FF;
     font-family: "Lexend", sans-serif;
     font-weight:bold;
+    overflow-x: hidden
 }
-
-header {
-    display: flex;
-    background-color: #57A0FF;
-}
-
+/*Header Elements / Style*/
 .star-splash{
     display: flex;
     position: absolute;
+    width: 50%;
+    margin: -20px;
     top: 0px;
     right: 0px;
-
 }
-.star-splash img{
-    height: 40vw;
+.star-splash img {
+    width: 100%;
 }
 .cards-logo{
     display: flex;
@@ -73,7 +75,6 @@ header {
 .blob img {
     height: 15vw;
 }
-
 h1 {
     position: absolute;
     top: 12px;
@@ -89,37 +90,110 @@ h1 {
     z-index: 1;
 }
 
-main {
+/*Main Area*/
+
+header {
     display: flex;
     position: absolute;
-    top: 23vw;
     flex-direction: column;
     width: 100%;
+    z-index: -1;
 }
 
+main {
+    position: absolute;
+    top: 22vw;
+
+}
+
+/*Message Box and Game Controll Buttons Area*/
 .btnCol {
     display: flex;
     justify-content: center;
-    align-items: center;
     width: 100%;
 }
 
 .buttons-group{
     display: flex;
-    margin-bottom: 10px ;
-    flex-flow: column wrap;
+    z-index: 1;
+    position: absolute;
+    top: -20px;
     
 }
 
+.message-box {
+    position: absolute;
+    margin-bottom: 5px;
+    border: solid black 5px;
+    border-radius: 30px;
+    padding-left: 20px;
+    width: 70vw;
+    height: 10vw;
+    background-color: #FFB657;
+    text-align: left;
+
+}
+
+#nextHandBtn {
+    margin: 0px;
+    border: solid black 5px;
+    border-radius: 0px 30px 30px 0px;
+    padding: 0px;
+    line-height:0%;
+    width: 10vw;
+    height: 10vw;
+    background-color: blue;
+    z-index: 1;
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    text-align: center;
+    font-size: 1em;
+    
+}
+
+button {
+    margin: 5px;
+    border: solid black 3px;
+    border-radius: 20px;
+    padding: 5px 10px;
+    background-color: #B657FF;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.how-to-play-box {
+    display: none;
+}
+
+.show-how-to-play-box {
+    position: absolute;
+    margin: 50px;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    opacity: 0.95;
+    border: solid black 3px;
+    z-index: 3;
+}
+
+/*Main Game Area - The Cards*/
 .card-container{
     display: flex;
+    position: relative;
+    top: 120px;
     flex-direction: column;
     width: 100%;
 }
+
 .cardCols{
     display: flex;
     justify-content: center;
-    background-color: #57A0FF;
     width: 90%;
     margin-bottom: 20px;
 }
@@ -136,6 +210,7 @@ main {
     box-shadow: 5px 5px black;
     width: 90%;
 }
+
 .cardTitle {
     display: flex;
     flex: 1;
@@ -151,6 +226,8 @@ main {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: normal;
 }
+
+/*Area of the cards containng the card information and category selection buttons*/
 .catArea {
     display: flex;
     padding-right: 20px;
@@ -165,7 +242,6 @@ main {
     padding: 5px;
     font-weight: bold;
 }
-
 .catInfo{
     display: flex;
     flex-direction: column;
@@ -174,6 +250,7 @@ main {
     padding: 5px;
     font-weight: bold;
 }
+
 .info{
     margin: 5px;
     border: solid black 2px;
@@ -195,6 +272,7 @@ main {
     height: 200px;
     
 }
+
 .crdImg img{
     display: block;
     justify-items: center;
@@ -203,37 +281,6 @@ main {
     
 }
 
-#nextHandBtn {
-    display: flex;
-    position: absolute;
-    left: 700px;
-    background-color: blue;
-    z-index: 2;
-}
-.message-box{ 
-    margin-bottom: 5px;
-    position: flex;
-    border: solid black 5px;
-    border-radius: 50px;
-    width: 70vw;
-    height: 10vw;
-    background-color: #FFB657;
-    text-align: center;
-    align-items: center;
-
-}
-
-button{
-    margin: 5px;
-    border: solid black 3px;
-    border-radius: 20px;
-    padding: 5px 10px;
-    background-color: #B657FF;
-    font-size: 1em;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
 .categoryBtn {
     margin: 5px;
     border: solid black 2px;
@@ -245,15 +292,22 @@ button{
     font-weight: bold;
     text-align: center;
 }
+
 .categoryBtn:hover {
-    border: solid black 4px;
+    border: solid black 3px;
 }
+
 #p1Cat6 {
     cursor: default;
+    background-color: #57A0FF;
 }
 #p1Cat6:hover {
     border: solid black 2px;
 }
+#p1Info6 {
+    background-color: #57A0FF;
+}
+
 .cpu-category{
     margin: 5px;
     border: solid black 2px;
@@ -266,25 +320,10 @@ button{
     text-align: center;
 }
 
-.how-to-play-box {
-    display: none;
-}
-.show-how-to-play-box{
-    position: fixed;
-    margin: 50px;
-    padding: 20px 50px;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    color: black;
-    border-radius: 20px;
-    opacity: 0.95;
-    border: solid black 3px;
-    z-index: 3;
-}
 .hidden {
     display: none;
 }
+
 
 @media screen and (min-width: 550px){
     .card-container {
