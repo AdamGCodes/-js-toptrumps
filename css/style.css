@@ -131,7 +131,11 @@ main {
     height: 10vw;
     background-color: #FFB657;
     text-align: left;
+}
 
+#message {
+    width: 90%;
+    text-align: left;
 }
 
 #nextHandBtn {
@@ -141,7 +145,7 @@ main {
     padding: 0px;
     width: 10vw;
     height: 10vw;
-    background-color: blue;
+    background-color: #B657FF;
     z-index: 1;
     position: absolute;
     bottom: -5px;
@@ -185,7 +189,7 @@ button {
 .card-container{
     display: flex;
     position: relative;
-    top: 120px;
+    top: 10vw;
     flex-direction: column;
     width: 100%;
 }

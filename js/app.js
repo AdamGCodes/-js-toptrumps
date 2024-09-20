@@ -98,18 +98,18 @@ const manageStrings = (varX) => {
 // Set the categories for the deck of cards that has been chosen.
 // This will change in a multiple decks mode to will be dependent on deck choice.
 const renderCategories = () => {
-    p1Cat1.innerHTML = `${keys[1]} (lph)`
+    p1Cat1.innerHTML = `${keys[1]}`
     p1Cat2.innerHTML = `${keys[2]}`
     p1Cat3.innerHTML = `${keys[3]}`
     p1Cat4.innerHTML = `${keys[4]}`
-    p1Cat5.innerHTML = `${keys[5]} (tones)`
+    p1Cat5.innerHTML = `${keys[5]}`
     p1Cat6.innerHTML = `${keys[6]}`
 
-    cpuCat1.innerHTML = `${keys[1]} (lph)`
+    cpuCat1.innerHTML = `${keys[1]}`
     cpuCat2.innerHTML = `${keys[2]}`
     cpuCat3.innerHTML = `${keys[3]}`
     cpuCat4.innerHTML = `${keys[4]}`
-    cpuCat5.innerHTML = `${keys[5]} (tones)`
+    cpuCat5.innerHTML = `${keys[5]}`
     cpuCat6.innerHTML = `${keys[6]}`
 }
 
@@ -199,12 +199,14 @@ const handleSelection = (event) => {
     playerSelectedKey 
     playerSelected = selection
     cpuSelected = cpuSelection
+    // playerSelected.manageStrings()
+    // cpuSelected.manageStrings()
     result(playerSelected, cpuSelected, playerSelectedKey)    
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////
+
 const handleCpuNextHand = () => {
     p1Card = p1Deck[0]
-    cpuCard = cpuDeck[0]///What's going on here? There seems to be an issue am I getting the currend cpu first card in the deck?
+    cpuCard = cpuDeck[0]
     renderCardInfo()
     const random = (min, max) => {
         const minCeiled = Math.ceil(1);
@@ -251,7 +253,7 @@ const result = () => {
         isPlayerTurn = true
         console.log(p1Deck)
         console.log(cpuDeck)
-        sleep(6000).then(() => { nextTurn() });
+        sleep(3000).then(() => { nextTurn() });
     }
     else if (var1 < var2) {
         winDrawCards(cpuDeck)
