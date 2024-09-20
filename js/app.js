@@ -18,7 +18,7 @@ let playerSelectedKey;
 let cpuSelected;
 let cpuSelectedKey;
 let isPlayerTurn;
-let drawContainer;
+let drawContainer = [];
 let keepPlaying;
 
 
@@ -65,8 +65,7 @@ const handleHowToPlay = (event) => {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-sleep(4000).then(() => { console.log('World!'); });
+//sleep(4000).then(() => { console.log('World!'); });
 
 
 // Show/Hide and Enable/Disable Game Control Buttons
@@ -86,6 +85,15 @@ const enableUserBtns = () => {
         categoryBtn.disabled = false;
     })
 }
+
+const manageStrings = (varX) => {
+    const isString = (varX) => {
+        return typeof varX === "string"
+    }
+    if (isString(varX) === true) {
+        return varX = 1000000000
+}}
+
 //+++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
 // Set the categories for the deck of cards that has been chosen.
 // This will change in a multiple decks mode to will be dependent on deck choice.
@@ -114,6 +122,7 @@ const getCategories = () => {
 const init = () => {
     getCategories()
     renderCategories()
+    hideNextHandBtn()
 }
 init()
 
@@ -159,7 +168,6 @@ const renderCardInfo = () => {
 }
 
 
-
 const handleSelection = (event) => {
     let selection = event.target.id;
     let cpuSelection = event.target.id
@@ -191,23 +199,9 @@ const handleSelection = (event) => {
     playerSelectedKey 
     playerSelected = selection
     cpuSelected = cpuSelection
-    result(playerSelected, cpuSelected, playerSelectedKey)
-    // console.log(playerSelectedKey)
-    // console.log(playerSelected)
-    // console.log(cpuSelected)
-    
+    result(playerSelected, cpuSelected, playerSelectedKey)    
 }
-// const handleSelection = (event) => {
-    // getSelection(event)
-//     compareHand()
-//     //manageStrings(playerSelected)
-//     // draw()
-//     compareHand()
-//     p1Card = p1Deck[0]
-//     cpuCard = cpuDeck[0]
-//     renderCardInfo() 
-// }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
 const handleCpuNextHand = () => {
     p1Card = p1Deck[0]
     cpuCard = cpuDeck[0]///What's going on here? There seems to be an issue am I getting the currend cpu first card in the deck?
@@ -236,41 +230,60 @@ const checkDecks = () => {
     }
 }
 
-
-
 const result = () => {
     let var1 = playerSelected
+    //manageStrings(var1)
     let var2 = cpuSelected
+    //manageStrings(var2)
     let var3 = null
+    
     if(isPlayerTurn === true){
         var3 = playerSelectedKey
     }else{
         var3 = cpuSelectedKey
     }
     if (var1 > var2) {
+        winDrawCards(p1Deck)
         p1Deck.push(p1Deck.shift())
         p1Deck.push(cpuDeck.shift())
         messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs  Computer: ${var3} [${var2}]<br>
         You won this hand!`
         isPlayerTurn = true
-        sleep(8000).then(() => { nextTurn() });
-        
-        
+        console.log(p1Deck)
+        console.log(cpuDeck)
+        sleep(6000).then(() => { nextTurn() });
     }
     else if (var1 < var2) {
+        winDrawCards(cpuDeck)
         cpuDeck.push(cpuDeck.shift())
         cpuDeck.push(p1Deck.shift())
         messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs Computer: ${var3}  [${var2}]<br>
         You lost this hand!`
         isPlayerTurn = false
         console.log("about to run next turn")
+        console.log(p1Deck)
+        console.log(cpuDeck)
         nextTurn()
     } else {
         messageBox.innerHTML = `Player1: ${var3} [${var1}] vs Computer ${var3} [${var2}] <br>
-        It's a draw`
+        It's a draw <br>
+        Both cards have been put in a "pot" winner of the next hand takes the cards in the pot as well as the cards from the hand.`
+        draw()
+        console.log(drawContainer)
+        nextTurn()
     }
     checkDecks()
 
+}
+const draw = () => {
+    drawContainer.push(p1Deck.shift())
+    drawContainer.push(cpuDeck.shift())
+    //Think I can do without isPlayer Turn as it just just stay the same as whateve it was
+}
+const winDrawCards = (wonDraw) => {
+    for( let i = 0; i < drawContainer.length; i++) {
+    wonDraw.push(drawContainer);
+    } 
 }
 
 const nextTurn = () => {
@@ -297,14 +310,13 @@ const playerTurn = () => {
 const computerTurn = () => {
     p1Card = p1Deck[0]
     cpuCard = cpuDeck[0]
-    console.log("about to run show button")
     showNextHandBtn();
-    console.log("just run show button")
     disableUserBtns()
     renderCardInfo()
     nextHandBtn.addEventListener('click', handleCpuNextHand)
 
 }
+
 
 
 
@@ -333,20 +345,20 @@ const handleStartGame = () => {
 
 const gameEndMessage = () => {
 
-    messageBox.textContent = `You have ended the game: /n Player 1 cards = ${p1DeckSize} 
-    /n CPU cards = ${cpuDeckSize} The winner is...... ${winner}./n Play again?`
+    messageBox.innerHTML = `You have ended the game: <br> Player 1 cards = ${p1DeckSize} 
+    <br> CPU cards = ${cpuDeckSize} The winner is...... ${winner}. <br> Play again?`
 }
 const handleEndGame = () => {
     console.log(p1Deck.length)
     console.log(cpuDeck.length)
     if (p1Deck > cpuDeck) {
-        messageBox.textContent = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Congratulations you won!!!!.`
+        messageBox.innerHTML = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Congratulations you won!!!!.  <br> Play again? <br>Page Will Fresh in 8 seconds`
     } else if (p1Deck < cpuDeck) {
-        messageBox.textContent = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time.`
+        messageBox.innerHTML = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time. <br> Play again? <br>Page Will Fresh in 8 seconds`
     } else {
-        messageBox.textContent = "Stalemate! It's a draw this time. Play again?"
+        messageBox.innerHTML = "Stalemate! It's a draw this time. Play again? <br>Page Will Fresh in 8 seconds"
     }
-    keepPlaying = false
+    sleep(8000).then(() => { location.reload() });
 }
 
 
@@ -394,18 +406,6 @@ howToPlayBtn.addEventListener('click', handleHowToPlay)
 // p1Category5.addEventListener('click', handleSelection)
 // p1Category6.addEventListener('click', handleSelection)
 
-
-// const manageStrings = () => {
-//     const isString = (var1) => {
-//         return typeof var1 === "string"
-//     }
-//     if(isString(playerSelected) === true){
-//         console.log("yeah it's true")
-//     } else {
-//         console.log("nope it isn't")
-//     }
-
-// }
 
 
 
