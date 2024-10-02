@@ -30,7 +30,7 @@ const p1Info6 = document.querySelector("#p1Info6");
 //Cached Elements for CPU Card
 const cpuCardTitle = document.querySelector("#cpuTitle");
 const cpuCardImg = document.querySelector("#cpuImg");
-const cpuCategories = document.querySelectorAll('#cpuCategory');
+const cpuCategories = document.querySelectorAll(".cpu-category");
 
 const cpuInfo1 = document.querySelector("#cpuInfo1");
 const cpuInfo2 = document.querySelector("#cpuInfo2");
@@ -46,6 +46,7 @@ const howToPlayBox = document.querySelector(".how-to-play-box");
 const startBtn = document.querySelector("#start-game");
 const endGameBtn = document.querySelector("#end-game");
 const nextHandBtn = document.querySelector("#nextHandBtn");
+const closeBtn = document.querySelector('#close-btn')
 
 //+++++++++++++++++++++++++++++++++++++ OTHER FUNCTIONS +++++++++++++++++++++++++++++++++++++
 //Show/hide How To Play Info Box
@@ -78,13 +79,10 @@ const enableUserBtns = () => {
     })
 }
 
-const manageStrings = (varX) => {
-    const isString = (varX) => {
-        return typeof varX === "string"
-    }
-    if (isString(varX) === true) {
-        return varX = 1000000000
-}}
+const changeIfString = (variable, newValue) =>
+    (typeof variable === 'string') ? newValue : variable;
+
+
 
 //+++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
 // Set the categories for the deck of cards that has been chosen.
@@ -254,7 +252,6 @@ const computerTurn = () => {
 const draw = () => {
     drawContainer.push(p1Deck.shift())
     drawContainer.push(cpuDeck.shift())
-    //Think I can do without isPlayer Turn as it just just stay the same as whateve it was
 }
 const winDrawCards = (wonDraw) => {
     for (let i = 0; i < drawContainer.length; i++) {
@@ -262,12 +259,18 @@ const winDrawCards = (wonDraw) => {
     }
 }
 
+const convertTopTrump = (variable) => {
+    if(variable === 1000000){
+        return variable = "TopTrump!"
+    }
+}
+
 //Evaluate the result at the end of each hand and call the relevent subfuction
 const result = () => {
-    let var1 = playerSelected
-    //manageStrings(var1)
-    let var2 = cpuSelected
-    //manageStrings(var2)
+    let var1 = changeIfString(playerSelected, 1000000)
+    console.log(var1)
+    let var2 = changeIfString(cpuSelected, 1000000)
+    console.log(var2)
     let var3 = null
     if(isPlayerTurn === true){
         var3 = playerSelectedKey
@@ -278,23 +281,28 @@ const result = () => {
         winDrawCards(p1Deck)
         p1Deck.push(p1Deck.shift())
         p1Deck.push(cpuDeck.shift())
-        messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs  Computer: ${var3} [${var2}]<br>
+        convertTopTrump(var1)
+        convertTopTrump(var2)
+        messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3} [${var2}]<br>
         You won this hand!`
         isPlayerTurn = true
         sleep(3000).then(() => { nextTurn() });
-    }
-    else if (var1 < var2) {
+    } else if (var1 < var2) {
         winDrawCards(cpuDeck)
         cpuDeck.push(cpuDeck.shift())
         cpuDeck.push(p1Deck.shift())
-        messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs Computer: ${var3}  [${var2}]<br>
+        convertTopTrump(var1)
+        convertTopTrump(var2)
+        messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3}  [${var2}]<br>
         You lost this hand!`
         isPlayerTurn = false
         nextTurn()
     } else {
-        messageBox.innerHTML = `Player1: ${var3} [${var1}] vs Computer ${var3} [${var2}] <br>
+        convertTopTrump(var1)
+        convertTopTrump(var2)
+        messageBox.innerHTML = `Player1: ${var3} [${var1}] vs<br>Computer ${var3} [${var2}] <br>
         It's a draw <br>
-        Both cards have been put in a "pot" winner of the next hand takes the cards in the pot as well as the cards from the hand.`
+        Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
         draw()
         nextTurn()
     }
@@ -311,7 +319,6 @@ const handleStartGame = () => {
     }
 
 //Manually End Game
-
 const handleEndGame = () => {
     console.log(p1Deck.length)
     console.log(cpuDeck.length)
@@ -339,3 +346,5 @@ startBtn.addEventListener('click', handleStartGame)
 endGameBtn.addEventListener('click', handleEndGame )
 //View How To Play Info
 howToPlayBtn.addEventListener('click', handleHowToPlay)
+//Close How To Play Info
+closeBtn.addEventListener('click', handleHowToPlay)

@@ -14,7 +14,8 @@ This App will recreate this game digitally in a person vs computer card trading 
 4. A message is displayed declaring the winner of this hand.
 > 1. If Player1 has won the hand this continues until Player1 loses a hand (due to having a lower score than the CPU in the chosen category)
 > 2. If Player 1 has lost the hand, the CPU take over selecting the category each hand until they loose a hand.
-5. On the CPUs turn, a message is displayed showing Player1 the category the CPU has selected and what it's value is. //////////////////////////////////////////////////////////////(Either automatically after a pause or upon my click) My opponant's card is revealed and a message shown as to the winner of that hand. 
+5. On the CPUs turn, a message is displayed showing Player1 the category the CPU has selected and what it's value is. 
+6. The winner of the hand will be declared and if the computer wins the player can click the next hand button to have the computer play it's next hand. But if the user wins the hand play passes back to them. 
 
 ### Ending The Game
 1. Game play continues until either Player1 or CPU has no cards left
@@ -30,9 +31,17 @@ Depending on how long it takes to get a reliable MVP in place a number of altern
 4. An option to have remaining cards in deck shown on screen or remain hidden 
 
 ## Screenshots
+![Screenshot of landing page](Assets/Images/wide-view-landing-page.png "screenshot of landing page")
+
+![Screenshot of rendered card](Assets/Images/screenshot-rendered-card.png "The card once rendered")
+
+![Screenshot of message box showing the outcome of a hand](Assets/Images/screenshot-messsage-box.png "The message box")
 
 ## Installation
+This is a browser based game. No installation is required.
 
 ## Contributing
+No contributions at this time.
 
 ## License
+Created by Adam Gordon 2024. Creative commons?

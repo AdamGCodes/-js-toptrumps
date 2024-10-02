@@ -12,21 +12,8 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="blob">
-            <img src="Assets/Images/Blob Shape.png" alt="decorative">
-        </div>
-        <h1>Top Trumps</h1>
-        <div class="star-splash">
-            <img src="Assets/Images/Starsplash.png" alt="decorative">
-        </div>
-        <div class="cards-logo">
-            <img src="Assets/Images/TTCardLogo-noBG.png" alt="game logo of three cards in a fan: green, purple, orange">
-        </div>
-    </header>
-    <main>
-        <div class="how-to-play-box">
-            <h2>How To Play</h2>
+    <div class="how-to-play-box">
+            <h2>How To Play</h2>  <button name= "close-btn" class="btn" id="close-btn">Close</button>
             <p>Top Trumps is a card game where each player has a hand of cards featuring different subjects (like cars, animals, or
             superheroes). Each card has statistics in categories, such as speed, strength, or intelligence. Players take turns
             choosing a category and comparing the values on their cards. The player with the highest value in the chosen category
@@ -45,124 +32,159 @@
                 <li>You hit the End Game button and the game is ended then and there. If ending the game manually the decks will be counted up and the player with the most cards at that time declaired the winner</li>
             </ol>
             <p>Enjoy your game!</p>
-            
         </div>
-        <div class="btnCol" id="col2">
-            <div class="message-box">
-              <p id="message"></p>
+    <div class="header">
+        <div>
+            <img src="Assets/Images/Blob Shape.png" alt="decorative">
+            <h1>Top Trumps</h1>
+        </div>
+        <!-- <img src="Assets/Images/Starsplash.png" alt="decorative">
+        <img src="Assets/Images/TTCardLogo-noBG.png" alt="game logo of three cards in a fan: green, purple, orange"> -->
+    </div>
+    <div class="message-and-button-area">
+        <div class="message-box">
+            <p id="message"></p>
                 <button name="next-hand" class="btn" id="nextHandBtn">
                     Next Hand
                 </button>
-            </div>
-            <div class="buttons-group">
-                <button name=how-to-play-btn class="btn" id="how-to-play-btn">
-                    How To Play
-                </button>
-                <button class="btn" id="start-game">
-                    Start Game
-                </button>
-                <button class="btn" id="end-game">
-                    End Game
-                </button>
-            </div>
         </div>
-        <div class="card-container">
-            <div class="cardCols" id="col1">
-                <div class="card" id="p1Card">
-                    <div class="cardTitle" id="p1Title">
-                        Test
+        <div class="buttons-group">
+            <button name=how-to-play-btn class="btn" id="how-to-play-btn">
+                How To Play
+            </button>
+            <button class="btn" id="start-game">
+                Start Game
+            </button>
+            <button class="btn" id="end-game">
+                End Game
+            </button>
+        </div>
+    </div>
+    <div class="card-container">
+        <div class="player-card card" id="p1Card">
+            <div class="card-title" id="p1Title">
+                Card Title
+            </div>
+            <div class="card-image" id="p1Img">
+                <img src="Assets/Images/place-holder-image.jpg" alt="place holder image">
+            </div>
+            <div class="card-data-area">
+                <div class="card-row">
+                    <div class="card-category">
+                        <button class="categoryBtn" id="p1Cat1">Test</button>
                     </div>
-                    <div class="crdImg" id="p1Img">
-                        <img src="" alt="">
-                    </div>
-                    <div class="catArea" id="catAreaP1">
-                        <div class="catHeadings" id="catHeadingsP1">
-                            <div class="category">
-                                <button class="categoryBtn" id="p1Cat1">Test</button>
-                            </div>
-                            <div class="category">
-                                <button class="categoryBtn" id="p1Cat2">Test</button>
-                            </div>
-                            <div class="category">
-                                <button class="categoryBtn" id="p1Cat3">Test</button>
-                            </div>
-                            <div class="category">
-                                <button class="categoryBtn" id="p1Cat4">Test</button>
-                            </div>
-                            <div class="category">
-                                <button class="categoryBtn" id="p1Cat5">Test</button>
-                            </div>
-                            <div class="category">
-                                <button disabled class="categoryBtn" id="p1Cat6">Test</button>
-                            </div>
-                        </div>
-                        <div class="catInfo" id="catInfoP1">
-                            <div class="info" id="p1Info1">
-                            </div>
-                            <div class="info" id="p1Info2">
-                            </div>
-                            <div class="info" id="p1Info3">
-                            </div>
-                            <div class="info" id="p1Info4">
-                            </div>
-                            <div class="info" id="p1Info5">
-                            </div>
-                            <div class="info" id="p1Info6">
-                            </div>
-                        </div>    
+                    <div class="card-data" id="p1Info1">
+                        1
                     </div>
                 </div>
-            </div>
-            <div class="cardCols" id="col3">
-                <div class="card" id="cpuCard">
-                    <div class="cardTitle" id="cpuTitle">
-                        Test
+                <div class="card-row">
+                    <div class="card-category">
+                        <button class="categoryBtn" id="p1Cat2">Test</button>
                     </div>
-                    <div class="crdImg" id="cpuImg">
-                        <img src="" alt="">
+                    <div class="card-data"  id="p1Info2">
+                        2
+                    </div>  
+                </div>
+                <div class="card-row">
+                    <div class="card-category">
+                        <button class="categoryBtn" id="p1Cat3">Test</button>
                     </div>
-                    <div class="catArea" id="catAreaCpu">
-                        <div class="catHeadings" id="catHeadingsCpu">
-                            <div class="category">
-                                <p class="cpu-category"  id="cpuCat1"></p>
-                            </div>
-                            <div class="category">
-                                <p class="cpu-category" id="cpuCat2"></p>
-                            </div>
-                            <div class="category">
-                                <p class="cpu-category" id="cpuCat3"></p>
-                            </div>
-                            <div class="category">
-                                <p class="cpu-category" id="cpuCat4"></p>
-                            </div>
-                            <div class="category">
-                                <p class="cpu-category" id="cpuCat5"></p>
-                            </div>
-                            <div class="category">
-                                <p class="cpu-category" id="cpuCat6"></p>
-                            </div>
-                        </div>
-                        <div class="catInfo" id="catInfoCpu">
-                            <div class="info" id="cpuInfo1">
-                            </div>
-                            <div class="info" id="cpuInfo2">
-                            </div>
-                            <div class="info" id="cpuInfo3">
-                            </div>
-                            <div class="info" id="cpuInfo4">
-                            </div>
-                            <div class="info" id="cpuInfo5">
-                            </div>
-                            <div class="info" id="cpuInfo6">
-                            </div>
-                        </div>
+                    <div class="card-data" id="p1Info3">
+                        3
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-category">
+                        <button class="categoryBtn" id="p1Cat4">Test</button>
+                    </div>
+                    <div class="card-data" id="p1Info4">
+                        4
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-category">
+                        <button class="categoryBtn" id="p1Cat5">Test</button>
+                    </div>
+                    <div class="card-data" id="p1Info5">
+                        5
+                    </div>
+                </div>
+                <div class="card-info-box">
+                    <div class="special-info" id="p1Cat6">
+                        Card Info
+                    </div>
+                    <div class="info" id="p1Info6">  
+                        Special
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+        <div class="computer-card card">
+            <div class="card-title" id="cpuTitle">
+                Title
+            </div>
+            <div class="card-image" id="cpuImg">
+                <img src="Assets/Images/place-holder-image.jpg" alt="place holder image">
+            </div>
+            <div class="card-data-area">
+                <div class="card-row">
+                    <div class="card-category">
+                        <p class="cpu-category" id="cpuCat1">_</p>
+                    </div>
+                    <div class="card-data" id="cpuInfo1">
+                        Card Info
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-category">
+                        <p class="cpu-category" id="cpuCat2">_</p>
+                    </div>
+                    <div class="card-data" id="cpuInfo2">
+                        Card Info
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-category">
+                        <p class="cpu-category" id="cpuCat3">_</p>
+                    </div>
+                    <div class="card-data" id="cpuInfo3">
+                        Card Info
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-category">
+                        <p class="cpu-category" id="cpuCat4">_</p>
+                    </div>
+                    <div class="card-data" id="cpuInfo4">
+                        Card Info
+                    </div>
+                </div>
+                <div class="card-row">
+                    <div class="card-category">
+                        <p class="cpu-category" id="cpuCat5">_</p>
+                    </div>
+                    <div class="card-data" id="cpuInfo5">
+                        Card Info
+                    </div>
+                </div>
+                <div class="card-info-box">
+                    <div class="special-info" id="cpuCat6">
+                        Card Info
+                    </div>
+                    <div class="card-info" id="cpuInfo6">
+                        Special
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="footer">
+        footer
+    </div>
     <footer>
-
+    
     </footer>
 </body>
+   
 </html>
+   
