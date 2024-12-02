@@ -137,7 +137,7 @@ Some stretch goals, like animating the computer's card, remain as future improve
 
 ## Known Bugs
 
-- The app does not display an appropriate message for drawn hands, which affects user experience.
+- Drawn hands is not working correctly. This function needs to be re-written and the user messaging around this also needs to be improved. 
 - The lack of animations for the computer's card reduces UI polish.
 
 ---
