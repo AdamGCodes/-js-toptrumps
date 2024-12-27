@@ -331,7 +331,7 @@ const handleEndGame = () => {
     }
     sleep(8000).then(() => { location.reload() });
 }
- 
+
 const gameEndMessage = () => {
 
     messageBox.innerHTML = `You have ended the game: <br> Player 1 cards = ${p1DeckSize} 
