@@ -155,14 +155,14 @@ button {
 .player-card {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 300px;
 
 }
 
 .computer-card {
     display: flex;
     flex-direction: column;
-    max-width: 400px;
+    max-width: 300px;
 
 }
 .card {
@@ -200,8 +200,8 @@ button {
     margin: 10px 0px;
     border: ridge 8px;
     border-radius: 8px;
-    width: 350px;
-    height: 200px;
+    width: 280px;
+    height: 150px;
     object-fit: cover;
 }
 .card-data-area{
@@ -215,11 +215,11 @@ button {
     flex-direction: row;
     border-bottom: solid black 1px;
     width: 100%;
-    padding: 2px;
+    padding: 1px;
     background-color: #FFB657;
 }
 .categoryBtn {
-    margin: 5px;
+    margin: 2px;
     padding: 0 10px 0 10px;
     border: solid black 2px;
     border-radius: 50px;
@@ -230,12 +230,12 @@ button {
     font-family: "Lexend", sans-serif;
     font-weight: bold;
     text-align: left;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 .card-category{ 
     display: flex;
-    padding-left: 10px;
+    padding: 1px;
     background-color: #FFB657;
     justify-content: flex-start;
     align-items: center;
@@ -244,13 +244,13 @@ button {
 }
 .card-data {
     display: flex;
-    padding-right: 15px;
+    padding: 10px;
     background-color: #FFB657;
     justify-content: flex-end;
     align-items: center;
     width: 30%;
     font-family: "Lexend", sans-serif;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 /* .categoryBtn:hover {
@@ -265,7 +265,7 @@ button {
     min-height: 3vw;
     color: black;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1em;
     text-align: left;
 }
 
@@ -276,7 +276,7 @@ button {
     flex-direction: column;
     background-color: #FFB657;
     margin-top: 5px;
-    min-height: 200px;
+    min-height: 100px;
     font-family: "Lexend", sans-serif;
     border-radius: 0px 0px 20px 20px;
 }
@@ -284,7 +284,7 @@ button {
 .special-info {
     margin-bottom: 10px;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: bolder;    
 }
 .footer{

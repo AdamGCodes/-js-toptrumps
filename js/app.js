@@ -223,7 +223,9 @@ const nextTurn = () => {
     if (isPlayerTurn === true) {
         playerTurn();
     } else {
+
         computerTurn();
+
     }
 }
 
@@ -243,34 +245,37 @@ const computerTurn = () => {
     p1Card = p1Deck[0]
     cpuCard = cpuDeck[0]
     showNextHandBtn();
-    disableUserBtns()
+    disableUserBtns() 
     renderCardInfo()
     nextHandBtn.addEventListener('click', handleCpuNextHand)
 }
 
 //Handling a draw (both cards go into a "pot") next hand, winner takes all
-const draw = () => {
-    drawContainer.push(p1Deck.shift())
-    drawContainer.push(cpuDeck.shift())
-}
+const handleDraw = () => {
+    drawContainer.push(p1Deck.shift());
+    drawContainer.push(cpuDeck.shift());
+    messageBox.innerHTML += "Both cards are added to the draw pot!<br>";
+    console.log(p1Deck.length)
+    console.log(cpuDeck.length)
+    console.log(drawContainer.length)
+};
 const winDrawCards = (wonDraw) => {
     for (let i = 0; i < drawContainer.length; i++) {
         wonDraw.push(drawContainer);
     }
 }
 
-const convertTopTrump = (variable) => {
-    if(variable === 1000000){
-        return variable = "TopTrump!"
+const convertTopTrump = (value) => {
+    if (typeof value === "string") {
+        return value === "TopTrump!" ? 1000000 : value;
     }
-}
+    return value;
+};
 
 //Evaluate the result at the end of each hand and call the relevent subfuction
 const result = () => {
-    let var1 = changeIfString(playerSelected, 1000000)
-    console.log(var1)
-    let var2 = changeIfString(cpuSelected, 1000000)
-    console.log(var2)
+    let var1 = convertTopTrump(playerSelected);
+    let var2 = convertTopTrump(cpuSelected);
     let var3 = null
     if(isPlayerTurn === true){
         var3 = playerSelectedKey
@@ -281,8 +286,8 @@ const result = () => {
         winDrawCards(p1Deck)
         p1Deck.push(p1Deck.shift())
         p1Deck.push(cpuDeck.shift())
-        convertTopTrump(var1)
-        convertTopTrump(var2)
+        // convertTopTrump(var1)
+        // convertTopTrump(var2)
         messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3} [${var2}]<br>
         You won this hand!`
         isPlayerTurn = true
@@ -291,20 +296,23 @@ const result = () => {
         winDrawCards(cpuDeck)
         cpuDeck.push(cpuDeck.shift())
         cpuDeck.push(p1Deck.shift())
-        convertTopTrump(var1)
-        convertTopTrump(var2)
+        // convertTopTrump(var1)
+        // convertTopTrump(var2)
         messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3}  [${var2}]<br>
-        You lost this hand!`
+        You lost this hand! <br>
+        Press for next hand>>>`
+        console.log("Press for next hand>>>>")
         isPlayerTurn = false
         nextTurn()
     } else {
-        convertTopTrump(var1)
-        convertTopTrump(var2)
+        // convertTopTrump(var1)
+        // convertTopTrump(var2)
         messageBox.innerHTML = `Player1: ${var3} [${var1}] vs<br>Computer ${var3} [${var2}] <br>
         It's a draw <br>
         Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
-        draw()
-        nextTurn()
+        sleep(3000).then(() => { handleDraw() });
+        sleep(6000).then(() => { nextTurn() });
+        
     }
     checkDecks()
 }
@@ -314,7 +322,6 @@ const handleStartGame = () => {
     isPlayerTurn = true
     shuffledDeck = shuffle(currentDeck);
     deal()      
-    console.log("Press for next hand>>>>")
         nextTurn()
     }
 
