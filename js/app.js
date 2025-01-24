@@ -116,7 +116,15 @@ const init = () => {
 }
 init()
 
-
+const handleHandMessage = () => {
+    let person = prompt("Please enter your name", "Harry Potter");
+    let text;
+    if (person == null || person == "") {
+        text = "User cancelled the prompt.";
+    } else {
+        text = "Hello " + person + "! How are you today?";
+    }
+}
 //+++++++++++++++++++++++++++++++++++++ Start Game +++++++++++++++++++++++++++++++++++++
 
 const shuffle = (currentDeck) => {
@@ -288,6 +296,7 @@ const result = () => {
         p1Deck.push(cpuDeck.shift())
         // convertTopTrump(var1)
         // convertTopTrump(var2)
+        handleHandMessage()
         messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3} [${var2}]<br>
         You won this hand!`
         isPlayerTurn = true
