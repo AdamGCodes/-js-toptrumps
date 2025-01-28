@@ -10,7 +10,7 @@ const currentDeck = [
         Image: "Assets/Images/sci-fi-ships-toptrumps/millennium-falcon.jpg"
     },
     {
-        Name: "USS Enterprise (NCC-1701-D)",
+        Name: "USS Enterprise",
         Speed: 577,
         Firepower: 90,
         Defense: 85,
@@ -51,7 +51,7 @@ const currentDeck = [
     },
     {
         Name: "TARDIS",
-        Speed: "Faster than Light",
+        Speed: "FTL",
         Firepower: 70,
         Defense: 100,
         Crew: 1,
@@ -111,7 +111,7 @@ const currentDeck = [
     },
     {
         Name: "Event Horizon",
-        Speed: "Faster than Light",
+        Speed: "FTL",
         Firepower: 95,
         Defense: 70,
         Crew: 8,
