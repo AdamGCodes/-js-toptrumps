@@ -16,29 +16,40 @@ let keepPlaying;
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -CACHED ELEMENT REFERENCES- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-//Cached Elements for P1 Card
-const p1CardTitle = document.querySelector("#p1Title");
-const p1CardImg = document.querySelector("#p1Img");
-const categorySelection = document.querySelectorAll(".categoryBtn");
+//Function to cache card elements dynamically
+const getCardElements = (player) => {
+    return{
+        title: document.querySelector(`#${player}Title`),
+        img: document.querySelector(`#${player}Img`),
+        info: [...Array(5)].map((_,) => document.querySelector(`#${player}Info${i+1}`))
+    };
+};
 
-const p1Info1 = document.querySelector("#p1Info1");
-const p1Info2 = document.querySelector("#p1Info2");
-const p1Info3 = document.querySelector("#p1Info3");
-const p1Info4 = document.querySelector("#p1Info4");
-const p1Info5 = document.querySelector("#p1Info5");
-const p1Info6 = document.querySelector("#p1Info6");
+//Cached Elements for P1 and CPU Cards
+const categorySelection = document.querySelectorAll(".categoryBtn");
+const cpuCategories = document.querySelectorAll(".cpu-category");
+// const p1CardTitle = document.querySelector("#p1Title");
+// const p1CardImg = document.querySelector("#p1Img");
+// const categorySelection = document.querySelectorAll(".categoryBtn");
+
+// const p1Info1 = document.querySelector("#p1Info1");
+// const p1Info2 = document.querySelector("#p1Info2");
+// const p1Info3 = document.querySelector("#p1Info3");
+// const p1Info4 = document.querySelector("#p1Info4");
+// const p1Info5 = document.querySelector("#p1Info5");
+
 
 //Cached Elements for CPU Card
-const cpuCardTitle = document.querySelector("#cpuTitle");
-const cpuCardImg = document.querySelector("#cpuImg");
-const cpuCategories = document.querySelectorAll(".cpu-category");
+// const cpuCardTitle = document.querySelector("#cpuTitle");
+// const cpuCardImg = document.querySelector("#cpuImg");
+// const cpuCategories = document.querySelectorAll(".cpu-category");
 
-const cpuInfo1 = document.querySelector("#cpuInfo1");
-const cpuInfo2 = document.querySelector("#cpuInfo2");
-const cpuInfo3 = document.querySelector("#cpuInfo3");
-const cpuInfo4 = document.querySelector("#cpuInfo4");
-const cpuInfo5 = document.querySelector("#cpuInfo5");
-const cpuInfo6 = document.querySelector("#cpuInfo6");
+// const cpuInfo1 = document.querySelector("#cpuInfo1");
+// const cpuInfo2 = document.querySelector("#cpuInfo2");
+// const cpuInfo3 = document.querySelector("#cpuInfo3");
+// const cpuInfo4 = document.querySelector("#cpuInfo4");
+// const cpuInfo5 = document.querySelector("#cpuInfo5");
+
 
 //Other cached Elements
 const messageBox = document.querySelector("#message");
