@@ -1,4 +1,4 @@
-// CARD TRUMPS MARK 2
+// CARD TRUMPS MARK 2.1
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 let keys;
 let shuffledDeck;
