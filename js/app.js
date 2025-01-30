@@ -273,8 +273,12 @@ const convertTopTrump = (value) => {
 
 //Evaluate the result at the end of each hand and call the relevent subfuction
 const result = () => {
-    let var1 = convertTopTrump(playerSelected);
-    let var2 = convertTopTrump(cpuSelected);
+    // let var1 = convertTopTrump(playerSelected);
+    // let var2 = convertTopTrump(cpuSelected);
+    let var1 = playerSelected;
+    console.log(var1)
+    let var2 = cpuSelected;
+    console.log(var2)
     let var3 = null
     if(isPlayerTurn === true){
         var3 = playerSelectedKey
@@ -299,8 +303,9 @@ const result = () => {
         // convertTopTrump(var2)
         messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3}  [${var2}]<br>
         You lost this hand! <br>
-        Press for next hand>>>`
-        console.log("Press for next hand>>>>")
+        Press for next hand <br> 
+        &#8681 &#8681 &#8681 &#8681 &#8681`
+        console.log("Press for next hand")
         isPlayerTurn = false
         nextTurn()
     } else {

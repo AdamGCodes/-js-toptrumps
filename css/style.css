@@ -74,7 +74,7 @@ h1 {
     margin-bottom: 10px;
     border: solid black 5px;
     border-radius: 30px;
-    height: 10rem;
+    height: fit-content;
     width: 100%;
     background-color: #FFB657;
     font-family: "Lexend", sans-serif;
@@ -171,7 +171,7 @@ button {
     border: 5px solid black;
     border-radius: 25px;
     align-items: center;
-    background-color: white;
+    background-color: #DDD;
     box-shadow: 5px 5px black;
     width: 95%;
     padding-bottom: 16px;
@@ -193,13 +193,11 @@ button {
 .card-image {
     display: flex;
     justify-content: center;
-    background-color: white;
-
 }
 .card-image img{
     display: flex;
     margin: 10px 0px;
-    border: ridge 8px;
+    border:  inset 3px;
     border-radius: 8px;
     width: 280px;
     height: 150px;
@@ -214,7 +212,7 @@ button {
     display: flex;
     margin-top: 5px;
     flex-direction: row;
-    border-bottom: solid black 1px;
+    border: inset 2px;
     width: 100%;
     padding: 1px;
     background-color: #FFB657;
@@ -222,16 +220,21 @@ button {
 .categoryBtn {
     margin: 2px;
     padding: 0 10px 0 10px;
-    border: solid black 2px;
+    border: outset black 2px;
     border-radius: 50px;
     width: auto;
     min-height: 3vw;
     background-color: #B657FF;
-    color: black;
+    color: white;
     font-family: "Lexend", sans-serif;
-    font-weight: bold;
+    font-weight: 400;
     text-align: left;
     font-size: 1em;
+}
+.categoryBtn:hover{
+    border: inset black 2px;
+    background-color: white;
+    color: black;
 }
 
 .card-category{ 
