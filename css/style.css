@@ -84,7 +84,9 @@ h1 {
 
 #message {
     width: 90%;
+    font-size: 1rem;
     text-align: center;
+    line-height: 1.5;
 }
 
 .buttons-group {

@@ -15,7 +15,7 @@ let drawContainer = [];
 let keepPlaying;
 
 
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -CACHED ELEMENT REFERENCES- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CACHED ELEMENT REFERENCES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 //Function to cache card elements dynamically
 const getCardElements = (player) => {
     return{
@@ -28,28 +28,6 @@ const getCardElements = (player) => {
 //Cached Elements for P1 and CPU Cards
 const categorySelection = document.querySelectorAll(".categoryBtn");
 const cpuCategories = document.querySelectorAll(".cpu-category");
-// const p1CardTitle = document.querySelector("#p1Title");
-// const p1CardImg = document.querySelector("#p1Img");
-// const categorySelection = document.querySelectorAll(".categoryBtn");
-
-// const p1Info1 = document.querySelector("#p1Info1");
-// const p1Info2 = document.querySelector("#p1Info2");
-// const p1Info3 = document.querySelector("#p1Info3");
-// const p1Info4 = document.querySelector("#p1Info4");
-// const p1Info5 = document.querySelector("#p1Info5");
-
-
-//Cached Elements for CPU Card
-// const cpuCardTitle = document.querySelector("#cpuTitle");
-// const cpuCardImg = document.querySelector("#cpuImg");
-// const cpuCategories = document.querySelectorAll(".cpu-category");
-
-// const cpuInfo1 = document.querySelector("#cpuInfo1");
-// const cpuInfo2 = document.querySelector("#cpuInfo2");
-// const cpuInfo3 = document.querySelector("#cpuInfo3");
-// const cpuInfo4 = document.querySelector("#cpuInfo4");
-// const cpuInfo5 = document.querySelector("#cpuInfo5");
-
 
 //Other cached Elements
 const messageBox = document.querySelector("#message");
@@ -66,14 +44,12 @@ const handleHowToPlay = (event) => {
     //console.log("How2 btn clicked")
     howToPlayBox.classList.toggle("show-how-to-play-box");
 }
-// ///SLEEP FUNCTION
+//SLEEP FUNCTION (Currently used to pause between user winning hands)
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-//sleep(4000).then(() => { console.log('World!'); });
 
-
-// Show/Hide and Enable/Disable Game Control Buttons
+// Show/Hide and Enable/Disable Game Control Buttons (Form of input validation and to help direct flow of gameplay)
 const hideNextHandBtn = () => {
     document.getElementById("nextHandBtn").style.display = "none"
 }
@@ -91,8 +67,8 @@ const enableUserBtns = () => {
     })
 }
 
-const changeIfString = (variable, newValue) =>
-    (typeof variable === 'string') ? newValue : variable;
+// const changeIfString = (variable, newValue) =>
+//     (typeof variable === 'string') ? newValue : variable;
 
 
 
@@ -145,24 +121,27 @@ const deal = () => {
 }
 
 const renderCardInfo = () => {
-    p1Card = p1Deck[0]
-    cpuCard = cpuDeck[0]
-    p1CardTitle.textContent = `${p1Card.Name}`
-    p1CardImg.innerHTML = `<img src="${p1Card.Image}">`
-    p1Info1.innerHTML = `${p1Card.Speed}`
-    p1Info2.innerHTML = `${p1Card.Firepower}`
-    p1Info3.innerHTML = `${p1Card.Defense}`
-    p1Info4.innerHTML = `${p1Card.Crew}`
-    p1Info5.innerHTML = `${p1Card.CargoCapacity}`
-    // p1Info6.innerHTML = `${p1Card.SpecialAbility}`
-    cpuCardTitle.textContent = `${cpuCard.Name}`
-    cpuCardImg.innerHTML = `<img src="${cpuCard.Image}">`
-    cpuInfo1.innerHTML = `${cpuCard.Speed}`
-    cpuInfo2.innerHTML = `${cpuCard.Firepower}`
-    cpuInfo3.innerHTML = `${cpuCard.Defense}`
-    cpuInfo4.innerHTML = `${cpuCard.Crew}`
-    cpuInfo5.innerHTML = `${cpuCard.CargoCapacity}`
-    // cpuInfo6.innerHTML = `${cpuCard.SpecialAbility}`
+    p1CardData = p1Deck[0]
+    cpuCardData = cpuDeck[0]
+    // Render P1 Cards
+    p1Title.innerHTML = p1CardData.Name;
+    p1Img.innerHTML = `<img src="${p1CardData.Image}">`;
+    p1Info1.innerHTML = p1CardData.Speed;
+    p1Info2.innerHTML = p1CardData.Firepower;
+    p1Info3.innerHTML = p1CardData.Defense;
+    p1Info4.innerHTML = p1CardData.Crew;
+    p1Info5.innerHTML = p1CardData.CargoCapacity;
+    console.log(p1CardData)
+    
+    // Render CPU Cards
+    cpuTitle.innerHTML = `${cpuCardData.Name}`;
+    cpuImg.innerHTML= `<img src="${cpuCardData.Image}">`;
+    cpuInfo1.innerHTML = `${cpuCardData.Speed}`;
+    cpuInfo2.innerHTML = `${cpuCardData.Firepower}`;
+    cpuInfo3.innerHTML = `${cpuCardData.Defense}`;
+    cpuInfo4.innerHTML = `${cpuCardData.Crew}`;
+    cpuInfo5.innerHTML = `${cpuCardData.CargoCapacity}`;
+    console.log(cpuCardData)
 }
 
 const handleSelection = (event) => {
@@ -303,7 +282,10 @@ const result = () => {
         p1Deck.push(cpuDeck.shift())
         // convertTopTrump(var1)
         // convertTopTrump(var2)
-        messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3} [${var2}]<br>
+        messageBox.innerHTML = `<strong>Player 1:</strong> <br>
+        ${var3} [${var1}]<br>
+        <strong>Computer</strong>  <br>
+        ${var3} [${var2}]<br>
         You won this hand!`
         isPlayerTurn = true
         sleep(3000).then(() => { nextTurn() });
@@ -313,7 +295,10 @@ const result = () => {
         cpuDeck.push(p1Deck.shift())
         // convertTopTrump(var1)
         // convertTopTrump(var2)
-        messageBox.innerHTML = `Player 1: ${var3} [${var1}] vs<br>Computer: ${var3}  [${var2}]<br>
+        messageBox.innerHTML = `<strong>Player 1:</strong> <br>
+        ${var3} [${var1}]<br>
+        <strong>Computer</strong>  <br>
+        ${var3}  [${var2}]<br>
         You lost this hand! <br>
         Press for next hand <br> 
         &#8681 &#8681 &#8681 &#8681 &#8681`
@@ -323,7 +308,10 @@ const result = () => {
     } else {
         // convertTopTrump(var1)
         // convertTopTrump(var2)
-        messageBox.innerHTML = `Player1: ${var3} [${var1}] vs<br>Computer ${var3} [${var2}] <br>
+        messageBox.innerHTML = `<strong>Player 1:</strong>  <br>
+        ${var3} [${var1}]<br>
+        <strong>Computer</strong>  <br>
+        ${var3} [${var2}] <br>
         It's a draw <br>
         Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
         sleep(3000).then(() => { handleDraw() });
