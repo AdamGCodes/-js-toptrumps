@@ -1,5 +1,10 @@
 // CARD TRUMPS MARK 2.1
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+let p1
+let cpu
+let players = [cpu, p1]
+let whosTurn
+let playGame;
 let keys;
 let shuffledDeck;
 let p1Deck;
@@ -10,9 +15,9 @@ let playerSelected;
 let playerSelectedKey;
 let cpuSelected;
 let cpuSelectedKey;
-let isPlayerTurn;
+// let isPlayerTurn;
 let drawContainer = [];
-let keepPlaying;
+
 
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CACHED ELEMENT REFERENCES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -49,6 +54,13 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+//Random Function
+const random = (min, max) => {
+    const minCeiled = Math.ceil(1);
+    const maxFloored = Math.floor(6);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
+}
+
 // Show/Hide and Enable/Disable Game Control Buttons (Form of input validation and to help direct flow of gameplay)
 const hideNextHandBtn = () => {
     document.getElementById("nextHandBtn").style.display = "none"
@@ -75,6 +87,12 @@ const enableUserBtns = () => {
 //+++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
 // Set the categories for the deck of cards that has been chosen.
 // This will change in a multiple decks mode to will be dependent on deck choice.
+//Get Category Names for This Deck
+const getCategories = () => {
+    keys = Object.keys(currentDeck[0]);
+    console.log(keys)
+}
+
 const renderCategories = () => {
     categorySelection.forEach((btn, index) =>{
         if (index < keys.length - 1) { // Adjusting for 'keys' alignment 
@@ -90,12 +108,6 @@ const renderCategories = () => {
     });
 };
 
-//Get Category Names for This Deck
-const getCategories = () => {
-    keys = Object.keys(currentDeck[0]);
-    // console.log(keys)
-}
-
 const init = () => {
     getCategories()
     renderCategories()
@@ -105,6 +117,22 @@ init()
 
 
 //+++++++++++++++++++++++++++++++++++++ Start Game +++++++++++++++++++++++++++++++++++++
+//handleStartGame() should call handleGamePlay
+// handleStartGame()
+//      Shuffle
+//      Deal
+//      Decide who starts the game
+//      Render first hand
+//      Return( playGame = true, player = cpu or p1)
+
+const handleStartGame = () => {
+    playGame = true
+    shuffledDeck = shuffle(currentDeck);
+    deal()
+    whoStarts(players)
+    handleGamePlay()
+}
+
 
 const shuffle = (currentDeck) => {
     for (let i = currentDeck.length - 1; i > 0; i--) {
@@ -120,9 +148,81 @@ const deal = () => {
     cpuDeck = shuffledDeck.filter((element, index) => index % 2 != 0);
 }
 
+const whoStarts = () => {
+    const r = Math.floor(Math.random() * 2); 
+    whosTurn = players[r];
+}
+
+const handleGamePlay = () => {
+    if (playGame === true){
+        p1CardData = p1Deck[0]
+        cpuCardData = cpuDeck[0]
+        // renderCardInfo(p1CardData, cpuCardData)
+        if (whosTurn === p1){
+            handleP1Turn()
+        }else if(whosTurn === cpu){
+            handleCpuTurn()
+        }
+    } else {
+        handleEndGame()
+    }
+    // IF player = CPU
+    //  run handleCpuSelection()
+    // else 
+    //  run handleP1Selection()
+    // handleResult()
+    // checkDeck()
+    // endGameButton(manually end game)
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    // 
+
+} 
+const handleP1Turn = () => {
+    p1Card = p1Deck[0]
+    cpuCard = cpuDeck[0]
+    hideNextHandBtn()
+    enableUserBtns()
+    renderCardInfo()
+    messageBox.textContent = `Player 1's turn. Make your selection`
+    categorySelection.forEach((categoryBtn) => {
+        categoryBtn.addEventListener('click', handleSelection)
+    })
+}
+
+// The computer taking it's turn
+const handleCpuTurn = () => {
+    // p1Card = p1Deck[0]
+    // cpuCard = cpuDeck[0]
+    showNextHandBtn();
+    disableUserBtns()
+    renderCardInfo()
+    nextHandBtn.addEventListener('click', handleCpuHand)
+}
+
+const handleCpuHand = () => {
+    // p1Card = p1Deck[0]
+    // cpuCard = cpuDeck[0]
+    renderCardInfo()
+    // cpuCard = currentDeck[0];
+    keysArray = Object.keys(cpuCard);
+    valuesArray = Object.values(cpuCard);
+    r = random(1, 6)
+    cpuSelected = `${valuesArray[r]}`;
+    cpuSelectedKey = `${keysArray[r]}`;
+    playerSelected = `p1Card.${cpuSelectedKey}`
+    result(playerSelected, cpuSelected, cpuSelectedKey)
+}
+
 const renderCardInfo = () => {
-    p1CardData = p1Deck[0]
-    cpuCardData = cpuDeck[0]
+    // p1CardData = p1Deck[0]
+    // cpuCardData = cpuDeck[0]
     // Render P1 Cards
     p1Title.innerHTML = p1CardData.Name;
     p1Img.innerHTML = `<img src="${p1CardData.Image}">`;
@@ -178,31 +278,14 @@ const handleSelection = (event) => {
     result(playerSelected, cpuSelected, playerSelectedKey)    
 }
 
-// The computer taking it's turn
-const handleCpuNextHand = () => {
-    p1Card = p1Deck[0]
-    cpuCard = cpuDeck[0]
-    renderCardInfo()
-    const random = (min, max) => {
-        const minCeiled = Math.ceil(1);
-        const maxFloored = Math.floor(6);
-        return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
-    }
-    cpuCard = currentDeck[0];
-    keysArray = Object.keys(cpuCard);
-    valuesArray = Object.values(cpuCard);
-    r = random()
-    cpuSelected = `${valuesArray[r]}`;
-    cpuSelectedKey = `${keysArray[r]}`
-    playerSelected = `p1Card.${cpuSelectedKey}`
-    result(playerSelected, cpuSelected, cpuSelectedKey)
-}
+
+
 
 //After every hand, check to see if the game has ended and there is a winner
 const checkDecks = () => {
     if (p1Deck.length < 1 || cpuDeck.length < 1) {
         handleEndGame()
-        keepPlaying = false
+        // playGame = false (Redundant as playGame will return false from handleEndGame)
     } else {
         return
     }
@@ -210,35 +293,13 @@ const checkDecks = () => {
 
 //Main section for turn taking and game play functions
 const nextTurn = () => {
-    if (isPlayerTurn === true) {
-        playerTurn();
-    } else {
-
-        computerTurn();
-
+    if (whosTurn === p1) {
+        handleP1Turn();
+    } else if(whosTurn ===cpu){
+        handleCpuTurn();
     }
 }
 
-const playerTurn = () => {
-    p1Card = p1Deck[0]
-    cpuCard = cpuDeck[0]
-    hideNextHandBtn()
-    enableUserBtns()
-    renderCardInfo()
-    messageBox.textContent = `Player 1's turn. Make your selection`
-    categorySelection.forEach((categoryBtn) => {
-        categoryBtn.addEventListener('click', handleSelection)
-    })
-}
-
-const computerTurn = () => {
-    p1Card = p1Deck[0]
-    cpuCard = cpuDeck[0]
-    showNextHandBtn();
-    disableUserBtns() 
-    renderCardInfo()
-    nextHandBtn.addEventListener('click', handleCpuNextHand)
-}
 
 //Handling a draw (both cards go into a "pot") next hand, winner takes all
 const handleDraw = () => {
@@ -271,9 +332,9 @@ const result = () => {
     let var2 = cpuSelected;
     console.log(var2)
     let var3 = null
-    if(isPlayerTurn === true){
+    if(whosTurn === p1){
         var3 = playerSelectedKey
-    }else{
+    }else if(whosTurn === cpu){
         var3 = cpuSelectedKey
     }
     if (var1 > var2) {
@@ -287,7 +348,7 @@ const result = () => {
         <strong>Computer</strong>  <br>
         ${var3} [${var2}]<br>
         You won this hand!`
-        isPlayerTurn = true
+        whosTurn = p1
         sleep(3000).then(() => { nextTurn() });
     } else if (var1 < var2) {
         winDrawCards(cpuDeck)
@@ -303,7 +364,7 @@ const result = () => {
         Press for next hand <br> 
         &#8681 &#8681 &#8681 &#8681 &#8681`
         console.log("Press for next hand")
-        isPlayerTurn = false
+        whosTurn = cpu
         nextTurn()
     } else {
         // convertTopTrump(var1)
@@ -321,13 +382,7 @@ const result = () => {
     checkDecks()
 }
 
-const handleStartGame = () => {
-    keepPlaying = true
-    isPlayerTurn = true
-    shuffledDeck = shuffle(currentDeck);
-    deal()      
-        nextTurn()
-    }
+
 
 //Manually End Game
 const handleEndGame = () => {
@@ -348,6 +403,12 @@ const gameEndMessage = () => {
     messageBox.innerHTML = `You have ended the game: <br> Player 1 cards = ${p1DeckSize} 
     <br> CPU cards = ${cpuDeckSize} The winner is...... ${winner}. <br> Play again?`
 }
+
+
+
+
+
+
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -EVENT LISTENERS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
