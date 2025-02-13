@@ -1,26 +1,18 @@
-// CARD TRUMPS MARK 2.1
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-let p1
-let cpu
+// CARD TRUMPS MAKR 2.1
+
+// //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const p1 = "p1"
+const cpu = "cpu"
 let players = [cpu, p1]
-let whosTurn
-let playGame;
-let keys;
-let shuffledDeck;
-let p1Deck;
-let cpuDeck;
-let p1Card;
-let cpuCard;
-let playerSelected;
-let playerSelectedKey;
-let cpuSelected;
-let cpuSelectedKey;
-// let isPlayerTurn;
-let drawContainer = [];
-
-
+let p1CardData;
+let cpuCardData;
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CACHED ELEMENT REFERENCES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+//Cached Elements for P1 and CPU Cards
+const categorySelection = document.querySelectorAll(".categoryBtn");
+const cpuCategories = document.querySelectorAll(".cpu-category");
+
 //Function to cache card elements dynamically
 const getCardElements = (player) => {
     return{
@@ -30,79 +22,49 @@ const getCardElements = (player) => {
     };
 };
 
-//Cached Elements for P1 and CPU Cards
-const categorySelection = document.querySelectorAll(".categoryBtn");
-const cpuCategories = document.querySelectorAll(".cpu-category");
-
-//Other cached Elements
-const messageBox = document.querySelector("#message");
-const howToPlayBtn = document.querySelector("#how-to-play-btn");
-const howToPlayBox = document.querySelector(".how-to-play-box");
-const startBtn = document.querySelector("#start-game");
-const endGameBtn = document.querySelector("#end-game");
+// Chached Button Elements
 const nextHandBtn = document.querySelector("#nextHandBtn");
+const startBtn = document.querySelector("#start-game");
+const howToPlayBtn = document.querySelector("#how-to-play-btn");
 const closeBtn = document.querySelector('#close-btn')
 
-//+++++++++++++++++++++++++++++++++++++ OTHER FUNCTIONS +++++++++++++++++++++++++++++++++++++
-//Show/hide How To Play Info Box
-const handleHowToPlay = (event) => {
-    //console.log("How2 btn clicked")
-    howToPlayBox.classList.toggle("show-how-to-play-box");
-}
-//SLEEP FUNCTION (Currently used to pause between user winning hands)
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+// Other Cached Elements
+const howToPlayBox = document.querySelector(".how-to-play-box");
 
-//Random Function
-const random = (min, max) => {
-    const minCeiled = Math.ceil(1);
-    const maxFloored = Math.floor(6);
-    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
-}
-
-// Show/Hide and Enable/Disable Game Control Buttons (Form of input validation and to help direct flow of gameplay)
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Global Functions >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 const hideNextHandBtn = () => {
     document.getElementById("nextHandBtn").style.display = "none"
 }
-const showNextHandBtn = () => {
-    document.getElementById("nextHandBtn").style.display = "block"
-}
-const disableUserBtns = () => {
-    categorySelection.forEach((categoryBtn) => {
-        categoryBtn.disabled = true;
-    })
-}
-const enableUserBtns = () => {
-    categorySelection.forEach((categoryBtn) => {
-        categoryBtn.disabled = false;
-    })
+
+//Show/hide How To Play Info Box
+const handleHowToPlay = (event) => {
+    console.log("How2 btn clicked")
+    howToPlayBox.classList.toggle("show-how-to-play-box");
 }
 
-// const changeIfString = (variable, newValue) =>
-//     (typeof variable === 'string') ? newValue : variable;
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Main Game Logic >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// +++++++++++++++++++++++++++++++++++++ GAME PLAY FUNCTIONS +++++++++++++++++++++++++++++++++++++
+// TEMP MISC GAME PLAY FUNCTIONS (Let's see if these are needed an if so where they belong)
 
 
-
-//+++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
-// Set the categories for the deck of cards that has been chosen.
-// This will change in a multiple decks mode to will be dependent on deck choice.
-//Get Category Names for This Deck
+// +++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
+//Get Category Names for the deck that has been selected (This will change in a multiple decks mode to will be dependent on deck choice)
 const getCategories = () => {
     keys = Object.keys(currentDeck[0]);
     console.log(keys)
 }
-
+//Render Category info to the cards on screen
 const renderCategories = () => {
-    categorySelection.forEach((btn, index) =>{
+    //Render to P1 Cards
+    categorySelection.forEach((btn, index) => {
         if (index < keys.length - 1) { // Adjusting for 'keys' alignment 
             btn.innerHTML = keys[index + 1];
         }
-        
-    });
+    })
+    //Render to CPU Cards 
     const cpuCategories = [cpuCat1, cpuCat2, cpuCat3, cpuCat4, cpuCat5];
     cpuCategories.forEach((cpuCat, index) => {
-        if(index < keys.length -1){// Adjusting for 'keys' alignment
+        if (index < keys.length - 1) {// Adjusting for 'keys' alignment
             cpuCat.innerHTML = keys[index + 1];
         }
     });
@@ -116,23 +78,9 @@ const init = () => {
 init()
 
 
-//+++++++++++++++++++++++++++++++++++++ Start Game +++++++++++++++++++++++++++++++++++++
-//handleStartGame() should call handleGamePlay
-// handleStartGame()
-//      Shuffle
-//      Deal
-//      Decide who starts the game
-//      Render first hand
-//      Return( playGame = true, player = cpu or p1)
+// +++++++++++++++++++++++++++++++++++++ START GAME +++++++++++++++++++++++++++++++++++++
 
-const handleStartGame = () => {
-    playGame = true
-    shuffledDeck = shuffle(currentDeck);
-    deal()
-    whoStarts(players)
-    handleGamePlay()
-}
-
+//Shuffle Deck
 
 const shuffle = (currentDeck) => {
     for (let i = currentDeck.length - 1; i > 0; i--) {
@@ -142,87 +90,32 @@ const shuffle = (currentDeck) => {
     return currentDeck;
 }
 
+//Deal Deck (will need amending for aditional players)
 const deal = () => {
-
     p1Deck = shuffledDeck.filter((element, index) => index % 2 === 0);
     cpuDeck = shuffledDeck.filter((element, index) => index % 2 != 0);
 }
 
+//Select which player goes first
 const whoStarts = () => {
     const r = Math.floor(Math.random() * 2); 
-    whosTurn = players[r];
+    let whosTurn = players[r];
+    console.log(whosTurn)
+    return whosTurn;
 }
 
-const handleGamePlay = () => {
-    if (playGame === true){
-        p1CardData = p1Deck[0]
-        cpuCardData = cpuDeck[0]
-        // renderCardInfo(p1CardData, cpuCardData)
-        if (whosTurn === p1){
-            handleP1Turn()
-        }else if(whosTurn === cpu){
-            handleCpuTurn()
-        }
-    } else {
-        handleEndGame()
-    }
-    // IF player = CPU
-    //  run handleCpuSelection()
-    // else 
-    //  run handleP1Selection()
-    // handleResult()
-    // checkDeck()
-    // endGameButton(manually end game)
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    // 
+const handleStartGame = () => {
+    playGame = true
+    shuffledDeck = shuffle(currentDeck);
+    deal();
+    whosTurn = whoStarts(players);
+    handleGamePlay(whosTurn, playGame);
+};
 
-} 
-const handleP1Turn = () => {
-    p1Card = p1Deck[0]
-    cpuCard = cpuDeck[0]
-    hideNextHandBtn()
-    enableUserBtns()
-    renderCardInfo()
-    messageBox.textContent = `Player 1's turn. Make your selection`
-    categorySelection.forEach((categoryBtn) => {
-        categoryBtn.addEventListener('click', handleSelection)
-    })
-}
 
-// The computer taking it's turn
-const handleCpuTurn = () => {
-    // p1Card = p1Deck[0]
-    // cpuCard = cpuDeck[0]
-    showNextHandBtn();
-    disableUserBtns()
-    renderCardInfo()
-    nextHandBtn.addEventListener('click', handleCpuHand)
-}
-
-const handleCpuHand = () => {
-    // p1Card = p1Deck[0]
-    // cpuCard = cpuDeck[0]
-    renderCardInfo()
-    // cpuCard = currentDeck[0];
-    keysArray = Object.keys(cpuCard);
-    valuesArray = Object.values(cpuCard);
-    r = random(1, 6)
-    cpuSelected = `${valuesArray[r]}`;
-    cpuSelectedKey = `${keysArray[r]}`;
-    playerSelected = `p1Card.${cpuSelectedKey}`
-    result(playerSelected, cpuSelected, cpuSelectedKey)
-}
+// +++++++++++++++++++++++++++++++++++++ PLAY GAME +++++++++++++++++++++++++++++++++++++
 
 const renderCardInfo = () => {
-    // p1CardData = p1Deck[0]
-    // cpuCardData = cpuDeck[0]
     // Render P1 Cards
     p1Title.innerHTML = p1CardData.Name;
     p1Img.innerHTML = `<img src="${p1CardData.Image}">`;
@@ -231,7 +124,7 @@ const renderCardInfo = () => {
     p1Info3.innerHTML = p1CardData.Defense;
     p1Info4.innerHTML = p1CardData.Crew;
     p1Info5.innerHTML = p1CardData.CargoCapacity;
-    console.log(p1CardData)
+    // console.log(p1CardData)
     
     // Render CPU Cards
     cpuTitle.innerHTML = `${cpuCardData.Name}`;
@@ -241,172 +134,82 @@ const renderCardInfo = () => {
     cpuInfo3.innerHTML = `${cpuCardData.Defense}`;
     cpuInfo4.innerHTML = `${cpuCardData.Crew}`;
     cpuInfo5.innerHTML = `${cpuCardData.CargoCapacity}`;
-    console.log(cpuCardData)
+    // console.log(cpuCardData)
 }
 
 const handleSelection = (event) => {
     let selection = event.target.id;
     let cpuSelection = event.target.id
     if (selection === "p1Cat1") {
-        selection = p1Card[`${keys[1]}`]
-        cpuSelection = cpuCard[`${keys[1]}`]
+        selection = `p1CardData.[${keys[1]}]`
+        cpuSelection = cpuCardData[`${keys[1]}`]
         playerSelectedKey = [`${keys[1]}`]
     } else if (selection === "p1Cat2") {
-        selection = p1Card[`${keys[2]}`]
-        cpuSelection = cpuCard[`${keys[2]}`]
+        selection = p1CardData[`${keys[2]}`]
+        cpuSelection = cpuCardData[`${keys[2]}`]
         playerSelectedKey = [`${keys[2]}`]
     } else if (selection === "p1Cat3") {
-        selection = p1Card[`${keys[3]}`]
-        cpuSelection = cpuCard[`${keys[3]}`]
+        selection = p1CardData[`${keys[3]}`]
+        cpuSelection = cpuCardData[`${keys[3]}`]
         playerSelectedKey = [`${keys[3]}`]
     } else if (selection === "p1Cat4") {
-        selection = p1Card[`${keys[4]}`]
-        cpuSelection = cpuCard[`${keys[4]}`]
+        selection = p1CardData[`${keys[4]}`]
+        cpuSelection = cpuCardData[`${keys[4]}`]
         playerSelectedKey = [`${keys[4]}`]
     } else if (selection === "p1Cat5") {
-        selection = p1Card[`${keys[5]}`]
-        cpuSelection = cpuCard[`${keys[5]}`]
+        selection = p1CardData[`${keys[5]}`]
+        cpuSelection = cpuCardData[`${keys[5]}`]
         playerSelectedKey = [`${keys[5]}`]
-    // } else if (selection === "p1Cat6") {
-    //     selection = p1Card[`${keys[6]}`]
-    //     cpuSelection = cpuCard[`${keys[6]}`]
-    //     playerSelectedKey = [`${keys[6]}`]
     }
     playerSelectedKey 
+    console.log(playerSelectedKey)
     playerSelected = selection
+    console.log(playerSelected)
     cpuSelected = cpuSelection
-    result(playerSelected, cpuSelected, playerSelectedKey)    
+    console.log(cpuSelected)
+    // result(playerSelected, cpuSelected, playerSelectedKey)
+    return(playerSelected, cpuSelected, playerSelectedKey)
 }
 
 
-
-
-//After every hand, check to see if the game has ended and there is a winner
-const checkDecks = () => {
-    if (p1Deck.length < 1 || cpuDeck.length < 1) {
-        handleEndGame()
-        // playGame = false (Redundant as playGame will return false from handleEndGame)
-    } else {
-        return
-    }
+const handleP1Input = () => {
+    console.log("It's player 1's Turn")
+        // messageBox.textContent = `Player 1's turn. Make your selection`
+        categorySelection.forEach((categoryBtn) => {
+            categoryBtn.addEventListener('click', handleSelection)
+        })
 }
 
-//Main section for turn taking and game play functions
-const nextTurn = () => {
-    if (whosTurn === p1) {
-        handleP1Turn();
-    } else if(whosTurn ===cpu){
-        handleCpuTurn();
-    }
+const handleCpuSelection = () => {
+    console.log("It's the CPU's Turn")
+    keysArray = Object.keys(cpuCardData);
+    valuesArray = Object.values(cpuCardData);
+    r = random(1, 6)
+    cpuSelected = `${valuesArray[r]}`;
+    cpuSelectedKey = `${keysArray[r]}`;
+    playerSelected = `p1CardData.${cpuSelectedKey}`
+    return (playerSelected, cpuSelected, cpuSelectedKey)
 }
 
-
-//Handling a draw (both cards go into a "pot") next hand, winner takes all
-const handleDraw = () => {
-    drawContainer.push(p1Deck.shift());
-    drawContainer.push(cpuDeck.shift());
-    messageBox.innerHTML += "Both cards are added to the draw pot!<br>";
-    console.log(p1Deck.length)
-    console.log(cpuDeck.length)
-    console.log(drawContainer.length)
-};
-const winDrawCards = (wonDraw) => {
-    for (let i = 0; i < drawContainer.length; i++) {
-        wonDraw.push(drawContainer);
-    }
-}
-
-const convertTopTrump = (value) => {
-    if (typeof value === "string") {
-        return value === "TopTrump!" ? 1000000 : value;
-    }
-    return value;
-};
-
-//Evaluate the result at the end of each hand and call the relevent subfuction
-const result = () => {
-    // let var1 = convertTopTrump(playerSelected);
-    // let var2 = convertTopTrump(cpuSelected);
-    let var1 = playerSelected;
-    console.log(var1)
-    let var2 = cpuSelected;
-    console.log(var2)
-    let var3 = null
+const handleGamePlay = () =>{
+    console.log(`Who's Turn? It's ${whosTurn}'s Turn`)
+    p1CardData = p1Deck[0]
+    cpuCardData = cpuDeck[0]
+    console.log(p1CardData)
+    console.log(cpuCardData)
+    renderCardInfo()
     if(whosTurn === p1){
-        var3 = playerSelectedKey
-    }else if(whosTurn === cpu){
-        var3 = cpuSelectedKey
-    }
-    if (var1 > var2) {
-        winDrawCards(p1Deck)
-        p1Deck.push(p1Deck.shift())
-        p1Deck.push(cpuDeck.shift())
-        // convertTopTrump(var1)
-        // convertTopTrump(var2)
-        messageBox.innerHTML = `<strong>Player 1:</strong> <br>
-        ${var3} [${var1}]<br>
-        <strong>Computer</strong>  <br>
-        ${var3} [${var2}]<br>
-        You won this hand!`
-        whosTurn = p1
-        sleep(3000).then(() => { nextTurn() });
-    } else if (var1 < var2) {
-        winDrawCards(cpuDeck)
-        cpuDeck.push(cpuDeck.shift())
-        cpuDeck.push(p1Deck.shift())
-        // convertTopTrump(var1)
-        // convertTopTrump(var2)
-        messageBox.innerHTML = `<strong>Player 1:</strong> <br>
-        ${var3} [${var1}]<br>
-        <strong>Computer</strong>  <br>
-        ${var3}  [${var2}]<br>
-        You lost this hand! <br>
-        Press for next hand <br> 
-        &#8681 &#8681 &#8681 &#8681 &#8681`
-        console.log("Press for next hand")
-        whosTurn = cpu
-        nextTurn()
+        handleP1Input()
+    } else if(whosTurn === cpu) {
+        handleCpuSelection()
     } else {
-        // convertTopTrump(var1)
-        // convertTopTrump(var2)
-        messageBox.innerHTML = `<strong>Player 1:</strong>  <br>
-        ${var3} [${var1}]<br>
-        <strong>Computer</strong>  <br>
-        ${var3} [${var2}] <br>
-        It's a draw <br>
-        Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
-        sleep(3000).then(() => { handleDraw() });
-        sleep(6000).then(() => { nextTurn() });
-        
+        console.log("We have experienced an error the game will be terminated sorry about that.")
     }
-    checkDecks()
 }
 
 
 
-//Manually End Game
-const handleEndGame = () => {
-    console.log(p1Deck.length)
-    console.log(cpuDeck.length)
-    if (p1Deck > cpuDeck) {
-        messageBox.innerHTML = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Congratulations you won!!!!.  <br> Play again? <br>Page Will Fresh in 8 seconds`
-    } else if (p1Deck < cpuDeck) {
-        messageBox.innerHTML = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time. <br> Play again? <br>Page Will Fresh in 8 seconds`
-    } else {
-        messageBox.innerHTML = "Stalemate! It's a draw this time. Play again? <br>Page Will Fresh in 8 seconds"
-    }
-    sleep(8000).then(() => { location.reload() });
-}
-
-const gameEndMessage = () => {
-
-    messageBox.innerHTML = `You have ended the game: <br> Player 1 cards = ${p1DeckSize} 
-    <br> CPU cards = ${cpuDeckSize} The winner is...... ${winner}. <br> Play again?`
-}
-
-
-
-
+// +++++++++++++++++++++++++++++++++++++ END GAME +++++++++++++++++++++++++++++++++++++
 
 
 
@@ -414,9 +217,326 @@ const gameEndMessage = () => {
 
 //Start Game
 startBtn.addEventListener('click', handleStartGame)
+
+//Next Hand Button
+// nextHandBtn.addEventListener('click', handleCpuHand)
+
 //End Game
-endGameBtn.addEventListener('click', handleEndGame )
+// endGameBtn.addEventListener('click', handleEndGame)
+
 //View How To Play Info
 howToPlayBtn.addEventListener('click', handleHowToPlay)
+
 //Close How To Play Info
 closeBtn.addEventListener('click', handleHowToPlay)
+
+
+
+// // CARD TRUMPS MARK 2.1
+// //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// let whosTurn;
+// let playGame;
+// let keys;
+// let shuffledDeck;
+// let p1Deck;
+// let cpuDeck;
+
+// let playerSelected;
+// let playerSelectedKey;
+// let cpuSelected;
+// let cpuSelectedKey;
+// let drawContainer = [];
+
+
+
+// //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CACHED ELEMENT REFERENCES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+// //Other cached Elements
+// const messageBox = document.querySelector("#message");
+
+
+// const endGameBtn = document.querySelector("#end-game");
+// const nextHandBtn = document.querySelector("#nextHandBtn");
+
+
+// //+++++++++++++++++++++++++++++++++++++ OTHER FUNCTIONS +++++++++++++++++++++++++++++++++++++
+
+// //SLEEP FUNCTION (Currently used to pause between user winning hands)
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+// //Random Function
+// const random = (min, max) => {
+//     const minCeiled = Math.ceil(1);
+//     const maxFloored = Math.floor(6);
+//     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
+// }
+
+// // Show/Hide and Enable/Disable Game Control Buttons (Form of input validation and to help direct flow of gameplay)
+// const hideNextHandBtn = () => {
+//     document.getElementById("nextHandBtn").style.display = "none"
+// }
+// const showNextHandBtn = () => {
+//     document.getElementById("nextHandBtn").style.display = "block"
+// }
+// const disableUserBtns = () => {
+//     categorySelection.forEach((categoryBtn) => {
+//         categoryBtn.disabled = true;
+//     })
+// }
+// const enableUserBtns = () => {
+//     categorySelection.forEach((categoryBtn) => {
+//         categoryBtn.disabled = false;
+//     })
+// }
+
+// //+++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
+
+
+// //+++++++++++++++++++++++++++++++++++++ Start Game +++++++++++++++++++++++++++++++++++++
+
+
+
+// //+++++++++++++++++++++++++++++++++++++ Play Game +++++++++++++++++++++++++++++++++++++
+// const handleGamePlay = () => {
+//     if (playGame === true){
+//         console.log(whosTurn)
+//         console.log("PLAY GAME = ", playGame)
+//         p1CardData = p1Deck[0]
+//         cpuCardData = cpuDeck[0]
+//         renderCardInfo(p1CardData, cpuCardData)
+//         if (whosTurn === p1){
+//             enableUserBtns()
+//             handleP1Selection()
+//         }else if(whosTurn === cpu){
+//             showNextHandBtn();
+//             disableUserBtns();
+//             handleCpuSelection()
+//         }
+//         result(playerSelected, cpuSelected, cpuSelectedKey)
+        
+//     } else {
+//         handleEndGame()
+//     }
+//     // handleResult()
+//     // checkDeck()
+//     // endGameButton(manually end game)
+//     //
+//     //
+
+// } 
+
+// const handleCpuSelection = () => {
+//     // p1Card = p1Deck[0]
+//     // cpuCard = cpuDeck[0]
+//     // renderCardInfo()
+//     // cpuCard = currentDeck[0];
+//     keysArray = Object.keys(cpuCardData);
+//     valuesArray = Object.values(cpuCardData);
+//     r = random(1, 6)
+//     cpuSelected = `${valuesArray[r]}`;
+//     cpuSelectedKey = `${keysArray[r]}`;
+//     playerSelected = `p1CardData.${cpuSelectedKey}`
+//     // result(playerSelected, cpuSelected, cpuSelectedKey)
+// }
+
+
+// const handleP1Selection = () => {
+//     // p1Card = p1Deck[0]
+//     // cpuCard = cpuDeck[0]
+//     // hideNextHandBtn()
+//     // enableUserBtns()
+//     // renderCardInfo()
+//     messageBox.textContent = `Player 1's turn. Make your selection`
+//     categorySelection.forEach((categoryBtn) => {
+//         categoryBtn.addEventListener('click', handleSelection)
+//     })
+// }
+
+// // The computer taking it's turn
+// // const handleCpuTurn = () => {
+//     // p1Card = p1Deck[0]
+//     // cpuCard = cpuDeck[0]
+//     // showNextHandBtn();
+//     // disableUserBtns();
+//     // renderCardInfo()
+// // }
+
+
+
+
+// const handleSelection = (event) => {
+//     let selection = event.target.id;
+//     let cpuSelection = event.target.id
+//     if (selection === "p1Cat1") {
+//         selection = `p1CardData.[${keys[1]}]`
+//         cpuSelection = cpuCardData[`${keys[1]}`]
+//         playerSelectedKey = [`${keys[1]}`]
+//     } else if (selection === "p1Cat2") {
+//         selection = p1CardData[`${keys[2]}`]
+//         cpuSelection = cpuCardData[`${keys[2]}`]
+//         playerSelectedKey = [`${keys[2]}`]
+//     } else if (selection === "p1Cat3") {
+//         selection = p1CardData[`${keys[3]}`]
+//         cpuSelection = cpuCardData[`${keys[3]}`]
+//         playerSelectedKey = [`${keys[3]}`]
+//     } else if (selection === "p1Cat4") {
+//         selection = p1CardData[`${keys[4]}`]
+//         cpuSelection = cpuCardData[`${keys[4]}`]
+//         playerSelectedKey = [`${keys[4]}`]
+//     } else if (selection === "p1Cat5") {
+//         selection = p1CardData[`${keys[5]}`]
+//         cpuSelection = cpuCardData[`${keys[5]}`]
+//         playerSelectedKey = [`${keys[5]}`]
+//     // } else if (selection === "p1Cat6") {
+//     //     selection = p1Card[`${keys[6]}`]
+//     //     cpuSelection = cpuCard[`${keys[6]}`]
+//     //     playerSelectedKey = [`${keys[6]}`]
+//     }
+//     playerSelectedKey 
+//     console.log(playerSelectedKey)
+//     playerSelected = selection
+//     console.log(playerSelected)
+//     cpuSelected = cpuSelection
+//     console.log(cpuSelected)
+//     // result(playerSelected, cpuSelected, playerSelectedKey)
+//     return(playerSelected, cpuSelected, playerSelectedKey)
+// }
+
+
+
+
+// //After every hand, check to see if the game has ended and there is a winner
+// const checkDecks = () => {
+//     if (p1Deck.length < 1 || cpuDeck.length < 1) {
+//         handleEndGame()
+//         // playGame = false (Redundant as playGame will return false from handleEndGame)
+//     } else {
+//         return
+//     }
+// }
+
+// // //Main section for turn taking and game play functions
+// const nextTurn = () => {
+//     if (whosTurn === p1) {
+//         handleP1Turn();
+//     } else if(whosTurn ===cpu){
+//         handleCpuTurn();
+//     }
+// }
+
+
+// //Handling a draw (both cards go into a "pot") next hand, winner takes all
+// const handleDraw = () => {
+//     drawContainer.push(p1Deck.shift());
+//     drawContainer.push(cpuDeck.shift());
+//     messageBox.innerHTML += "Both cards are added to the draw pot!<br>";
+//     console.log(p1Deck.length)
+//     console.log(cpuDeck.length)
+//     console.log(drawContainer.length)
+// };
+// const winDrawCards = (wonDraw) => {
+//     for (let i = 0; i < drawContainer.length; i++) {
+//         wonDraw.push(drawContainer);
+//     }
+// }
+
+// const convertTopTrump = (value) => {
+//     if (typeof value === "string") {
+//         return value === "TopTrump!" ? 1000000 : value;
+//     }
+//     return value;
+// };
+
+// //Evaluate the result at the end of each hand and call the relevent subfuction
+// const result = () => {
+//     // let var1 = convertTopTrump(playerSelected);
+//     // let var2 = convertTopTrump(cpuSelected);
+//     let var1 = playerSelected;
+//     console.log(var1)
+//     let var2 = cpuSelected;
+//     console.log(var2)
+//     let var3 = null
+//     if(whosTurn === p1){
+//         var3 = playerSelectedKey
+//     }else if(whosTurn === cpu){
+//         var3 = cpuSelectedKey
+//     }
+//     if (var1 > var2) {
+//         winDrawCards(p1Deck)
+//         p1Deck.push(p1Deck.shift())
+//         p1Deck.push(cpuDeck.shift())
+//         // convertTopTrump(var1)
+//         // convertTopTrump(var2)
+//         messageBox.innerHTML = `<strong>Player 1:</strong> <br>
+//         ${var3} ${var1}<br>
+//         <strong>Computer</strong>  <br>
+//         ${var3} ${var2}<br>
+//         You won this hand!`
+//         whosTurn = p1
+//         // sleep(3000).then(() => { nextTurn() });
+//     } else if (var1 < var2) {
+//         winDrawCards(cpuDeck)
+//         cpuDeck.push(cpuDeck.shift())
+//         cpuDeck.push(p1Deck.shift())
+//         // convertTopTrump(var1)
+//         // convertTopTrump(var2)
+//         messageBox.innerHTML = `<strong>Player 1:</strong> <br>
+//         ${var3} ${var1}<br>
+//         <strong>Computer</strong>  <br>
+//         ${var3}  ${var2}<br>
+//         You lost this hand! <br>
+//         Press for next hand <br> 
+//         &#8681 &#8681 &#8681 &#8681 &#8681`
+//         console.log("Press for next hand")
+//         whosTurn = cpu
+//         // nextTurn()
+//     } else {
+//         // convertTopTrump(var1)
+//         // convertTopTrump(var2)
+//         messageBox.innerHTML = `<strong>Player 1:</strong>  <br>
+//         ${var3} ${var1}<br>
+//         <strong>Computer</strong>  <br>
+//         ${var3} ${var2} <br>
+//         It's a draw <br>
+//         Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
+//         sleep(3000).then(() => { handleDraw() });
+//         // sleep(6000).then(() => { nextTurn() });
+        
+//     }
+//     checkDecks()
+// }
+
+
+
+// //Manually End Game
+// const handleEndGame = () => {
+//     console.log(p1Deck.length)
+//     console.log(cpuDeck.length)
+//     if (p1Deck > cpuDeck) {
+//         messageBox.innerHTML = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Congratulations you won!!!!.  <br> Play again? <br>Page Will Fresh in 8 seconds`
+//     } else if (p1Deck < cpuDeck) {
+//         messageBox.innerHTML = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time. <br> Play again? <br>Page Will Fresh in 8 seconds`
+//     } else {
+//         messageBox.innerHTML = "Stalemate! It's a draw this time. Play again? <br>Page Will Fresh in 8 seconds"
+//     }
+//     sleep(8000).then(() => { location.reload() });
+// }
+
+// const gameEndMessage = () => {
+
+//     messageBox.innerHTML = `You have ended the game: <br> Player 1 cards = ${p1DeckSize} 
+//     <br> CPU cards = ${cpuDeckSize} The winner is...... ${winner}. <br> Play again?`
+// }
+
+
+
+
+
+
+
