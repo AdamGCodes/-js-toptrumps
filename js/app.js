@@ -42,6 +42,11 @@ const handleHowToPlay = (event) => {
     howToPlayBox.classList.toggle("show-how-to-play-box");
 }
 
+//SLEEP FUNCTION
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Main Game Logic >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // +++++++++++++++++++++++++++++++++++++ GAME PLAY FUNCTIONS +++++++++++++++++++++++++++++++++++++
 // TEMP MISC GAME PLAY FUNCTIONS (Let's see if these are needed an if so where they belong)
@@ -125,10 +130,10 @@ const renderCardInfo = () => {
     p1Info4.innerHTML = p1CardData.Crew;
     p1Info5.innerHTML = p1CardData.CargoCapacity;
     // console.log(p1CardData)
-    
+
     // Render CPU Cards
     cpuTitle.innerHTML = `${cpuCardData.Name}`;
-    cpuImg.innerHTML= `<img src="${cpuCardData.Image}">`;
+    cpuImg.innerHTML = `<img src="${cpuCardData.Image}">`;
     cpuInfo1.innerHTML = `${cpuCardData.Speed}`;
     cpuInfo2.innerHTML = `${cpuCardData.Firepower}`;
     cpuInfo3.innerHTML = `${cpuCardData.Defense}`;
@@ -137,41 +142,7 @@ const renderCardInfo = () => {
     // console.log(cpuCardData)
 }
 
-const handleSelection = (event) => {
-    let selection = event.target.id;
-    let cpuSelection = event.target.id
-    if (selection === "p1Cat1") {
-        selection = `p1CardData.[${keys[1]}]`
-        cpuSelection = cpuCardData[`${keys[1]}`]
-        playerSelectedKey = [`${keys[1]}`]
-    } else if (selection === "p1Cat2") {
-        selection = p1CardData[`${keys[2]}`]
-        cpuSelection = cpuCardData[`${keys[2]}`]
-        playerSelectedKey = [`${keys[2]}`]
-    } else if (selection === "p1Cat3") {
-        selection = p1CardData[`${keys[3]}`]
-        cpuSelection = cpuCardData[`${keys[3]}`]
-        playerSelectedKey = [`${keys[3]}`]
-    } else if (selection === "p1Cat4") {
-        selection = p1CardData[`${keys[4]}`]
-        cpuSelection = cpuCardData[`${keys[4]}`]
-        playerSelectedKey = [`${keys[4]}`]
-    } else if (selection === "p1Cat5") {
-        selection = p1CardData[`${keys[5]}`]
-        cpuSelection = cpuCardData[`${keys[5]}`]
-        playerSelectedKey = [`${keys[5]}`]
-    }
-    playerSelectedKey 
-    console.log(playerSelectedKey)
-    playerSelected = selection
-    console.log(playerSelected)
-    cpuSelected = cpuSelection
-    console.log(cpuSelected)
-    // result(playerSelected, cpuSelected, playerSelectedKey)
-    return(playerSelected, cpuSelected, playerSelectedKey)
-}
-
-
+// ------------------------ Handle P1 Input & Functions ------------------------------
 const handleP1Input = () => {
     console.log("It's player 1's Turn")
         // messageBox.textContent = `Player 1's turn. Make your selection`
@@ -180,17 +151,38 @@ const handleP1Input = () => {
         })
 }
 
+const handleSelection = (event) => {
+    let index = parseInt(event.target.id.slice(-1)); //using slice -1 to get the last digit from the ID this is the only part we require to index. parseInt is converting it to a number for use when used as index.
+    let key = keys[index]; //Getting the key from the keys array useing [index] with the above means we are selecting the key dynamically.
+
+    SelectedKey = key; // Stores the selected key
+    playerSelected = p1CardData[key]; // Get p1's value
+    cpuSelected = cpuCardData[key]; // Gets the CPU's value
+
+    console.log(SelectedKey, playerSelected, cpuSelected)
+    return { SelectedKey, playerSelected, cpuSelected };
+}
+ // ----------------------  Handle  CPU Selection & Functions ---------------------------
 const handleCpuSelection = () => {
     console.log("It's the CPU's Turn")
     keysArray = Object.keys(cpuCardData);
     valuesArray = Object.values(cpuCardData);
-    r = random(1, 6)
-    cpuSelected = `${valuesArray[r]}`;
-    cpuSelectedKey = `${keysArray[r]}`;
-    playerSelected = `p1CardData.${cpuSelectedKey}`
-    return (playerSelected, cpuSelected, cpuSelectedKey)
+    r = random(0, keysArray.length - 1) //Have used this instead of 1-6 to make more scaleable. 
+    SelectedKey = `${keysArray[r]}`;
+    cpuSelected = parseInt(`${valuesArray[r]}`);
+    playerSelected = p1CardData[SelectedKey]
+    console.log(SelectedKey, cpuSelected, playerSelected)
+    return {SelectedKey, cpuSelected, playerSelected}
 }
 
+//Random Function
+const random = (min, max) => {
+    const minCeiled = Math.ceil(1);
+    const maxFloored = Math.floor(6);
+    return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
+}
+
+// -------------------  Main Handle Game Play Function -------------------------
 const handleGamePlay = () =>{
     console.log(`Who's Turn? It's ${whosTurn}'s Turn`)
     p1CardData = p1Deck[0]
@@ -200,11 +192,17 @@ const handleGamePlay = () =>{
     renderCardInfo()
     if(whosTurn === p1){
         handleP1Input()
+        sleep(3000).then(() => {  
+            console.log("In result slot", SelectedKey, playerSelected, cpuSelected)
+        });
+        
     } else if(whosTurn === cpu) {
         handleCpuSelection()
     } else {
         console.log("We have experienced an error the game will be terminated sorry about that.")
     }
+    
+
 }
 
 
