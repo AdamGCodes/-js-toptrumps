@@ -201,7 +201,7 @@ const result = () => {
 //         var3 = cpuSelectedKey
 //     }
     if ( playerSelected > cpuSelected) {
-        winDrawCards(p1Deck)
+        // winDrawCards(p1Deck) NEED TO BRING THIS IN ONCE IVE REINSTATED DRAW FUNCTION
         p1Deck.push(p1Deck.shift())
         p1Deck.push(cpuDeck.shift())
 //         // convertTopTrump(var1)
@@ -215,7 +215,7 @@ const result = () => {
         console.log("P1 was the winner")
 //         // sleep(3000).then(() => { nextTurn() });
     } else if (playerSelected < cpuSelected) {
-        winDrawCards(cpuDeck)
+        // winDrawCards(cpuDeck) NEED TO BRING THIS IN ONCE IVE REINSTATED DRAW FUNCTION
         cpuDeck.push(cpuDeck.shift())
         cpuDeck.push(p1Deck.shift())
 //         // convertTopTrump(var1)
@@ -231,7 +231,8 @@ const result = () => {
         whosTurn = cpu
         console.log("CPU was the winner.")
         //         // nextTurn()
-//     } else {
+    } else {
+        console.log("It's a draw.")
 //         // convertTopTrump(var1)
 //         // convertTopTrump(var2)
 //         messageBox.innerHTML = `<strong>Player 1:</strong>  <br>
@@ -242,34 +243,46 @@ const result = () => {
 //         Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
 //         sleep(3000).then(() => { handleDraw() });
 //         // sleep(6000).then(() => { nextTurn() });
-        
-//     }
+    }
+    console.log
 //     checkDecks()
+}
+//After every hand, check to see if the game has ended and there is a winner
+const checkDecks = () => {
+    console.log(p1Deck.length, cpuDeck.length)
+    if (p1Deck.length < 1 || cpuDeck.length < 1) {
+        playGame = false
+    } else {
+        return
+    }
 }
 
 // -------------------  Main Handle Game Play Function -------------------------
 async function handleGamePlay() {
-    console.log(`Who's Turn? It's ${whosTurn}'s Turn`)
-    p1CardData = p1Deck[0]
-    cpuCardData = cpuDeck[0]
-    console.log(p1CardData)
-    console.log(cpuCardData)
-    renderCardInfo()
-    if(whosTurn === p1){
-        const selection = await handleP1Input(); // Refactored wait for player input on player turn
-        console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
-        // result(selection) //Now we can process the turn after selection.
+    while(playGame === true){
+        console.log(`Who's Turn? It's ${whosTurn}'s Turn`)
+        p1CardData = p1Deck[0]
+        cpuCardData = cpuDeck[0]
+        console.log(p1CardData)
+        console.log(cpuCardData)
+        renderCardInfo()
+        if(whosTurn === p1){
+            const selection = await handleP1Input(); // Refactored wait for player input on player turn
+            console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
+            result(selection) //Now we can process the turn after selection. 
+            checkDecks()
 
-    } else if(whosTurn === cpu) {
-        const selection = await handleCpuSelection()
-        console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
-        // result(selection)
+        } else if(whosTurn === cpu) {
+            const selection = await handleCpuSelection()
+            console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
+            result(selection)
+            checkDecks()
 
-    } else {
-        console.log("We have experienced an error the game will be terminated sorry about that.")
+        } else {
+            console.log("We have experienced an error the game will be terminated sorry about that.")
+        }
+        continue
     }
-    
-
 }
 
 
@@ -287,7 +300,7 @@ startBtn.addEventListener('click', handleStartGame)
 // nextHandBtn.addEventListener('click', handleCpuHand)
 
 //End Game
-// endGameBtn.addEventListener('click', handleEndGame)
+endGameBtn.addEventListener('click', handleEndGame)
 
 //View How To Play Info
 howToPlayBtn.addEventListener('click', handleHowToPlay)
@@ -597,4 +610,3 @@ closeBtn.addEventListener('click', handleHowToPlay)
 
 //     messageBox.innerHTML = `You have ended the game: <br> Player 1 cards = ${p1DeckSize} 
 //     <br> CPU cards = ${cpuDeckSize} The winner is...... ${winner}. <br> Play again?`
-}
