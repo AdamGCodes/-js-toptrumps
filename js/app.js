@@ -143,27 +143,31 @@ const renderCardInfo = () => {
 }
 
 // ------------------------ Handle P1 Input & Functions ------------------------------
-const handleP1Input = () => {
-    console.log("It's player 1's Turn")
-        // messageBox.textContent = `Player 1's turn. Make your selection`
+async function handleP1Input() {
+    return new Promise((resolve) => {
         categorySelection.forEach((categoryBtn) => {
-            categoryBtn.addEventListener('click', handleSelection)
+            categoryBtn.addEventListener('click', function handleSelection(event) { //Was a seperate fucntion that was called but now is defined in the click event.
+                let index = parseInt(event.target.id.slice(-1)); //using slice -1 to get the last digit from the ID this is the only part we require to index. parseInt is converting it to a number for use when used as index.
+                let key = keys[index]; //Getting the key from the keys array useing [index] with the above means we are selecting the key dynamically.
+
+                SelectedKey = key; // Stores the selected key
+                playerSelected = p1CardData[key]; // Get p1's value
+                cpuSelected = cpuCardData[key]; // Gets the CPU's value
+
+                categorySelection.forEach((btn) => btn.removeEventListener('click', handleSelection));
+                console.log(SelectedKey, playerSelected, cpuSelected);
+                resolve({ SelectedKey, playerSelected, cpuSelected }); // 
+            })
         })
+    })
+    // console.log("It's player 1's Turn")
+    // messageBox.textContent = `Player 1's turn. Make your selection`    
 }
 
-const handleSelection = (event) => {
-    let index = parseInt(event.target.id.slice(-1)); //using slice -1 to get the last digit from the ID this is the only part we require to index. parseInt is converting it to a number for use when used as index.
-    let key = keys[index]; //Getting the key from the keys array useing [index] with the above means we are selecting the key dynamically.
 
-    SelectedKey = key; // Stores the selected key
-    playerSelected = p1CardData[key]; // Get p1's value
-    cpuSelected = cpuCardData[key]; // Gets the CPU's value
 
-    console.log(SelectedKey, playerSelected, cpuSelected)
-    return { SelectedKey, playerSelected, cpuSelected };
-}
  // ----------------------  Handle  CPU Selection & Functions ---------------------------
-const handleCpuSelection = () => {
+async function handleCpuSelection() {
     console.log("It's the CPU's Turn")
     keysArray = Object.keys(cpuCardData);
     valuesArray = Object.values(cpuCardData);
@@ -182,8 +186,69 @@ const random = (min, max) => {
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
 }
 
+//Evaluate the result at the end of each hand and call the relevent subfuction
+const result = () => {
+//     // let var1 = convertTopTrump(playerSelected);
+//     // let var2 = convertTopTrump(cpuSelected);
+//     let var1 = playerSelected;
+//     console.log(var1)
+//     let var2 = cpuSelected;
+//     console.log(var2)
+//     let var3 = null
+//     if(whosTurn === p1){
+//         var3 = playerSelectedKey
+//     }else if(whosTurn === cpu){
+//         var3 = cpuSelectedKey
+//     }
+    if ( playerSelected > cpuSelected) {
+        winDrawCards(p1Deck)
+        p1Deck.push(p1Deck.shift())
+        p1Deck.push(cpuDeck.shift())
+//         // convertTopTrump(var1)
+//         // convertTopTrump(var2)
+//         messageBox.innerHTML = `<strong>Player 1:</strong> <br>
+//         ${var3} ${var1}<br>
+//         <strong>Computer</strong>  <br>
+//         ${var3} ${var2}<br>
+//         You won this hand!`
+        whosTurn = p1
+        console.log("P1 was the winner")
+//         // sleep(3000).then(() => { nextTurn() });
+    } else if (playerSelected < cpuSelected) {
+        winDrawCards(cpuDeck)
+        cpuDeck.push(cpuDeck.shift())
+        cpuDeck.push(p1Deck.shift())
+//         // convertTopTrump(var1)
+//         // convertTopTrump(var2)
+//         messageBox.innerHTML = `<strong>Player 1:</strong> <br>
+//         ${var3} ${var1}<br>
+//         <strong>Computer</strong>  <br>
+//         ${var3}  ${var2}<br>
+//         You lost this hand! <br>
+//         Press for next hand <br> 
+//         &#8681 &#8681 &#8681 &#8681 &#8681`
+//         console.log("Press for next hand")
+        whosTurn = cpu
+        console.log("CPU was the winner.")
+        //         // nextTurn()
+//     } else {
+//         // convertTopTrump(var1)
+//         // convertTopTrump(var2)
+//         messageBox.innerHTML = `<strong>Player 1:</strong>  <br>
+//         ${var3} ${var1}<br>
+//         <strong>Computer</strong>  <br>
+//         ${var3} ${var2} <br>
+//         It's a draw <br>
+//         Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
+//         sleep(3000).then(() => { handleDraw() });
+//         // sleep(6000).then(() => { nextTurn() });
+        
+//     }
+//     checkDecks()
+}
+
 // -------------------  Main Handle Game Play Function -------------------------
-const handleGamePlay = () =>{
+async function handleGamePlay() {
     console.log(`Who's Turn? It's ${whosTurn}'s Turn`)
     p1CardData = p1Deck[0]
     cpuCardData = cpuDeck[0]
@@ -191,13 +256,15 @@ const handleGamePlay = () =>{
     console.log(cpuCardData)
     renderCardInfo()
     if(whosTurn === p1){
-        handleP1Input()
-        sleep(3000).then(() => {  
-            console.log("In result slot", SelectedKey, playerSelected, cpuSelected)
-        });
-        
+        const selection = await handleP1Input(); // Refactored wait for player input on player turn
+        console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
+        // result(selection) //Now we can process the turn after selection.
+
     } else if(whosTurn === cpu) {
-        handleCpuSelection()
+        const selection = await handleCpuSelection()
+        console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
+        // result(selection)
+
     } else {
         console.log("We have experienced an error the game will be terminated sorry about that.")
     }
@@ -530,11 +597,4 @@ closeBtn.addEventListener('click', handleHowToPlay)
 
 //     messageBox.innerHTML = `You have ended the game: <br> Player 1 cards = ${p1DeckSize} 
 //     <br> CPU cards = ${cpuDeckSize} The winner is...... ${winner}. <br> Play again?`
-// }
-
-
-
-
-
-
-
+}
