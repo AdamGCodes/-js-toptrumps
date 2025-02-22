@@ -6,6 +6,7 @@ const cpu = "cpu"
 let players = [cpu, p1]
 let p1CardData;
 let cpuCardData;
+let message = ""
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CACHED ELEMENT REFERENCES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -27,9 +28,13 @@ const nextHandBtn = document.querySelector("#nextHandBtn");
 const startBtn = document.querySelector("#start-game");
 const howToPlayBtn = document.querySelector("#how-to-play-btn");
 const closeBtn = document.querySelector('#close-btn')
+const endGameBtn = document.querySelector("#end-game");
 
 // Other Cached Elements
+// Button to open and close game into and instructions modal
 const howToPlayBox = document.querySelector(".how-to-play-box");
+// Message area for displaying game status messages
+const messageBox = document.querySelector("#message");
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Global Functions >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 const hideNextHandBtn = () => {
@@ -45,6 +50,11 @@ const handleHowToPlay = (event) => {
 //SLEEP FUNCTION
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+//Dsiplay Game Status Messages
+const handleMessages = () => {
+    messageBox.innerHTML = message
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Main Game Logic >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -206,11 +216,12 @@ const result = () => {
         p1Deck.push(cpuDeck.shift())
 //         // convertTopTrump(var1)
 //         // convertTopTrump(var2)
-//         messageBox.innerHTML = `<strong>Player 1:</strong> <br>
-//         ${var3} ${var1}<br>
-//         <strong>Computer</strong>  <br>
-//         ${var3} ${var2}<br>
-//         You won this hand!`
+        message = 
+            `<strong>Player 1:</strong> <br>
+            ${SelectedKey} ${playerSelected}<br>
+            <strong>Computer</strong>  <br>
+            ${SelectedKey} ${cpuSelected}<br>
+            You won this hand!`
         whosTurn = p1
         console.log("P1 was the winner")
 //         // sleep(3000).then(() => { nextTurn() });
@@ -220,13 +231,14 @@ const result = () => {
         cpuDeck.push(p1Deck.shift())
 //         // convertTopTrump(var1)
 //         // convertTopTrump(var2)
-//         messageBox.innerHTML = `<strong>Player 1:</strong> <br>
-//         ${var3} ${var1}<br>
-//         <strong>Computer</strong>  <br>
-//         ${var3}  ${var2}<br>
-//         You lost this hand! <br>
-//         Press for next hand <br> 
-//         &#8681 &#8681 &#8681 &#8681 &#8681`
+        message = 
+            `<strong>Player 1:</strong> <br>
+            ${SelectedKey} ${playerSelected}<br>
+            <strong>Computer</strong>  <br>
+            ${SelectedKey}  ${cpuSelected}<br>
+            You lost this hand! <br>`
+        // Press for next hand <br> 
+//         &#8681 &#8681 &#8681 &#8681 &#8681
 //         console.log("Press for next hand")
         whosTurn = cpu
         console.log("CPU was the winner.")
@@ -235,12 +247,14 @@ const result = () => {
         console.log("It's a draw.")
 //         // convertTopTrump(var1)
 //         // convertTopTrump(var2)
-//         messageBox.innerHTML = `<strong>Player 1:</strong>  <br>
-//         ${var3} ${var1}<br>
-//         <strong>Computer</strong>  <br>
-//         ${var3} ${var2} <br>
-//         It's a draw <br>
-//         Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot<br>as well as the cards from the hand.`
+        message = 
+            `<strong>Player 1:</strong>  <br>
+            ${SelectedKey} ${playerSelected}<br>
+            <strong>Computer</strong>  <br>
+            ${SelectedKey} ${playerSelected} <br>
+            It's a draw <br>
+            Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot <br>
+            as well as the cards from the hand.`
 //         sleep(3000).then(() => { handleDraw() });
 //         // sleep(6000).then(() => { nextTurn() });
     }
@@ -269,13 +283,15 @@ async function handleGamePlay() {
         if(whosTurn === p1){
             const selection = await handleP1Input(); // Refactored wait for player input on player turn
             console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
-            result(selection) //Now we can process the turn after selection. 
+            result(selection) //Now we can process the turn after selection.
+            handleMessages(message)
             checkDecks()
 
         } else if(whosTurn === cpu) {
             const selection = await handleCpuSelection()
             console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
             result(selection)
+            handleMessages(message)
             checkDecks()
 
         } else {
@@ -288,6 +304,19 @@ async function handleGamePlay() {
 
 
 // +++++++++++++++++++++++++++++++++++++ END GAME +++++++++++++++++++++++++++++++++++++
+//Manually End Game
+const handleEndGame = () => {
+    console.log(p1Deck.length)
+    console.log(cpuDeck.length)
+    if (p1Deck > cpuDeck) {
+        message = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Congratulations you won!!!!.  <br> Play again? <br>Page Will Fresh in 10 seconds`
+    } else if (p1Deck < cpuDeck) {
+        message = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time. <br> Play again? <br>Page Will Fresh in 10 seconds`
+    } else {
+        message = "Stalemate! It's a draw this time. Play again? <br>Page Will Fresh in 10 seconds"
+    }
+    sleep(10000).then(() => { handleStartGame() });
+}
 
 
 
@@ -337,7 +366,7 @@ closeBtn.addEventListener('click', handleHowToPlay)
 // const messageBox = document.querySelector("#message");
 
 
-// const endGameBtn = document.querySelector("#end-game");
+
 // const nextHandBtn = document.querySelector("#nextHandBtn");
 
 
