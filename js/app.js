@@ -198,24 +198,10 @@ const random = (min, max) => {
 
 //Evaluate the result at the end of each hand and call the relevent subfuction
 const result = () => {
-//     // let var1 = convertTopTrump(playerSelected);
-//     // let var2 = convertTopTrump(cpuSelected);
-//     let var1 = playerSelected;
-//     console.log(var1)
-//     let var2 = cpuSelected;
-//     console.log(var2)
-//     let var3 = null
-//     if(whosTurn === p1){
-//         var3 = playerSelectedKey
-//     }else if(whosTurn === cpu){
-//         var3 = cpuSelectedKey
-//     }
     if ( playerSelected > cpuSelected) {
         // winDrawCards(p1Deck) NEED TO BRING THIS IN ONCE IVE REINSTATED DRAW FUNCTION
         p1Deck.push(p1Deck.shift())
         p1Deck.push(cpuDeck.shift())
-//         // convertTopTrump(var1)
-//         // convertTopTrump(var2)
         message = 
             `<strong>Player 1:</strong> <br>
             ${SelectedKey} ${playerSelected}<br>
@@ -229,8 +215,6 @@ const result = () => {
         // winDrawCards(cpuDeck) NEED TO BRING THIS IN ONCE IVE REINSTATED DRAW FUNCTION
         cpuDeck.push(cpuDeck.shift())
         cpuDeck.push(p1Deck.shift())
-//         // convertTopTrump(var1)
-//         // convertTopTrump(var2)
         message = 
             `<strong>Player 1:</strong> <br>
             ${SelectedKey} ${playerSelected}<br>
@@ -242,11 +226,7 @@ const result = () => {
 //         console.log("Press for next hand")
         whosTurn = cpu
         console.log("CPU was the winner.")
-        //         // nextTurn()
     } else {
-        console.log("It's a draw.")
-//         // convertTopTrump(var1)
-//         // convertTopTrump(var2)
         message = 
             `<strong>Player 1:</strong>  <br>
             ${SelectedKey} ${playerSelected}<br>
@@ -257,8 +237,8 @@ const result = () => {
             as well as the cards from the hand.`
 //         sleep(3000).then(() => { handleDraw() });
 //         // sleep(6000).then(() => { nextTurn() });
+        console.log("It's a draw.")
     }
-    console.log
 //     checkDecks()
 }
 //After every hand, check to see if the game has ended and there is a winner
@@ -266,6 +246,7 @@ const checkDecks = () => {
     console.log(p1Deck.length, cpuDeck.length)
     if (p1Deck.length < 1 || cpuDeck.length < 1) {
         playGame = false
+        handleEndGame()
     } else {
         return
     }
@@ -284,15 +265,15 @@ async function handleGamePlay() {
             const selection = await handleP1Input(); // Refactored wait for player input on player turn
             console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
             result(selection) //Now we can process the turn after selection.
-            handleMessages(message)
             checkDecks()
+            handleMessages(message)
 
         } else if(whosTurn === cpu) {
             const selection = await handleCpuSelection()
             console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
             result(selection)
-            handleMessages(message)
             checkDecks()
+            handleMessages(message)
 
         } else {
             console.log("We have experienced an error the game will be terminated sorry about that.")
