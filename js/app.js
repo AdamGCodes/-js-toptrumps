@@ -7,6 +7,7 @@ let players = [cpu, p1]
 let p1CardData;
 let cpuCardData;
 let message = ""
+let drawContainer = []
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CACHED ELEMENT REFERENCES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -196,10 +197,23 @@ const random = (min, max) => {
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
 }
 
+//Handling a draw (both cards go into a "pot") next hand, winner takes all
+const handleDraw = () => {
+
+    // messageBox.innerHTML += "Both cards are added to the draw pot!<br>";
+
+};
+const winDrawCards = (wonDraw) => {
+    for (let i = 0; i < drawContainer.length; i++) {
+        wonDraw.push(drawContainer);
+    }
+    drawContainer.length = 0
+}
+
 //Evaluate the result at the end of each hand and call the relevent subfuction
 const result = () => {
     if ( playerSelected > cpuSelected) {
-        // winDrawCards(p1Deck) NEED TO BRING THIS IN ONCE IVE REINSTATED DRAW FUNCTION
+        winDrawCards(p1Deck) //All cards from draw container (from previous drawn hands) are added to the winners deck
         p1Deck.push(p1Deck.shift())
         p1Deck.push(cpuDeck.shift())
         message = 
@@ -210,9 +224,8 @@ const result = () => {
             You won this hand!`
         whosTurn = p1
         console.log("P1 was the winner")
-//         // sleep(3000).then(() => { nextTurn() });
     } else if (playerSelected < cpuSelected) {
-        // winDrawCards(cpuDeck) NEED TO BRING THIS IN ONCE IVE REINSTATED DRAW FUNCTION
+        winDrawCards(cpuDeck)
         cpuDeck.push(cpuDeck.shift())
         cpuDeck.push(p1Deck.shift())
         message = 
@@ -221,12 +234,11 @@ const result = () => {
             <strong>Computer</strong>  <br>
             ${SelectedKey}  ${cpuSelected}<br>
             You lost this hand! <br>`
-        // Press for next hand <br> 
-//         &#8681 &#8681 &#8681 &#8681 &#8681
-//         console.log("Press for next hand")
         whosTurn = cpu
         console.log("CPU was the winner.")
     } else {
+        drawContainer.push(p1Deck.shift());
+        drawContainer.push(cpuDeck.shift());
         message = 
             `<strong>Player 1:</strong>  <br>
             ${SelectedKey} ${playerSelected}<br>
@@ -235,11 +247,10 @@ const result = () => {
             It's a draw <br>
             Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot <br>
             as well as the cards from the hand.`
-//         sleep(3000).then(() => { handleDraw() });
-//         // sleep(6000).then(() => { nextTurn() });
-        console.log("It's a draw.")
+        console.log(p1Deck.length)
+        console.log(cpuDeck.length)
+        console.log(drawContainer.length)
     }
-//     checkDecks()
 }
 //After every hand, check to see if the game has ended and there is a winner
 const checkDecks = () => {
@@ -282,20 +293,26 @@ async function handleGamePlay() {
     }
 }
 
-
-
 // +++++++++++++++++++++++++++++++++++++ END GAME +++++++++++++++++++++++++++++++++++++
 //Manually End Game
 const handleEndGame = () => {
     console.log(p1Deck.length)
     console.log(cpuDeck.length)
     if (p1Deck > cpuDeck) {
-        message = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Congratulations you won!!!!.  <br> Play again? <br>Page Will Fresh in 10 seconds`
+        message = 
+            `<strong>Player 1:</strong><br>
+            ${p1Deck.length} cards <br>
+            <strong>CPU</strong>:<br> 
+            ${cpuDeck.length} cards<br>
+            Congratulations you won!!!!.  <br> 
+            Play again? <br>
+            Page Will Fresh in 10 seconds`
     } else if (p1Deck < cpuDeck) {
         message = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time. <br> Play again? <br>Page Will Fresh in 10 seconds`
     } else {
         message = "Stalemate! It's a draw this time. Play again? <br>Page Will Fresh in 10 seconds"
     }
+    handleMessages(message)
     sleep(10000).then(() => { handleStartGame() });
 }
 
