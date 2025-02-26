@@ -240,3 +240,98 @@ const currentDeck = [
         Image: "Assets/Images/sci-fi-ships-toptrumps/executor.jpg"
     }
 ]
+
+// const fierceAnimals = [
+//     {
+//         name: "Lion",
+//         strength: 18,
+//         speed: 15,
+//         intelligence: 12,
+//         stealth: 10,
+//         aggression: 17,
+//         Image:"/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Tiger",
+//         strength: 19,
+//         speed: 16,
+//         intelligence: 13,
+//         stealth: 14,
+//         aggression: 18,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Grizzly Bear",
+//         strength: 20,
+//         speed: 12,
+//         intelligence: 10,
+//         stealth: 8,
+//         aggression: 16,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Crocodile",
+//         strength: 17,
+//         speed: 10,
+//         intelligence: 9,
+//         stealth: 15,
+//         aggression: 18,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Wolf",
+//         strength: 12,
+//         speed: 14,
+//         intelligence: 16,
+//         stealth: 13,
+//         aggression: 12,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Great White Shark",
+//         strength: 20,
+//         speed: 17,
+//         intelligence: 8,
+//         stealth: 12,
+//         aggression: 19,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Komodo Dragon",
+//         strength: 15,
+//         speed: 9,
+//         intelligence: 7,
+//         stealth: 8,
+//         aggression: 16,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Jaguar",
+//         strength: 16,
+//         speed: 18,
+//         intelligence: 14,
+//         stealth: 16,
+//         aggression: 17,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Bald Eagle",
+//         strength: 8,
+//         speed: 20,
+//         intelligence: 15,
+//         stealth: 12,
+//         aggression: 10,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     },
+//     {
+//         name: "Black Mamba",
+//         strength: 6,
+//         speed: 19,
+//         intelligence: 8,
+//         stealth: 17,
+//         aggression: 15,
+//         Image: "/Assets/Images/place-holder-image.jpg"
+//     }
+// ];
+
+// // export default fierceAnimals;
