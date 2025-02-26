@@ -25,7 +25,6 @@ const getCardElements = (player) => {
 };
 
 // Chached Button Elements
-const nextHandBtn = document.querySelector("#nextHandBtn");
 const startBtn = document.querySelector("#start-game");
 const howToPlayBtn = document.querySelector("#how-to-play-btn");
 const closeBtn = document.querySelector('#close-btn')
@@ -38,9 +37,6 @@ const howToPlayBox = document.querySelector(".how-to-play-box");
 const messageBox = document.querySelector("#message");
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Global Functions >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-const hideNextHandBtn = () => {
-    document.getElementById("nextHandBtn").style.display = "none"
-}
 
 //Show/hide How To Play Info Box
 const handleHowToPlay = (event) => {
@@ -56,6 +52,24 @@ function sleep(ms) {
 //Dsiplay Game Status Messages
 const handleMessages = () => {
     messageBox.innerHTML = message
+}
+
+// Show/Hide and Enable/Disable Game Control Buttons (Form of input validation and to help direct flow of gameplay)
+const hideNextHandBtn = () => {
+    document.getElementById("nextHandBtn").style.display = "none"
+}
+const showNextHandBtn = () => {
+    document.getElementById("nextHandBtn").style.display = "block"
+}
+const disableUserBtns = () => {
+    categorySelection.forEach((categoryBtn) => {
+        categoryBtn.disabled = true;
+    })
+}
+const enableUserBtns = () => {
+    categorySelection.forEach((categoryBtn) => {
+        categoryBtn.disabled = false;
+    })
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Main Game Logic >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -170,9 +184,7 @@ async function handleP1Input() {
                 resolve({ SelectedKey, playerSelected, cpuSelected }); // 
             })
         })
-    })
-    // console.log("It's player 1's Turn")
-    // messageBox.textContent = `Player 1's turn. Make your selection`    
+    })  
 }
 
 
@@ -188,6 +200,21 @@ async function handleCpuSelection() {
     playerSelected = p1CardData[SelectedKey]
     console.log(SelectedKey, cpuSelected, playerSelected)
     return {SelectedKey, cpuSelected, playerSelected}
+}
+
+// Require a user input after result before moving on to the next hand
+async function handleNextHand() {
+    return new Promise((resolve)=>{
+        const nextHandBtn = document.querySelector("#nextHandBtn");
+
+        function onClick() {
+            nextHandBtn.removeEventListener("click", onClick);
+            resolve();
+        }
+        nextHandBtn.addEventListener("click", onClick);
+        nextHandBtn.style.display = "block";
+        message = ""
+    })
 }
 
 //Random Function
@@ -220,10 +247,11 @@ const result = () => {
         p1Deck.push(cpuDeck.shift())
         message = 
             `<strong>Player 1:</strong> <br>
-            ${SelectedKey} ${playerSelected}<br>
-            <strong>Computer</strong>  <br>
+            ${SelectedKey} ${playerSelected}<br><br>
+            <strong>Computer:</strong>  <br>
             ${SelectedKey} ${cpuSelected}<br>
-            You won this hand!`
+            You won this hand! <br><br>
+            Ready to play the next hand? Click Below`
         whosTurn = p1
         console.log("P1 was the winner")
     } else if (handleString(playerSelected) < handleString(cpuSelected)) {
@@ -232,10 +260,11 @@ const result = () => {
         cpuDeck.push(p1Deck.shift())
         message = 
             `<strong>Player 1:</strong> <br>
-            ${SelectedKey} ${playerSelected}<br>
-            <strong>Computer</strong>  <br>
+            ${SelectedKey} ${playerSelected}<br><br>
+            <strong>Computer:</strong>  <br>
             ${SelectedKey}  ${cpuSelected}<br>
-            You lost this hand! <br>`
+            You lost this hand!  <br><br>
+            Ready to play the next hand? Click Below`
         whosTurn = cpu
         console.log("CPU was the winner.")
     } else {
@@ -243,12 +272,13 @@ const result = () => {
         drawContainer.push(cpuDeck.shift());
         message = 
             `<strong>Player 1:</strong>  <br>
-            ${SelectedKey} ${playerSelected}<br>
+            ${SelectedKey} ${playerSelected}<br><br>
             <strong>Computer</strong>  <br>
             ${SelectedKey} ${playerSelected} <br>
             It's a draw <br>
-            Both cards have been put in a "pot"<br>winner of the next hand takes the cards in the pot <br>
-            as well as the cards from the hand.`
+            Both cards added to "pot"<br>
+            Next hand winner takes all. <br><br>
+            Ready to play the next hand? Click Below`
         console.log(p1Deck.length)
         console.log(cpuDeck.length)
         console.log(drawContainer.length)
@@ -273,23 +303,30 @@ async function handleGamePlay() {
         cpuCardData = cpuDeck[0]
         console.log(p1CardData)
         console.log(cpuCardData)
+        handleMessages(message)
         renderCardInfo()
         if(whosTurn === p1){
+            enableUserBtns()
             const selection = await handleP1Input(); // Refactored wait for player input on player turn
             console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
             result(selection) //Now we can process the turn after selection.
             checkDecks()
             handleMessages(message)
-
+            showNextHandBtn()
+            await handleNextHand()
         } else if(whosTurn === cpu) {
+            disableUserBtns()
             const selection = await handleCpuSelection()
             console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
             result(selection)
             checkDecks()
             handleMessages(message)
+            showNextHandBtn()
+            await handleNextHand()
 
         } else {
             console.log("We have experienced an error the game will be terminated sorry about that.")
+            break;
         }
         continue
     }
@@ -326,7 +363,7 @@ const handleEndGame = () => {
 startBtn.addEventListener('click', handleStartGame)
 
 //Next Hand Button
-// nextHandBtn.addEventListener('click', handleCpuHand)
+nextHandBtn.addEventListener('click', handleNextHand)
 
 //End Game
 endGameBtn.addEventListener('click', handleEndGame)
