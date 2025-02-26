@@ -198,11 +198,7 @@ const random = (min, max) => {
 }
 
 //Handling a draw (both cards go into a "pot") next hand, winner takes all
-const handleDraw = () => {
-
-    // messageBox.innerHTML += "Both cards are added to the draw pot!<br>";
-
-};
+//Previously had a handleDraw function but it fit better and looked nicer keeping it in the main result function.
 const winDrawCards = (wonDraw) => {
     for (let i = 0; i < drawContainer.length; i++) {
         wonDraw.push(drawContainer);
@@ -210,9 +206,15 @@ const winDrawCards = (wonDraw) => {
     drawContainer.length = 0
 }
 
+//Handling string values. Strings such as FTL will always be the highest possible value for that category.
+const handleString = (value) =>{
+    if (typeof value === 'string' ) return Infinity;
+    return value;
+}
+
 //Evaluate the result at the end of each hand and call the relevent subfuction
 const result = () => {
-    if ( playerSelected > cpuSelected) {
+    if (handleString(playerSelected) > handleString(cpuSelected)) {
         winDrawCards(p1Deck) //All cards from draw container (from previous drawn hands) are added to the winners deck
         p1Deck.push(p1Deck.shift())
         p1Deck.push(cpuDeck.shift())
@@ -224,7 +226,7 @@ const result = () => {
             You won this hand!`
         whosTurn = p1
         console.log("P1 was the winner")
-    } else if (playerSelected < cpuSelected) {
+    } else if (handleString(playerSelected) < handleString(cpuSelected)) {
         winDrawCards(cpuDeck)
         cpuDeck.push(cpuDeck.shift())
         cpuDeck.push(p1Deck.shift())
