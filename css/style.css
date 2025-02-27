@@ -81,7 +81,6 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-
 #message {
     width: 90%;
     font-size: 1rem;
@@ -319,5 +318,13 @@ button:hover, #nextHandBtn:hover{
     .how-to-play-box {
         width: 90%;
     }
-
+        .card-image img {
+            display: flex;
+            margin: 10px 0px;
+            border: inset 3px;
+            border-radius: 8px;
+            width: 90%;
+            height: auto;
+            object-fit: cover;
+        }
 }
