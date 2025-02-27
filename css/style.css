@@ -74,7 +74,7 @@ h1 {
     margin-bottom: 10px;
     border: solid black 5px;
     border-radius: 30px;
-    height: 350px;
+    height: 400px;
     width: 100%;
     background-color: #FFB657;
     font-family: "Lexend", sans-serif;
@@ -105,7 +105,7 @@ button {
     font-weight: bold;
 }
 
-button:hover{
+button:hover, #nextHandBtn:hover{
     background-color: white;
     color: black;
     cursor: pointer;
@@ -113,6 +113,7 @@ button:hover{
 
 .how-to-play-box {
     display: none;
+    width: 70%;
 }
 
 .show-how-to-play-box {
@@ -140,14 +141,15 @@ button:hover{
 }
 
 #nextHandBtn {
-
+    position: absolute;
     border: solid black 4px;
     border-radius: 30px 30px 30px 30px;
-    color: black;
-    background-color: #FFB657;
     text-align: center;
     font-size: 1em;
+    bottom: 0px;
+    margin-left: 25%;
 }
+
 
 .hidden {
     display: none;
@@ -175,6 +177,7 @@ button:hover{
     flex-direction: column;
     max-width: 300px;
     min-width: 30%;
+    height: 100%;
     /* Required for 3d flip */
     position: relative;
     transform-style: preserve-3d;
@@ -216,6 +219,7 @@ button:hover{
     background-color: #DDD;
     box-shadow: 5px 5px black;
     width: 95%;
+    height: 555px;
     padding-bottom: 16px;
 }
 .card-title {
@@ -273,6 +277,7 @@ button:hover{
     text-align: left;
     font-size: 1em;
 }
+
 .card-category{ 
     display: flex;
     padding: 1px;
@@ -304,26 +309,15 @@ button:hover{
     text-align: left;
 }
 
-.card-info-box{
-    display: flex;
-    padding: 10px 20px;
-    bottom: 0px;
-    flex-direction: column;
-    background-color: #FFB657;
-    margin-top: 5px;
-    min-height: 75px;
-    font-family: "Lexend", sans-serif;
-    border-radius: 0px 0px 20px 20px;
-}
-
-.special-info {
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 1em;
-    font-weight: bolder;    
-}
 .footer{
     background-color: #FFB657;
     width: 100%;
     
+}
+
+@media (max-width: 932px) {
+    .how-to-play-box {
+        width: 90%;
+    }
+
 }

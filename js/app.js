@@ -301,24 +301,26 @@ async function handleGamePlay() {
         renderCardInfo()
         if(whosTurn === p1){
             message = "Player 1s turn, make your selection."
-            handleMessages(message)
-            enableUserBtns()
+            handleMessages(message);
+            enableUserBtns();
             const selection = await handleP1Input(); // Refactored wait for player input on player turn
-            result(selection) //Now we can process the turn after selection.
-            checkDecks()
-            handleMessages(message)
-            revealCpuCard()
-            showNextHandBtn()
-            await handleNextHand()
+            result(selection); //Now we can process the turn after selection.
+            checkDecks();
+            handleMessages(message);
+            revealCpuCard();
+            showNextHandBtn();
+            await handleNextHand();
         } else if(whosTurn === cpu) {
-            disableUserBtns()
-            const selection = await handleCpuSelection()
-            result(selection)
-            checkDecks()
-            handleMessages(message)
-            revealCpuCard()
-            showNextHandBtn()
-            await handleNextHand()
+            message = "Computer making selection..."
+            handleMessages(message);
+            disableUserBtns();
+            const selection = await sleep(3000).then(() => { handleCpuSelection() }); ;
+            result(selection); 
+            checkDecks();
+            handleMessages(message);
+            revealCpuCard();
+            showNextHandBtn();
+            await handleNextHand();
 
         } else {
             message = "An error has occured. We are very sorry. Please refresh the browser."
