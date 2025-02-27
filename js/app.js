@@ -114,6 +114,7 @@ const renderCategories = () => {
 const init = () => {
     getCategories()
     renderCategories()
+    handleHowToPlay()
     hideNextHandBtn()
     revealCpuCard()
 }

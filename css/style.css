@@ -102,8 +102,13 @@ button {
     background-color: #B657FF;
     font-size: 1em;
     color: white;
-    cursor: pointer;
     font-weight: bold;
+}
+
+button:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
 }
 
 .how-to-play-box {
@@ -130,7 +135,8 @@ button {
     position: absolute;
     right: 30px;
     top: 30px;
-    width: 25%;
+    width: fit-content;
+    padding: 5px 20px;
 }
 
 #nextHandBtn {
@@ -267,12 +273,6 @@ button {
     text-align: left;
     font-size: 1em;
 }
-.categoryBtn:hover{
-    border: inset black 2px;
-    background-color: white;
-    color: black;
-}
-
 .card-category{ 
     display: flex;
     padding: 1px;
@@ -292,10 +292,6 @@ button {
     font-family: "Lexend", sans-serif;
     font-size: 1em;
 }
-
-/* .categoryBtn:hover {
-    border: solid black 3px;
-} */
 
 .cpu-category {
     margin: 5px;
