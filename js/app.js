@@ -44,7 +44,6 @@ const messageBox = document.querySelector("#message");
 
 //Show/hide How To Play Info Box
 const handleHowToPlay = (event) => {
-    console.log("How2 btn clicked")
     howToPlayBox.classList.toggle("show-how-to-play-box");
 }
 
@@ -78,11 +77,9 @@ const enableUserBtns = () => {
 
 const revealCpuCard = () => {
     document.querySelector('.computer-card').classList.remove('flip')
-    // console.log("cpu card shown")
 }
 const hideCpuCard = () => {
     document.querySelector('.computer-card').classList.add('flip')
-    // console.log("cpu card hidden")
 }
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Main Game Logic >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // +++++++++++++++++++++++++++++++++++++ GAME PLAY FUNCTIONS +++++++++++++++++++++++++++++++++++++
@@ -93,7 +90,6 @@ const hideCpuCard = () => {
 //Get Category Names for the deck that has been selected (This will change in a multiple decks mode to will be dependent on deck choice)
 const getCategories = () => {
     keys = Object.keys(currentDeck[0]);
-    console.log(keys)
 }
 //Render Category info to the cards on screen
 const renderCategories = () => {
@@ -142,7 +138,6 @@ const deal = () => {
 const whoStarts = () => {
     const r = Math.floor(Math.random() * 2); 
     let whosTurn = players[r];
-    console.log(whosTurn)
     return whosTurn;
 }
 
@@ -191,7 +186,6 @@ async function handleP1Input() {
                 cpuSelected = cpuCardData[key]; // Gets the CPU's value
 
                 categorySelection.forEach((btn) => btn.removeEventListener('click', handleSelection));
-                console.log(SelectedKey, playerSelected, cpuSelected);
                 resolve({ SelectedKey, playerSelected, cpuSelected }); // 
             })
         })
@@ -202,14 +196,12 @@ async function handleP1Input() {
 
  // ----------------------  Handle  CPU Selection & Functions ---------------------------
 async function handleCpuSelection() {
-    console.log("It's the CPU's Turn")
     keysArray = Object.keys(cpuCardData);
     valuesArray = Object.values(cpuCardData);
     r = random(0, keysArray.length - 1) //Have used this instead of 1-6 to make more scaleable. 
     SelectedKey = `${keysArray[r]}`;
     cpuSelected = parseInt(`${valuesArray[r]}`);
     playerSelected = p1CardData[SelectedKey]
-    console.log(SelectedKey, cpuSelected, playerSelected)
     return {SelectedKey, cpuSelected, playerSelected}
 }
 
@@ -264,7 +256,6 @@ const result = () => {
             You won this hand! <br><br>
             Ready to play the next hand? Click Below`
         whosTurn = p1
-        console.log("P1 was the winner")
     } else if (handleString(playerSelected) < handleString(cpuSelected)) {
         winDrawCards(cpuDeck)
         cpuDeck.push(cpuDeck.shift())
@@ -277,7 +268,6 @@ const result = () => {
             You lost this hand!  <br><br>
             Ready to play the next hand? Click Below`
         whosTurn = cpu
-        console.log("CPU was the winner.")
     } else {
         drawContainer.push(p1Deck.shift());
         drawContainer.push(cpuDeck.shift());
@@ -290,14 +280,10 @@ const result = () => {
             Both cards added to "pot"<br>
             Next hand winner takes all. <br><br>
             Ready to play the next hand? Click Below`
-        console.log(p1Deck.length)
-        console.log(cpuDeck.length)
-        console.log(drawContainer.length)
     }
 }
 //After every hand, check to see if the game has ended and there is a winner
 const checkDecks = () => {
-    console.log(p1Deck.length, cpuDeck.length)
     if (p1Deck.length < 1 || cpuDeck.length < 1) {
         playGame = false
         handleEndGame()
@@ -305,15 +291,11 @@ const checkDecks = () => {
         return
     }
 }
-
 // -------------------  Main Handle Game Play Function -------------------------
 async function handleGamePlay() {
     while(playGame === true){
-        console.log(`Who's Turn? It's ${whosTurn}'s Turn`)
         p1CardData = p1Deck[0]
         cpuCardData = cpuDeck[0]
-        console.log(p1CardData)
-        console.log(cpuCardData)
         handleMessages(message)
         hideCpuCard()
         renderCardInfo()
@@ -322,7 +304,6 @@ async function handleGamePlay() {
             handleMessages(message)
             enableUserBtns()
             const selection = await handleP1Input(); // Refactored wait for player input on player turn
-            console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
             result(selection) //Now we can process the turn after selection.
             checkDecks()
             handleMessages(message)
@@ -332,7 +313,6 @@ async function handleGamePlay() {
         } else if(whosTurn === cpu) {
             disableUserBtns()
             const selection = await handleCpuSelection()
-            console.log("In result slot", selection, SelectedKey, playerSelected, cpuSelected)
             result(selection)
             checkDecks()
             handleMessages(message)
@@ -341,18 +321,16 @@ async function handleGamePlay() {
             await handleNextHand()
 
         } else {
-            console.log("We have experienced an error the game will be terminated sorry about that.")
+            message = "An error has occured. We are very sorry. Please refresh the browser."
+            handleMessages(message)
             break;
         }
         continue
     }
 }
-
 // +++++++++++++++++++++++++++++++++++++ END GAME +++++++++++++++++++++++++++++++++++++
 //Manually End Game
 const handleEndGame = () => {
-    console.log(p1Deck.length)
-    console.log(cpuDeck.length)
     if (p1Deck > cpuDeck) {
         message = 
             `<strong>Player 1:</strong><br>
@@ -370,8 +348,6 @@ const handleEndGame = () => {
     handleMessages(message)
     sleep(10000).then(() => { handleStartGame() });
 }
-
-
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -EVENT LISTENERS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
