@@ -244,7 +244,7 @@ const scifiVessels = [
 const fierceAnimals = [
     {
         name: "Lion",
-        image: "/Assets/Images/fierce-animals/Lion.jpg",
+        image: "Assets/Images/fierce-animals/Lion.jpg",
         strength: 18,
         speed: 15,
         intelligence: 12,
@@ -253,7 +253,7 @@ const fierceAnimals = [
     },
     {
         name: "Tiger",
-        image: "/Assets/Images/fierce-animals/Tiger.jpeg",
+        image: "Assets/Images/fierce-animals/Tiger.jpeg",
         strength: 19,
         speed: 16,
         intelligence: 13,
@@ -262,7 +262,7 @@ const fierceAnimals = [
     },
     {
         name: "Grizzly Bear",
-        image: "/Assets/Images/fierce-animals/Grizzly-bear.jpg",
+        image: "Assets/Images/fierce-animals/Grizzly-bear.jpg",
         strength: 20,
         speed: 12,
         intelligence: 10,
@@ -271,7 +271,7 @@ const fierceAnimals = [
     },
     {
         name: "Crocodile",
-        image: "/Assets/Images/fierce-animals/Crocodile.jpg",
+        image: "Assets/Images/fierce-animals/Crocodile.jpg",
         strength: 17,
         speed: 10,
         intelligence: 9,
@@ -280,7 +280,7 @@ const fierceAnimals = [
     },
     {
         name: "Wolf",
-        image: "/Assets/Images/fierce-animals/Wolf.jpeg",
+        image: "Assets/Images/fierce-animals/Wolf.jpeg",
         strength: 12,
         speed: 14,
         intelligence: 16,
@@ -289,7 +289,7 @@ const fierceAnimals = [
     },
     {
         name: "Great White Shark",
-        image: "/Assets/Images/fierce-animals/Great-white.jpg",
+        image: "Assets/Images/fierce-animals/Great-white.jpg",
         strength: 20,
         speed: 17,
         intelligence: 8,
@@ -298,7 +298,7 @@ const fierceAnimals = [
     },
     {
         name: "Komodo Dragon",
-        image: "/Assets/Images/fierce-animals/Komodo_dragon.jpg",
+        image: "Assets/Images/fierce-animals/Komodo_dragon.jpg",
         strength: 15,
         speed: 9,
         intelligence: 7,
@@ -307,7 +307,7 @@ const fierceAnimals = [
     },
     {
         name: "Jaguar",
-        image: "/Assets/Images/fierce-animals/Jaguar.jpg",
+        image: "Assets/Images/fierce-animals/Jaguar.jpg",
         strength: 16,
         speed: 18,
         intelligence: 14,
@@ -316,7 +316,7 @@ const fierceAnimals = [
     },
     {
         name: "Bald Eagle",
-        image: "/Assets/Images/fierce-animals/Bald_egal.jpeg",
+        image: "Assets/Images/fierce-animals/Bald_egal.jpeg",
         strength: 8,
         speed: 20,
         intelligence: 15,
@@ -325,7 +325,7 @@ const fierceAnimals = [
     },
     {
         name: "Black Mamba",
-        image: "/Assets/Images/fierce-animals/Black_mamba.webp",
+        image: "Assets/Images/fierce-animals/Black_mamba.webp",
         strength: 6,
         speed: 19,
         intelligence: 8,
@@ -334,7 +334,7 @@ const fierceAnimals = [
     },
     {
         name: "Elephant",
-        image: "/Assets/Images/fierce-animals/Elephant.jpeg",
+        image: "Assets/Images/fierce-animals/Elephant.jpeg",
         strength: 20,
         speed: 10,
         intelligence: 18,
@@ -343,7 +343,7 @@ const fierceAnimals = [
     },
     {
         name: "Rhinoceros",
-        image: "/Assets/Images/fierce-animals/Rhino.jpg",
+        image: "Assets/Images/fierce-animals/Rhino.jpg",
         strength: 19,
         speed: 12,
         intelligence: 10,
@@ -352,7 +352,7 @@ const fierceAnimals = [
     },
     {
         name: "Hippopotamus",
-        image: "/Assets/Images/fierce-animals/Hippo.jpeg",
+        image: "Assets/Images/fierce-animals/Hippo.jpeg",
         strength: 18,
         speed: 15,
         intelligence: 10,
@@ -361,7 +361,7 @@ const fierceAnimals = [
     },
     {
         name: "Polar Bear",
-        image: "/Assets/Images/fierce-animals/Polar-bear.jpg",
+        image: "Assets/Images/fierce-animals/Polar-bear.jpg",
         strength: 19,
         speed: 12,
         intelligence: 14,
@@ -370,7 +370,7 @@ const fierceAnimals = [
     },
     {
         name: "Snow Leopard",
-        image: "/Assets/Images/fierce-animals/Snow_leopard.jpeg",
+        image: "Assets/Images/fierce-animals/Snow_leopard.jpeg",
         strength: 16,
         speed: 18,
         intelligence: 14,
@@ -379,7 +379,7 @@ const fierceAnimals = [
     },
     {
         name: "Bison",
-        image: "/Assets/Images/fierce-animals/Bison.jpg",
+        image: "Assets/Images/fierce-animals/Bison.jpg",
         strength: 18,
         speed: 10,
         intelligence: 8,
@@ -388,7 +388,7 @@ const fierceAnimals = [
     },
     {
         name: "Gorilla",
-        image: "/Assets/Images/fierce-animals/Gorilla.jpg",
+        image: "Assets/Images/fierce-animals/Gorilla.jpg",
         strength: 17,
         speed: 10,
         intelligence: 15,
@@ -397,7 +397,7 @@ const fierceAnimals = [
     },
     {
         name: "Buffalo",
-        image: "/Assets/Images/fierce-animals/Buffalo.webp",
+        image: "Assets/Images/fierce-animals/Buffalo.webp",
         strength: 20,
         speed: 11,
         intelligence: 7,
@@ -406,7 +406,7 @@ const fierceAnimals = [
     },
     {
         name: "Leopard",
-        image: "/Assets/Images/fierce-animals/Leopard.jpg",
+        image: "Assets/Images/fierce-animals/Leopard.jpg",
         strength: 16,
         speed: 20,
         intelligence: 14,
@@ -415,7 +415,7 @@ const fierceAnimals = [
     },
     {
         name: "Hyena",
-        image: "/Assets/Images/fierce-animals/Hyena.jpeg",
+        image: "Assets/Images/fierce-animals/Hyena.jpeg",
         strength: 15,
         speed: 14,
         intelligence: 12,
@@ -424,7 +424,7 @@ const fierceAnimals = [
     },
     {
         name: "Puma",
-        image: "/Assets/Images/fierce-animals/Puma.webp",
+        image: "Assets/Images/fierce-animals/Puma.webp",
         strength: 17,
         speed: 18,
         intelligence: 12,
@@ -433,7 +433,7 @@ const fierceAnimals = [
     },
     {
         name: "Alligator",
-        image: "/Assets/Images/fierce-animals/Alligator.jpg",
+        image: "Assets/Images/fierce-animals/Alligator.jpg",
         strength: 16,
         speed: 11,
         intelligence: 10,
@@ -442,7 +442,7 @@ const fierceAnimals = [
     },
     {
         name: "Mantis Shrimp",
-        image: "/Assets/Images/fierce-animals/Mantis_shrimp.jpg",
+        image: "Assets/Images/fierce-animals/Mantis_shrimp.jpg",
         strength: 12,
         speed: 20,
         intelligence: 10,
@@ -451,7 +451,7 @@ const fierceAnimals = [
     },
     {
         name: "Cassowary",
-        image: "/Assets/Images/fierce-animals/Cassowary.webp",
+        image: "Assets/Images/fierce-animals/Cassowary.webp",
         strength: 15,
         speed: 18,
         intelligence: 9,
@@ -463,7 +463,7 @@ const fierceAnimals = [
 const dinosaurs = [
     {
         name: "Tyrannosaurus Rex",
-        image: "/Assets/Images/Dinosaurs/T-rex.png",
+        image: "Assets/Images/Dinosaurs/T-rex.png",
         size: 9,
         speed: 12,
         intelligence: 7,
@@ -472,7 +472,7 @@ const dinosaurs = [
     },
     {
         name: "Velociraptor",
-        image: "/Assets/Images/Dinosaurs/Velociraptor.png",
+        image: "Assets/Images/Dinosaurs/Velociraptor.png",
         size: 4,
         speed: 18,
         intelligence: 15,
@@ -481,7 +481,7 @@ const dinosaurs = [
     },
     {
         name: "Triceratops",
-        image: "/Assets/Images/Dinosaurs/Triceratops.jpg",
+        image: "Assets/Images/Dinosaurs/Triceratops.jpg",
         size: 8,
         speed: 8,
         intelligence: 6,
@@ -490,7 +490,7 @@ const dinosaurs = [
     },
     {
         name: "Spinosaurus",
-        image: "/Assets/Images/Dinosaurs/Spinosaurus.gif",
+        image: "Assets/Images/Dinosaurs/Spinosaurus.gif",
         size: 10,
         speed: 11,
         intelligence: 8,
@@ -499,7 +499,7 @@ const dinosaurs = [
     },
     {
         name: "Stegosaurus",
-        image: "/Assets/Images/Dinosaurs/Stegosaurus.png",
+        image: "Assets/Images/Dinosaurs/Stegosaurus.png",
         size: 8,
         speed: 6,
         intelligence: 4,
@@ -508,7 +508,7 @@ const dinosaurs = [
     },
     {
         name: "Ankylosaurus",
-        image: "/Assets/Images/Dinosaurs/Ankylosaurus.jpeg",
+        image: "Assets/Images/Dinosaurs/Ankylosaurus.jpeg",
         size: 7,
         speed: 5,
         intelligence: 5,
@@ -517,7 +517,7 @@ const dinosaurs = [
     },
     {
         name: "Brachiosaurus",
-        image: "/Assets/Images/Dinosaurs/Brachiosaurus.png",
+        image: "Assets/Images/Dinosaurs/Brachiosaurus.png",
         size: 10,
         speed: 4,
         intelligence: 6,
@@ -526,7 +526,7 @@ const dinosaurs = [
     },
     {
         name: "Allosaurus",
-        image: "/Assets/Images/Dinosaurs/Allosaurus.jpg",
+        image: "Assets/Images/Dinosaurs/Allosaurus.jpg",
         size: 8,
         speed: 13,
         intelligence: 8,
@@ -535,7 +535,7 @@ const dinosaurs = [
     },
     {
         name: "Pteranodon",
-        image: "/Assets/Images/Dinosaurs/Pteranodon.jpg",
+        image: "Assets/Images/Dinosaurs/Pteranodon.jpg",
         size: 4,
         speed: 19,
         intelligence: 10,
@@ -544,7 +544,7 @@ const dinosaurs = [
     },
     {
         name: "Carnotaurus",
-        image: "/Assets/Images/Dinosaurs/Carnotaurus.png",
+        image: "Assets/Images/Dinosaurs/Carnotaurus.png",
         size: 7,
         speed: 14,
         intelligence: 7,
@@ -553,7 +553,7 @@ const dinosaurs = [
     },
     {
         name: "Diplodocus",
-        image: "/Assets/Images/Dinosaurs/Diplodocus.jpg",
+        image: "Assets/Images/Dinosaurs/Diplodocus.jpg",
         size: 10,
         speed: 5,
         intelligence: 5,
@@ -562,7 +562,7 @@ const dinosaurs = [
     },
     {
         name: "Iguanodon",
-        image: "/Assets/Images/Dinosaurs/Iguanodon.jpg",
+        image: "Assets/Images/Dinosaurs/Iguanodon.jpg",
         size: 7,
         speed: 9,
         intelligence: 7,
@@ -571,7 +571,7 @@ const dinosaurs = [
     },
     {
         name: "Megalosaurus",
-        image: "/Assets/Images/Dinosaurs/Megalosaurus.jpeg",
+        image: "Assets/Images/Dinosaurs/Megalosaurus.jpeg",
         size: 8,
         speed: 11,
         intelligence: 7,
@@ -580,7 +580,7 @@ const dinosaurs = [
     },
     {
         name: "Pachycephalosaurus",
-        image: "/Assets/Images/Dinosaurs/Pachycephalosaurus.png",
+        image: "Assets/Images/Dinosaurs/Pachycephalosaurus.png",
         size: 6,
         speed: 10,
         intelligence: 6,
@@ -589,7 +589,7 @@ const dinosaurs = [
     },
     {
         name: "Suchomimus",
-        image: "/Assets/Images/Dinosaurs/Suchomimus.jpg",
+        image: "Assets/Images/Dinosaurs/Suchomimus.jpg",
         size: 9,
         speed: 12,
         intelligence: 7,
@@ -598,7 +598,7 @@ const dinosaurs = [
     },
     {
         name: "Plesiosaurus",
-        image: "/Assets/Images/Dinosaurs/Plesiosaurus.gif",
+        image: "Assets/Images/Dinosaurs/Plesiosaurus.gif",
         size: 7,
         speed: 12,
         intelligence: 5,
@@ -607,7 +607,7 @@ const dinosaurs = [
     },
     {
         name: "Utahraptor",
-        image: "/Assets/Images/Dinosaurs/Utahraptor.jpg",
+        image: "Assets/Images/Dinosaurs/Utahraptor.jpg",
         size: 6,
         speed: 17,
         intelligence: 13,
@@ -616,7 +616,7 @@ const dinosaurs = [
     },
     {
         name: "Ceratosaurus",
-        image: "/Assets/Images/Dinosaurs/Ceratosaurus.jpg",
+        image: "Assets/Images/Dinosaurs/Ceratosaurus.jpg",
         size: 7,
         speed: 12,
         intelligence: 6,
@@ -625,7 +625,7 @@ const dinosaurs = [
     },
     {
         name: "Coelophysis",
-        image: "/Assets/Images/Dinosaurs/Coelophysis.webp",
+        image: "Assets/Images/Dinosaurs/Coelophysis.webp",
         size: 3,
         speed: 16,
         intelligence: 9,
@@ -634,7 +634,7 @@ const dinosaurs = [
     },
     {
         name: "Giganotosaurus",
-        image: "/Assets/Images/Dinosaurs/Gigantosaurus.jpeg",
+        image: "Assets/Images/Dinosaurs/Gigantosaurus.jpeg",
         size: 10,
         speed: 10,
         intelligence: 7,
@@ -643,7 +643,7 @@ const dinosaurs = [
     },
     {
         name: "Megaraptor",
-        image: "/Assets/Images/Dinosaurs/Megaraptor.jpg",
+        image: "Assets/Images/Dinosaurs/Megaraptor.jpg",
         size: 8,
         speed: 15,
         intelligence: 9,
@@ -652,7 +652,7 @@ const dinosaurs = [
     },
     {
         name: "Ornithomimus",
-        image: "/Assets/Images/Dinosaurs/Ornithomimus.png",
+        image: "Assets/Images/Dinosaurs/Ornithomimus.png",
         size: 4,
         speed: 20,
         intelligence: 10,
@@ -661,7 +661,7 @@ const dinosaurs = [
     },
     {
         name: "Saurophaganax",
-        image: "/Assets/Images/Dinosaurs/Saurophaganax.jpg",
+        image: "Assets/Images/Dinosaurs/Saurophaganax.jpg",
         size: 9,
         speed: 11,
         intelligence: 7,
@@ -670,7 +670,7 @@ const dinosaurs = [
     },
     {
         name: "Styracosaurus",
-        image: "/Assets/Images/Dinosaurs/Styracosaurus.png",
+        image: "Assets/Images/Dinosaurs/Styracosaurus.png",
         size: 8,
         speed: 7,
         intelligence: 6,
@@ -682,7 +682,7 @@ const dinosaurs = [
 const britishMonarchs = [
     {
         name: "Henry VIII",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 38,
         popularity: 65,
         militaryStrength: 85,
@@ -691,7 +691,7 @@ const britishMonarchs = [
     },
     {
         name: "Elizabeth I",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 45,
         popularity: 95,
         militaryStrength: 80,
@@ -700,7 +700,7 @@ const britishMonarchs = [
     },
     {
         name: "Victoria",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 63,
         popularity: 85,
         militaryStrength: 60,
@@ -709,7 +709,7 @@ const britishMonarchs = [
     },
     {
         name: "William the Conqueror",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 20,
         popularity: 70,
         militaryStrength: 100,
@@ -718,7 +718,7 @@ const britishMonarchs = [
     },
     {
         name: "Richard the Lionheart",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 10,
         popularity: 75,
         militaryStrength: 95,
@@ -727,7 +727,7 @@ const britishMonarchs = [
     },
     {
         name: "Edward I",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 35,
         popularity: 60,
         militaryStrength: 90,
@@ -736,7 +736,7 @@ const britishMonarchs = [
     },
     {
         name: "Charles I",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 24,
         popularity: 40,
         militaryStrength: 60,
@@ -745,7 +745,7 @@ const britishMonarchs = [
     },
     {
         name: "George III",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 59,
         popularity: 50,
         militaryStrength: 55,
@@ -754,7 +754,7 @@ const britishMonarchs = [
     },
     {
         name: "Mary I",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 5,
         popularity: 35,
         militaryStrength: 50,
@@ -763,7 +763,7 @@ const britishMonarchs = [
     },
     {
         name: "James I",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 22,
         popularity: 55,
         militaryStrength: 50,
@@ -772,7 +772,7 @@ const britishMonarchs = [
     },
     {
         name: "Edward III",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 50,
         popularity: 70,
         militaryStrength: 90,
@@ -781,7 +781,7 @@ const britishMonarchs = [
     },
     {
         name: "Anne",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 12,
         popularity: 65,
         militaryStrength: 50,
@@ -790,7 +790,7 @@ const britishMonarchs = [
     },
     {
         name: "Henry V",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 9,
         popularity: 75,
         militaryStrength: 95,
@@ -799,7 +799,7 @@ const britishMonarchs = [
     },
     {
         name: "George VI",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 16,
         popularity: 80,
         militaryStrength: 55,
@@ -808,7 +808,7 @@ const britishMonarchs = [
     },
     {
         name: "Edward IV",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 22,
         popularity: 70,
         militaryStrength: 85,
@@ -817,7 +817,7 @@ const britishMonarchs = [
     },
     {
         name: "Elizabeth II",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 70,
         popularity: 100,
         militaryStrength: 50,
@@ -826,7 +826,7 @@ const britishMonarchs = [
     },
     {
         name: "John",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 17,
         popularity: 30,
         militaryStrength: 40,
@@ -835,7 +835,7 @@ const britishMonarchs = [
     },
     {
         name: "Charles II",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 25,
         popularity: 65,
         militaryStrength: 55,
@@ -844,7 +844,7 @@ const britishMonarchs = [
     },
     {
         name: "Richard III",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 2,
         popularity: 40,
         militaryStrength: 75,
@@ -853,7 +853,7 @@ const britishMonarchs = [
     },
     {
         name: "Matilda",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 1,
         popularity: 45,
         militaryStrength: 65,
@@ -862,7 +862,7 @@ const britishMonarchs = [
     },
     {
         name: "Henry II",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 34,
         popularity: 60,
         militaryStrength: 85,
@@ -871,7 +871,7 @@ const britishMonarchs = [
     },
     {
         name: "James II",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 3,
         popularity: 35,
         militaryStrength: 50,
@@ -880,7 +880,7 @@ const britishMonarchs = [
     },
     {
         name: "William III",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 13,
         popularity: 55,
         militaryStrength: 70,
@@ -889,7 +889,7 @@ const britishMonarchs = [
     },
     {
         name: "Harold Godwinson",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/place-holder-image.jpg",
         reign: 0,
         popularity: 50,
         militaryStrength: 80,
