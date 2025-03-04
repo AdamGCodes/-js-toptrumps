@@ -103,7 +103,29 @@ button {
     color: white;
     font-weight: bold;
 }
+#start-game{
+    display: none;
+}
 
+.deck-selection-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.deck-selection-dropdown label{
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.deck-selection-dropdown select {
+    border-radius: 10px;
+    border: solid black 2px;
+    background-color: #B657FF;
+    font-weight: bold;
+    color: white;
+    width: fit-content;
+    padding: 2px;
+}
 button:hover, #nextHandBtn:hover{
     background-color: white;
     color: black;

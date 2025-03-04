@@ -1,16 +1,19 @@
 // CARD TRUMPS MAKR 2.1
 
-// //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES (STATE)- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -VARIABLES and CONSTANTS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 const p1 = "p1"
 const cpu = "cpu"
+const decks = {
+    fierceAnimals,
+    scifiVessels,
+    dinosaurs
+};
 let players = [cpu, p1]
 let p1CardData;
 let cpuCardData;
 let message = ""
 let drawContainer = []
-// let currentDeck = fierceAnimals
-// const cpuKeys = [cpuCat1, cpuCat2, cpuCat3, cpuCat4, cpuCat5];
-// const p1Keys = [p1Cat1, p1Cat2, p1Cat3, p1Cat4, p1Cat5];
+let currentDeck;
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< CACHED ELEMENT REFERENCES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -36,6 +39,9 @@ const endGameBtn = document.querySelector("#end-game");
 // Other Cached Elements
 // Button to open and close game into and instructions modal
 const howToPlayBox = document.querySelector(".how-to-play-box");
+
+//Deck Selection 
+const deckDropdown = document.querySelector("#select-deck")
 
 // Message area for displaying game status messages
 const messageBox = document.querySelector("#message");
@@ -75,6 +81,16 @@ const enableUserBtns = () => {
     })
 }
 
+// Showing and hiding start button to direct user interactions
+const hideStartBtn = () => {
+    document.getElementById('start-game').style.display = "none"
+}
+
+const showStartBtn = () => {
+    document.getElementById('start-game').style.display = "block"
+}
+
+//  Card flip affect
 const revealCpuCard = () => {
     document.querySelector('.computer-card').classList.remove('flip')
 }
@@ -87,29 +103,38 @@ const hideCpuCard = () => {
 
 
 // +++++++++++++++++++++++++++++++++++++ INIT +++++++++++++++++++++++++++++++++++++
+//Handle Deck Selection
+const handleDeckSelection = () => {
+    selectedDeck = event.target.value;
+    currentDeck = decks[selectedDeck];
+    showStartBtn()
+    console.log(currentDeck)
+    return currentDeck
+    
+}
+
 //Get Category Names for the deck that has been selected (This will change in a multiple decks mode to will be dependent on deck choice)
 const getCategories = () => {
     keys = Object.keys(currentDeck[0]);
 }
+
 //Render Category info to the cards on screen
 const renderCategories = () => {
     //Render to P1 Cards
     categorySelection.forEach((btn, index) => {
         if (index < keys.length - 1) { // Adjusting for 'keys' alignment 
-            btn.innerHTML = keys[index + 1];
+            btn.innerHTML = keys[index + 2];//Startig from the 3rd key as first two are "name" and "image".
         }
     })
     //Render to CPU Cards 
     cpuCategories.forEach((cpuCat, index) => {
         if (index < keys.length - 1) {// Adjusting for 'keys' alignment
-            cpuCat.innerHTML = keys[index + 1];
+            cpuCat.innerHTML = keys[index + 2];
         }
     });
 };
 
 const init = () => {
-    getCategories()
-    renderCategories()
     handleHowToPlay()
     hideNextHandBtn()
     revealCpuCard()
@@ -120,11 +145,12 @@ init()
 // +++++++++++++++++++++++++++++++++++++ START GAME +++++++++++++++++++++++++++++++++++++
 
 //Shuffle Deck
-const shuffle = (currentDeck) => {
+const shuffle = () => {
     for (let i = currentDeck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]]
     }
+    console.log(currentDeck)
     return currentDeck;
 }
 
@@ -142,35 +168,39 @@ const whoStarts = () => {
 }
 
 const handleStartGame = () => {
+    handleHowToPlay()
     playGame = true
+    getCategories()
+    renderCategories()
     shuffledDeck = shuffle(currentDeck);
     deal();
     whosTurn = whoStarts(players);
     hideCpuCard();
+    // handleHowToPlay();
     handleGamePlay(whosTurn, playGame);
+    hideStartBtn() //Resetting the start button to ensure that on subsequent games the user flow stays robust
 };
 
 
 // +++++++++++++++++++++++++++++++++++++ PLAY GAME +++++++++++++++++++++++++++++++++++++
 
 const renderCardInfo = () => {
-    // Render P1 Cards
-    p1Title.innerHTML = p1CardData.Name;
-    p1Img.innerHTML = `<img src="${p1CardData.Image}">`;
-    p1Info1.innerHTML = p1CardData.Speed;
-    p1Info2.innerHTML = p1CardData.Firepower;
-    p1Info3.innerHTML = p1CardData.Defense;
-    p1Info4.innerHTML = p1CardData.Crew;
-    p1Info5.innerHTML = p1CardData.CargoCapacity;
-
-    // Render CPU Cards
-    cpuTitle.innerHTML = `${cpuCardData.Name}`;
-    cpuImg.innerHTML = `<img src="${cpuCardData.Image}">`;
-    cpuInfo1.innerHTML = `${cpuCardData.Speed}`;
-    cpuInfo2.innerHTML = `${cpuCardData.Firepower}`;
-    cpuInfo3.innerHTML = `${cpuCardData.Defense}`;
-    cpuInfo4.innerHTML = `${cpuCardData.Crew}`;
-    cpuInfo5.innerHTML = `${cpuCardData.CargoCapacity}`;
+    const keys = Object.keys(currentDeck[0])
+    const p1Elements = [p1Title, p1Img, p1Info1, p1Info2, p1Info3, p1Info4, p1Info5];
+    const cpuElements = [cpuTitle, cpuImg, cpuInfo1, cpuInfo2, cpuInfo3, cpuInfo4, cpuInfo5];
+    
+    // Iterating through to match up dom elements with correct data from selected deck.
+    keys.forEach((key, index)=> {
+        if (index < p1Elements.length) {
+            if(key === "image") {
+                p1Elements[index].innerHTML = `<img src=${p1CardData[key]}>`;
+                cpuElements[index].innerHTML = `<img src=${cpuCardData[key]}>`;
+            } else {
+                p1Elements[index].innerHTML=p1CardData[key];
+                cpuElements[index].innerHTML = cpuCardData[key];
+            }
+        }
+    });
 }
 
 // ------------------------ Handle P1 Input & Functions ------------------------------
@@ -179,8 +209,8 @@ async function handleP1Input() {
         categorySelection.forEach((categoryBtn) => {
             categoryBtn.addEventListener('click', function handleSelection(event) { //Was a seperate fucntion that was called but now is defined in the click event.
                 let index = parseInt(event.target.id.slice(-1)); //using slice -1 to get the last digit from the ID this is the only part we require to index. parseInt is converting it to a number for use when used as index.
-                let key = keys[index]; //Getting the key from the keys array useing [index] with the above means we are selecting the key dynamically.
-
+                let key = keys[index + 1]; //Getting the key from the keys array useing [index] with the above means we are selecting the key dynamically.
+                //For the above, +1 used to align keys correctly
                 SelectedKey = key; // Stores the selected key
                 playerSelected = p1CardData[key]; // Get p1's value
                 cpuSelected = cpuCardData[key]; // Gets the CPU's value
@@ -198,7 +228,9 @@ async function handleP1Input() {
 async function handleCpuSelection() {
     keysArray = Object.keys(cpuCardData);
     valuesArray = Object.values(cpuCardData);
-    r = random(0, keysArray.length - 1) //Have used this instead of 1-6 to make more scaleable. 
+    console.log(keysArray)
+    console.log(valuesArray)
+    r = random(0, keysArray.length) //Have used this instead of 1-6 to make more scaleable. 
     SelectedKey = `${keysArray[r]}`;
     cpuSelected = parseInt(`${valuesArray[r]}`);
     playerSelected = p1CardData[SelectedKey]
@@ -341,14 +373,14 @@ const handleEndGame = () => {
             ${cpuDeck.length} cards<br>
             Congratulations you won!!!!.  <br> 
             Play again? <br>
-            Page Will Fresh in 10 seconds`
+            Page Will reload in 10 seconds`
     } else if (p1Deck < cpuDeck) {
         message = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time. <br> Play again? <br>Page Will Fresh in 10 seconds`
     } else {
         message = "Stalemate! It's a draw this time. Play again? <br>Page Will Fresh in 10 seconds"
     }
     handleMessages(message)
-    sleep(10000).then(() => { handleStartGame() });
+    sleep(10000).then(() => { init() });
 }
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -EVENT LISTENERS- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -367,3 +399,6 @@ howToPlayBtn.addEventListener('click', handleHowToPlay)
 
 //Close How To Play Info
 closeBtn.addEventListener('click', handleHowToPlay)
+
+//Deck Selection Dropdown
+deckDropdown.addEventListener('change', handleDeckSelection)

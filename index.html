@@ -16,12 +16,32 @@
             <h2>Welcome to Card Trumps</h2><button name= "close-btn" class="btn" id="close-btn">X</button>
             <h3>How to Play</h3>
             <ul>
-                <li><strong>Starting the Game:</strong> Click "Start Game" to shuffle and deal the cards. A random player goes first.</li>
+                <li><strong>Starting the Game:</strong> 
+                    <ol>
+                        <li>Choose your deck from the dropdown menu.</li>
+                        <li>Click "Start Game" to shuffle and deal the cards.</li>
+                        <li>The computer will pick at random who has the first turn.</li>
+                    </ol>
+                </li>
                 <li><strong>Taking Turns:</strong> Choose a category on your card; the CPU selects randomly. Higher value wins. After each hand, click "Next Hand" button to play the next hand.</li>
                 <li><strong>Winning and Draws:</strong> Winner takes both cards. Draws go into a pot, claimed by the next round’s winner.</li>
                 <li><strong>Game End:</strong> The game continues until one player has all the cards and wins. Alternatively, clicking "End Game" manually determines the winner based on who has the most cards.</li>
             </ul>
-            <p>Click the “X” to close this guide and start playing!</p>
+            <div class = "deck-selection-dropdown">
+                <label for="select-deck">Select the deck you would like to play with</label>
+                <select name="select-deck" id="select-deck">
+                    <option value="" selected>SELECT YOUR DECK</option>
+                    <option value="scifiVessels">SciFi Vessels</option>
+                    <option value="fierceAnimals">Fierce Creatures</option>
+                    <option value="dinosaurs">Dinosaurs</option>
+                </select>
+            </div>
+            <div class="buttons-group">
+                <button class="btn" id="start-game">
+                    Start Game
+                </button>
+            </div>
+            <!-- <p>Click the “X” to close this guide and start playing!</p> -->
         </div>
         <!-- <div class="header">
             <div>
@@ -29,8 +49,8 @@
                 <h1>Card Trumps</h1>
             </div>
             <img src="Assets/Images/Starsplash.png" alt="decorative">
-            <img src="Assets/Images/TTCardLogo-noBG.png" alt="game logo of three cards in a fan: green, purple, orange"> -->
-        </div>
+            <img src="Assets/Images/TTCardLogo-noBG.png" alt="game logo of three cards in a fan: green, purple, orange">
+        </div> -->
         <div class="card-container">
             <div class="player-card card" id="p1Card">
                 <div class="card-title" id="p1Title">
@@ -83,11 +103,6 @@
                 </div>
             </div>
             <div class="message-and-button-area">
-                <div class="buttons-group">
-                    <button class="btn" id="start-game">
-                        Start Game
-                    </button>
-                </div>
                 <div class="message-box">
                     <p id="message"></p>
                     <button name="next-hand" class="btn" id="nextHandBtn">
