@@ -597,13 +597,13 @@ const dinosaurs = [
         defense: 12
     },
     {
-        name: "Therizinosaurus",
-        image: "/Assets/Images/Dinosaurs/Therizinosaurus.png",
-        size: 9,
-        speed: 7,
-        intelligence: 8,
-        ferocity: 13,
-        defense: 16
+        name: "Plesiosaurus",
+        image: "/Assets/Images/Dinosaurs/Plesiosaurus.gif",
+        size: 7,
+        speed: 12,
+        intelligence: 5,
+        ferocity: 8,
+        defense: 10
     },
     {
         name: "Utahraptor",
