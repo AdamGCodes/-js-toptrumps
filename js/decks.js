@@ -490,7 +490,7 @@ const dinosaurs = [
     },
     {
         name: "Spinosaurus",
-        image: "/Assets/Images/Dinosaurs/Spinosaurus.jpg",
+        image: "/Assets/Images/Dinosaurs/Spinosaurus.gif",
         size: 10,
         speed: 11,
         intelligence: 8,
