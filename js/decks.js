@@ -71,7 +71,7 @@ const scifiVessels = [
     },
     {
         name: "Nostromo",
-        image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg",
+        image: "Assets/Images/sci-fi-ships-toptrumps/Nostromo.png",
         speed: 308,
         firepower: 50,
         defense: 70,
@@ -131,7 +131,7 @@ const scifiVessels = [
     },
     {
         name: "Razor Crest",
-        image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg",
+        image: "Assets/Images/sci-fi-ships-toptrumps/Razor_Crest.webp",
         speed: 538,
         firepower: 80,
         defense: 75,
@@ -171,7 +171,7 @@ const scifiVessels = [
     },
     {
         name: "Lexx",
-        image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg",
+        image: "Assets/Images/sci-fi-ships-toptrumps/Lexx.webp",
         speed: 769,
         firepower: 100,
         defense: 85,
@@ -198,16 +198,6 @@ const scifiVessels = [
         crew: 4,
         cargoCapacity: 80,
         // specialAbility: "Bounty Hunting"
-    },
-    {
-        name: "Elysium",
-        image: "Assets/Images/sci-fi-ships-toptrumps/50s_rocket.jpg",
-        speed: 269,
-        firepower: 75,
-        defense: 70,
-        crew: 12,
-        cargoCapacity: 300,
-        // specialAbility: "Medical Ship"
     },
     {
         name: "X-Wing",
@@ -238,13 +228,23 @@ const scifiVessels = [
         crew: 28000,
         cargoCapacity: 5000,
         // specialAbility: "Super Star Destroyer"
+    },
+    {
+        name: "Sulaco",
+        image: "Assets/Images/sci-fi-ships-toptrumps/Sulaco.webp",
+        speed: 600,
+        firepower: 85,
+        defense: 80,
+        crew: 90,
+        cargoCapacity: 1200,
+        // specialAbility: "Orbital Insertion"
     }
 ];
 
 const fierceAnimals = [
     {
         name: "Lion",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Lion.jpg",
         strength: 18,
         speed: 15,
         intelligence: 12,
@@ -253,7 +253,7 @@ const fierceAnimals = [
     },
     {
         name: "Tiger",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Tiger.jpeg",
         strength: 19,
         speed: 16,
         intelligence: 13,
@@ -262,7 +262,7 @@ const fierceAnimals = [
     },
     {
         name: "Grizzly Bear",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Grizzly-bear.jpg",
         strength: 20,
         speed: 12,
         intelligence: 10,
@@ -271,7 +271,7 @@ const fierceAnimals = [
     },
     {
         name: "Crocodile",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Crocodile.jpg",
         strength: 17,
         speed: 10,
         intelligence: 9,
@@ -280,7 +280,7 @@ const fierceAnimals = [
     },
     {
         name: "Wolf",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Wolf.jpeg",
         strength: 12,
         speed: 14,
         intelligence: 16,
@@ -289,7 +289,7 @@ const fierceAnimals = [
     },
     {
         name: "Great White Shark",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Great-white.jpg",
         strength: 20,
         speed: 17,
         intelligence: 8,
@@ -298,7 +298,7 @@ const fierceAnimals = [
     },
     {
         name: "Komodo Dragon",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Komodo_dragon.jpg",
         strength: 15,
         speed: 9,
         intelligence: 7,
@@ -307,7 +307,7 @@ const fierceAnimals = [
     },
     {
         name: "Jaguar",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Jaguar.jpg",
         strength: 16,
         speed: 18,
         intelligence: 14,
@@ -316,7 +316,7 @@ const fierceAnimals = [
     },
     {
         name: "Bald Eagle",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Bald_egal.jpeg",
         strength: 8,
         speed: 20,
         intelligence: 15,
@@ -325,7 +325,7 @@ const fierceAnimals = [
     },
     {
         name: "Black Mamba",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Black_mamba.webp",
         strength: 6,
         speed: 19,
         intelligence: 8,
@@ -334,7 +334,7 @@ const fierceAnimals = [
     },
     {
         name: "Elephant",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Elephant.jpeg",
         strength: 20,
         speed: 10,
         intelligence: 18,
@@ -343,7 +343,7 @@ const fierceAnimals = [
     },
     {
         name: "Rhinoceros",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Rhino.jpg",
         strength: 19,
         speed: 12,
         intelligence: 10,
@@ -352,7 +352,7 @@ const fierceAnimals = [
     },
     {
         name: "Hippopotamus",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Hippo.jpeg",
         strength: 18,
         speed: 15,
         intelligence: 10,
@@ -361,7 +361,7 @@ const fierceAnimals = [
     },
     {
         name: "Polar Bear",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Polar-bear.jpg",
         strength: 19,
         speed: 12,
         intelligence: 14,
@@ -370,7 +370,7 @@ const fierceAnimals = [
     },
     {
         name: "Snow Leopard",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Snow_leopard.jpeg",
         strength: 16,
         speed: 18,
         intelligence: 14,
@@ -379,7 +379,7 @@ const fierceAnimals = [
     },
     {
         name: "Bison",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Bison.jpg",
         strength: 18,
         speed: 10,
         intelligence: 8,
@@ -388,7 +388,7 @@ const fierceAnimals = [
     },
     {
         name: "Gorilla",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Gorilla.jpg",
         strength: 17,
         speed: 10,
         intelligence: 15,
@@ -397,7 +397,7 @@ const fierceAnimals = [
     },
     {
         name: "Buffalo",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Buffalo.webp",
         strength: 20,
         speed: 11,
         intelligence: 7,
@@ -406,7 +406,7 @@ const fierceAnimals = [
     },
     {
         name: "Leopard",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Leopard.jpg",
         strength: 16,
         speed: 20,
         intelligence: 14,
@@ -415,7 +415,7 @@ const fierceAnimals = [
     },
     {
         name: "Hyena",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Hyena.jpeg",
         strength: 15,
         speed: 14,
         intelligence: 12,
@@ -424,7 +424,7 @@ const fierceAnimals = [
     },
     {
         name: "Puma",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Puma.webp",
         strength: 17,
         speed: 18,
         intelligence: 12,
@@ -433,7 +433,7 @@ const fierceAnimals = [
     },
     {
         name: "Alligator",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Alligator.jpg",
         strength: 16,
         speed: 11,
         intelligence: 10,
@@ -442,7 +442,7 @@ const fierceAnimals = [
     },
     {
         name: "Mantis Shrimp",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Mantis_shrimp.jpg",
         strength: 12,
         speed: 20,
         intelligence: 10,
@@ -451,7 +451,7 @@ const fierceAnimals = [
     },
     {
         name: "Cassowary",
-        image: "/Assets/Images/place-holder-image.jpg",
+        image: "/Assets/Images/fierce-animals/Cassowary.webp",
         strength: 15,
         speed: 18,
         intelligence: 9,
@@ -463,219 +463,219 @@ const fierceAnimals = [
 const dinosaurs = [
     {
         name: "Tyrannosaurus Rex",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 19,
+        image: "/Assets/Images/Dinosaurs/T-rex.png",
+        size: 9,
         speed: 12,
         intelligence: 7,
-        stealth: 8,
-        aggression: 18
+        ferocity: 18,
+        defense: 15
     },
     {
         name: "Velociraptor",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 10,
+        image: "/Assets/Images/Dinosaurs/Velociraptor.png",
+        size: 4,
         speed: 18,
         intelligence: 15,
-        stealth: 17,
-        aggression: 14
+        ferocity: 14,
+        defense: 6
     },
     {
         name: "Triceratops",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 18,
+        image: "/Assets/Images/Dinosaurs/Triceratops.jpg",
+        size: 8,
         speed: 8,
         intelligence: 6,
-        stealth: 5,
-        aggression: 12
+        ferocity: 12,
+        defense: 18
     },
     {
         name: "Spinosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 20,
+        image: "/Assets/Images/Dinosaurs/Spinosaurus.jpg",
+        size: 10,
         speed: 11,
         intelligence: 8,
-        stealth: 9,
-        aggression: 17
+        ferocity: 17,
+        defense: 14
     },
     {
         name: "Stegosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 16,
+        image: "/Assets/Images/Dinosaurs/Stegosaurus.png",
+        size: 8,
         speed: 6,
         intelligence: 4,
-        stealth: 5,
-        aggression: 10
+        ferocity: 10,
+        defense: 16
     },
     {
         name: "Ankylosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 17,
+        image: "/Assets/Images/Dinosaurs/Ankylosaurus.jpeg",
+        size: 7,
         speed: 5,
         intelligence: 5,
-        stealth: 6,
-        aggression: 11
+        ferocity: 11,
+        defense: 19
     },
     {
         name: "Brachiosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 14,
+        image: "/Assets/Images/Dinosaurs/Brachiosaurus.png",
+        size: 10,
         speed: 4,
         intelligence: 6,
-        stealth: 4,
-        aggression: 7
+        ferocity: 7,
+        defense: 15
     },
     {
         name: "Allosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 18,
+        image: "/Assets/Images/Dinosaurs/Allosaurus.jpg",
+        size: 8,
         speed: 13,
         intelligence: 8,
-        stealth: 9,
-        aggression: 16
+        ferocity: 16,
+        defense: 12
     },
     {
         name: "Pteranodon",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 9,
+        image: "/Assets/Images/Dinosaurs/Pteranodon.jpg",
+        size: 4,
         speed: 19,
         intelligence: 10,
-        stealth: 14,
-        aggression: 13
+        ferocity: 13,
+        defense: 7
     },
     {
         name: "Carnotaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 17,
+        image: "/Assets/Images/Dinosaurs/Carnotaurus.png",
+        size: 7,
         speed: 14,
         intelligence: 7,
-        stealth: 10,
-        aggression: 15
-    },
-    {
-        name: "Iguanodon",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 12,
-        speed: 7,
-        intelligence: 6,
-        stealth: 6,
-        aggression: 9
-    },
-    {
-        name: "Megalosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 16,
-        speed: 10,
-        intelligence: 7,
-        stealth: 8,
-        aggression: 14
+        ferocity: 15,
+        defense: 9
     },
     {
         name: "Diplodocus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 13,
+        image: "/Assets/Images/Dinosaurs/Diplodocus.jpg",
+        size: 10,
         speed: 5,
-        intelligence: 6,
-        stealth: 4,
-        aggression: 6
+        intelligence: 5,
+        ferocity: 6,
+        defense: 14
+    },
+    {
+        name: "Iguanodon",
+        image: "/Assets/Images/Dinosaurs/Iguanodon.jpg",
+        size: 7,
+        speed: 9,
+        intelligence: 7,
+        ferocity: 9,
+        defense: 12
+    },
+    {
+        name: "Megalosaurus",
+        image: "/Assets/Images/Dinosaurs/Megalosaurus.jpeg",
+        size: 8,
+        speed: 11,
+        intelligence: 7,
+        ferocity: 15,
+        defense: 10
     },
     {
         name: "Pachycephalosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 14,
-        speed: 9,
-        intelligence: 7,
-        stealth: 7,
-        aggression: 10
-    },
-    {
-        name: "Therizinosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 15,
-        speed: 8,
-        intelligence: 7,
-        stealth: 9,
-        aggression: 12
-    },
-    {
-        name: "Utahraptor",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 16,
-        speed: 15,
-        intelligence: 12,
-        stealth: 14,
-        aggression: 17
-    },
-    {
-        name: "Ceratosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 17,
-        speed: 12,
+        image: "/Assets/Images/Dinosaurs/Pachycephalosaurus.png",
+        size: 6,
+        speed: 10,
         intelligence: 6,
-        stealth: 8,
-        aggression: 16
-    },
-    {
-        name: "Gallimimus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 8,
-        speed: 20,
-        intelligence: 10,
-        stealth: 12,
-        aggression: 8
-    },
-    {
-        name: "Compsognathus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 6,
-        speed: 16,
-        intelligence: 8,
-        stealth: 15,
-        aggression: 7
-    },
-    {
-        name: "Corythosaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 10,
-        speed: 8,
-        intelligence: 7,
-        stealth: 6,
-        aggression: 6
-    },
-    {
-        name: "Majungasaurus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 16,
-        speed: 11,
-        intelligence: 6,
-        stealth: 8,
-        aggression: 15
-    },
-    {
-        name: "Ornithomimus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 7,
-        speed: 18,
-        intelligence: 9,
-        stealth: 11,
-        aggression: 8
+        ferocity: 11,
+        defense: 13
     },
     {
         name: "Suchomimus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 18,
-        speed: 10,
+        image: "/Assets/Images/Dinosaurs/Suchomimus.jpg",
+        size: 9,
+        speed: 12,
         intelligence: 7,
-        stealth: 8,
-        aggression: 15
+        ferocity: 16,
+        defense: 12
     },
     {
-        name: "Deinonychus",
-        image: "/Assets/Images/place-holder-image.jpg",
-        strength: 14,
+        name: "Therizinosaurus",
+        image: "/Assets/Images/Dinosaurs/Therizinosaurus.png",
+        size: 9,
+        speed: 7,
+        intelligence: 8,
+        ferocity: 13,
+        defense: 16
+    },
+    {
+        name: "Utahraptor",
+        image: "/Assets/Images/Dinosaurs/Utahraptor.jpg",
+        size: 6,
+        speed: 17,
+        intelligence: 13,
+        ferocity: 15,
+        defense: 8
+    },
+    {
+        name: "Ceratosaurus",
+        image: "/Assets/Images/Dinosaurs/Ceratosaurus.jpg",
+        size: 7,
+        speed: 12,
+        intelligence: 6,
+        ferocity: 14,
+        defense: 10
+    },
+    {
+        name: "Coelophysis",
+        image: "/Assets/Images/Dinosaurs/Coelophysis.webp",
+        size: 3,
+        speed: 16,
+        intelligence: 9,
+        ferocity: 10,
+        defense: 6
+    },
+    {
+        name: "Giganotosaurus",
+        image: "/Assets/Images/Dinosaurs/Gigantosaurus.jpeg",
+        size: 10,
+        speed: 10,
+        intelligence: 7,
+        ferocity: 18,
+        defense: 14
+    },
+    {
+        name: "Megaraptor",
+        image: "/Assets/Images/Dinosaurs/Megaraptor.jpg",
+        size: 8,
         speed: 15,
-        intelligence: 12,
-        stealth: 16,
-        aggression: 16
+        intelligence: 9,
+        ferocity: 16,
+        defense: 10
+    },
+    {
+        name: "Ornithomimus",
+        image: "/Assets/Images/Dinosaurs/Ornithomimus.png",
+        size: 4,
+        speed: 20,
+        intelligence: 10,
+        ferocity: 8,
+        defense: 7
+    },
+    {
+        name: "Saurophaganax",
+        image: "/Assets/Images/Dinosaurs/Saurophaganax.jpg",
+        size: 9,
+        speed: 11,
+        intelligence: 7,
+        ferocity: 17,
+        defense: 13
+    },
+    {
+        name: "Styracosaurus",
+        image: "/Assets/Images/Dinosaurs/Styracosaurus.png",
+        size: 8,
+        speed: 7,
+        intelligence: 6,
+        ferocity: 12,
+        defense: 18
     }
 ];
 
