@@ -6,7 +6,8 @@ const cpu = "cpu"
 const decks = {
     fierceAnimals,
     scifiVessels,
-    dinosaurs
+    dinosaurs,
+    britishMonarchs
 };
 let players = [cpu, p1]
 let p1CardData;
@@ -254,7 +255,7 @@ async function handleNextHand() {
 
 //Random Function
 const random = (min, max) => {
-    const minCeiled = Math.ceil(1);
+    const minCeiled = Math.ceil(2);
     const maxFloored = Math.floor(6);
     return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled)
 }

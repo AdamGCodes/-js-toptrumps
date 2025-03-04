@@ -678,3 +678,222 @@ const dinosaurs = [
         aggression: 16
     }
 ];
+
+const britishMonarchs = [
+    {
+        name: "Henry VIII",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 38,
+        popularity: 65,
+        militaryStrength: 85,
+        politicalSkill: 75,
+        influence: 90
+    },
+    {
+        name: "Elizabeth I",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 45,
+        popularity: 95,
+        militaryStrength: 80,
+        politicalSkill: 95,
+        influence: 100
+    },
+    {
+        name: "Victoria",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 63,
+        popularity: 85,
+        militaryStrength: 60,
+        politicalSkill: 90,
+        influence: 95
+    },
+    {
+        name: "William the Conqueror",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 20,
+        popularity: 70,
+        militaryStrength: 100,
+        politicalSkill: 80,
+        influence: 90
+    },
+    {
+        name: "Richard the Lionheart",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 10,
+        popularity: 75,
+        militaryStrength: 95,
+        politicalSkill: 65,
+        influence: 80
+    },
+    {
+        name: "Edward I",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 35,
+        popularity: 60,
+        militaryStrength: 90,
+        politicalSkill: 85,
+        influence: 85
+    },
+    {
+        name: "Charles I",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 24,
+        popularity: 40,
+        militaryStrength: 60,
+        politicalSkill: 55,
+        influence: 65
+    },
+    {
+        name: "George III",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 59,
+        popularity: 50,
+        militaryStrength: 55,
+        politicalSkill: 65,
+        influence: 75
+    },
+    {
+        name: "Mary I",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 5,
+        popularity: 35,
+        militaryStrength: 50,
+        politicalSkill: 60,
+        influence: 55
+    },
+    {
+        name: "James I",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 22,
+        popularity: 55,
+        militaryStrength: 50,
+        politicalSkill: 75,
+        influence: 70
+    },
+    {
+        name: "Edward III",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 50,
+        popularity: 70,
+        militaryStrength: 90,
+        politicalSkill: 85,
+        influence: 90
+    },
+    {
+        name: "Anne",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 12,
+        popularity: 65,
+        militaryStrength: 50,
+        politicalSkill: 75,
+        influence: 70
+    },
+    {
+        name: "Henry V",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 9,
+        popularity: 75,
+        militaryStrength: 95,
+        politicalSkill: 80,
+        influence: 85
+    },
+    {
+        name: "George VI",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 16,
+        popularity: 80,
+        militaryStrength: 55,
+        politicalSkill: 70,
+        influence: 75
+    },
+    {
+        name: "Edward IV",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 22,
+        popularity: 70,
+        militaryStrength: 85,
+        politicalSkill: 80,
+        influence: 80
+    },
+    {
+        name: "Elizabeth II",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 70,
+        popularity: 100,
+        militaryStrength: 50,
+        politicalSkill: 90,
+        influence: 100
+    },
+    {
+        name: "John",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 17,
+        popularity: 30,
+        militaryStrength: 40,
+        politicalSkill: 50,
+        influence: 45
+    },
+    {
+        name: "Charles II",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 25,
+        popularity: 65,
+        militaryStrength: 55,
+        politicalSkill: 80,
+        influence: 70
+    },
+    {
+        name: "Richard III",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 2,
+        popularity: 40,
+        militaryStrength: 75,
+        politicalSkill: 60,
+        influence: 55
+    },
+    {
+        name: "Matilda",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 1,
+        popularity: 45,
+        militaryStrength: 65,
+        politicalSkill: 70,
+        influence: 60
+    },
+    {
+        name: "Henry II",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 34,
+        popularity: 60,
+        militaryStrength: 85,
+        politicalSkill: 90,
+        influence: 85
+    },
+    {
+        name: "James II",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 3,
+        popularity: 35,
+        militaryStrength: 50,
+        politicalSkill: 55,
+        influence: 45
+    },
+    {
+        name: "William III",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 13,
+        popularity: 55,
+        militaryStrength: 70,
+        politicalSkill: 75,
+        influence: 65
+    },
+    {
+        name: "Harold Godwinson",
+        image: "/Assets/Images/place-holder-image.jpg",
+        reign: 0,
+        popularity: 50,
+        militaryStrength: 80,
+        politicalSkill: 60,
+        influence: 55
+    }
+];
