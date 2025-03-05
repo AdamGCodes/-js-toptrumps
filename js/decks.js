@@ -898,15 +898,15 @@ const britishMonarchs = [
     }
 ];
 
-const adams_dream_jobs = [
-    {
-        name: "",
-        image: "",
-        glassdoorScore: "",
+// const adams_dream_jobs = [
+//     {
+//         name: "",
+//         image: "",
+//         glassdoorScore: "",
 
     
-    }
-]
+//     }
+// ]
 // Aurora Energy Research 4.1
 // Positive Impact
 // 
