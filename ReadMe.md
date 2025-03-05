@@ -43,7 +43,7 @@ To view the source code, visit the [**GitHub Repository**](https://github.com/Ad
 
 ## Timeframe & Team
 
-This was a solo project completed in one week, aiming to deliver a functional MVP while exploring stretch goals for future development.
+This was initially a solo project completed in one week, aiming to deliver a functional MVP while exploring stretch goals for future development. Time spent after this initial week to make updates and in late 2024 early 2025 rebuilt it to greatly improve performance with much better code. 
 
 ---
 
@@ -137,17 +137,19 @@ Some stretch goals, like animating the computer's card, remain as future improve
 
 ## Known Bugs
 
-- Drawn hands is not working correctly. This function needs to be re-written and the user messaging around this also needs to be improved. 
-- The lack of animations for the computer's card reduces UI polish.
+- (Resolved) Drawn hands is not working correctly. This function needs to be re-written and the user messaging around this also needs to be improved. 
+- (Resolved) The lack of animations for the computer's card reduces UI polish.
+- Due to recent changes the responsiveness isn't amazing. Ultimately I believe I need to rethinc the UI for smaller screens and possible have messages pop up rather than as a panal constantly visible. (Maybe see if I can team up with a UX designer on this?)
 
 ---
 
 ## Future Improvements
 
-1. Offer multiple decks on different topics.  
-2. Add transitions and animations for smoother gameplay.  
+1. Complete (Mar 25) Offer multiple decks on different topics.  
+2. Complete (Feb 25)Add transitions and animations for smoother gameplay.  
 3. Enable multiplayer functionality via online or network play.  
 4. Include an optional deck counter to track card numbers.  
-5. Develop a CRUD system for users to create and edit their own card decks.  
+5. Make full stack/Develop a CRUD system for users to create and edit their own card decks.  
+6. Some images have dimensions that don't work well with current set up. Short term find images with better dimensions. Long term look at smarter ways to handle images of a great range of dimensions. 
 
 ---
