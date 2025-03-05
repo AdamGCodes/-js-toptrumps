@@ -682,7 +682,7 @@ const dinosaurs = [
 const britishMonarchs = [
     {
         name: "Henry VIII",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Henry_8.webp",
         reign: 38,
         popularity: 65,
         militaryStrength: 85,
@@ -691,7 +691,7 @@ const britishMonarchs = [
     },
     {
         name: "Elizabeth I",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Elizabeth_1.webp",
         reign: 45,
         popularity: 95,
         militaryStrength: 80,
@@ -700,7 +700,7 @@ const britishMonarchs = [
     },
     {
         name: "Victoria",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Victoria.jpg",
         reign: 63,
         popularity: 85,
         militaryStrength: 60,
@@ -709,7 +709,7 @@ const britishMonarchs = [
     },
     {
         name: "William the Conqueror",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/William_Conqueror.jpg",
         reign: 20,
         popularity: 70,
         militaryStrength: 100,
@@ -718,7 +718,7 @@ const britishMonarchs = [
     },
     {
         name: "Richard the Lionheart",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Richard_Lionheart.jpg",
         reign: 10,
         popularity: 75,
         militaryStrength: 95,
@@ -727,7 +727,7 @@ const britishMonarchs = [
     },
     {
         name: "Edward I",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Edward_1.jpg",
         reign: 35,
         popularity: 60,
         militaryStrength: 90,
@@ -736,7 +736,7 @@ const britishMonarchs = [
     },
     {
         name: "Charles I",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Charles_1.jpg",
         reign: 24,
         popularity: 40,
         militaryStrength: 60,
@@ -745,7 +745,7 @@ const britishMonarchs = [
     },
     {
         name: "George III",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/George_3.jpg",
         reign: 59,
         popularity: 50,
         militaryStrength: 55,
@@ -754,7 +754,7 @@ const britishMonarchs = [
     },
     {
         name: "Mary I",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Mary_1.jpg",
         reign: 5,
         popularity: 35,
         militaryStrength: 50,
@@ -763,7 +763,7 @@ const britishMonarchs = [
     },
     {
         name: "James I",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/James_1.jpg",
         reign: 22,
         popularity: 55,
         militaryStrength: 50,
@@ -772,7 +772,7 @@ const britishMonarchs = [
     },
     {
         name: "Edward III",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Edward_3.jpg",
         reign: 50,
         popularity: 70,
         militaryStrength: 90,
@@ -781,7 +781,7 @@ const britishMonarchs = [
     },
     {
         name: "Anne",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Anne.jpg",
         reign: 12,
         popularity: 65,
         militaryStrength: 50,
@@ -790,7 +790,7 @@ const britishMonarchs = [
     },
     {
         name: "Henry V",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Henry_5.jpg",
         reign: 9,
         popularity: 75,
         militaryStrength: 95,
@@ -799,7 +799,7 @@ const britishMonarchs = [
     },
     {
         name: "George VI",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/George_6.jpg",
         reign: 16,
         popularity: 80,
         militaryStrength: 55,
@@ -808,7 +808,7 @@ const britishMonarchs = [
     },
     {
         name: "Edward IV",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Edward_4.jpg",
         reign: 22,
         popularity: 70,
         militaryStrength: 85,
@@ -817,7 +817,7 @@ const britishMonarchs = [
     },
     {
         name: "Elizabeth II",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Elizabeth_2.jpg",
         reign: 70,
         popularity: 100,
         militaryStrength: 50,
@@ -826,7 +826,7 @@ const britishMonarchs = [
     },
     {
         name: "John",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/John.jpg",
         reign: 17,
         popularity: 30,
         militaryStrength: 40,
@@ -835,7 +835,7 @@ const britishMonarchs = [
     },
     {
         name: "Charles II",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Charles_2.jpg",
         reign: 25,
         popularity: 65,
         militaryStrength: 55,
@@ -844,7 +844,7 @@ const britishMonarchs = [
     },
     {
         name: "Richard III",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Richard_3.jpg",
         reign: 2,
         popularity: 40,
         militaryStrength: 75,
@@ -853,7 +853,7 @@ const britishMonarchs = [
     },
     {
         name: "Matilda",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Matilda.jpg",
         reign: 1,
         popularity: 45,
         militaryStrength: 65,
@@ -862,7 +862,7 @@ const britishMonarchs = [
     },
     {
         name: "Henry II",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Henry_2.jpg",
         reign: 34,
         popularity: 60,
         militaryStrength: 85,
@@ -871,7 +871,7 @@ const britishMonarchs = [
     },
     {
         name: "James II",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/James_2.jpg",
         reign: 3,
         popularity: 35,
         militaryStrength: 50,
@@ -880,7 +880,7 @@ const britishMonarchs = [
     },
     {
         name: "William III",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/William_3.jpg",
         reign: 13,
         popularity: 55,
         militaryStrength: 70,
@@ -889,7 +889,7 @@ const britishMonarchs = [
     },
     {
         name: "Harold Godwinson",
-        image: "Assets/Images/place-holder-image.jpg",
+        image: "Assets/Images/kings-and-queens/Harold_Godwinson.jpg",
         reign: 0,
         popularity: 50,
         militaryStrength: 80,
