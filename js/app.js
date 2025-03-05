@@ -376,9 +376,17 @@ const handleEndGame = () => {
             Play again? <br>
             Page Will reload in 10 seconds`
     } else if (p1Deck < cpuDeck) {
-        message = `Player 1 Deck ${p1Deck.length} : CPU Deck ${cpuDeck.length} Better luck next time. <br> Play again? <br>Page Will Fresh in 10 seconds`
+        message = 
+        `<strong>Player 1 Deck: ${p1Deck.length}</strong><br>
+        <strong>CPU Deck: ${cpuDeck.length}</strong><br>
+        Better luck next time. <br> 
+        Play again?<br>
+        Page Will Fresh in 10 seconds`
     } else {
-        message = "Stalemate! It's a draw this time. Play again? <br>Page Will Fresh in 10 seconds"
+        message = 
+        `Stalemate! It's a draw this time. <br>
+        Play again? <br>
+        Page Will Fresh in 10 seconds`
     }
     handleMessages(message)
     sleep(10000).then(() => { init() });
